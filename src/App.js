@@ -9,6 +9,8 @@ import Home from './pages/Home'
 import BrewerySearch from "./pages/BrewerySearch";
 import Brewery from "./pages/Brewery";
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 function App() {
 
   const [breweries, setBreweries] = useState(null)

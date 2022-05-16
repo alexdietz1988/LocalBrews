@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import Button from 'react-bootstrap/Button'
 
 function BrewerySearch(props) {
 
@@ -14,12 +15,15 @@ function BrewerySearch(props) {
         <>
             <h2>Brewery Search</h2>
 
-            <form onSubmit={props.handleSubmit}>
-                <label>City</label>
-                <input id='city' name='city' type='text' value={props.location.city} onChange={props.handleChange}></input>
+            <form className='location-form mb-2 row g-1' onSubmit={props.handleSubmit}>
 
-                <label>State</label>
-                <select id='state' name='state' value={props.location.state} onChange={props.handleChange}>
+                <div className='mb-2 col-sm'>
+                <input placeholder='City' id='city' name='city' type='text' className='form-control' value={props.location.city} onChange={props.handleChange}></input>
+                </div>
+
+                <div className='mb-2 col-sm'>
+                <select placeholder='State' id='state' name='state' className='form-select' value={props.location.state} onChange={props.handleChange}>
+                    <option selected>State</option>
                     <option value='alabama'>Alabama</option>
                     <option value='alaska'>Alaska</option>
                     <option value='arizona'>Arizona</option>
@@ -72,8 +76,11 @@ function BrewerySearch(props) {
                     <option value='wisconsin'>Wisconsin</option>
                     <option value='wyoming'>Wyoming</option>
                 </select>
+                </div>
 
-                <button>Submit</button>
+                <div className='mb-2 col-sm'>
+                <Button type='submit'>Submit</Button>
+                </div>
             </form>
 
             {props.breweries ? loaded() : null}
