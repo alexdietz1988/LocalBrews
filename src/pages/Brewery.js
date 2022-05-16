@@ -8,10 +8,13 @@ function Brewery(props) {
 
     return(
         <>
-            <h2>{brewery.name}</h2>
-            <p>{brewery.street}</p>
-            <p>{brewery.city}, {brewery.state}</p>
-            <p><a href={brewery.website_url} target='_blank' rel='noreferrer'>Website</a></p>
+            <h2 className='mb-4'>{brewery.name}</h2>
+
+            <section>
+                <p>{brewery.street}</p>
+                <p>{brewery.city}, {brewery.state}</p>
+                <p><a href={brewery.website_url} target='_blank' rel='noreferrer'>Website</a></p>
+            </section>
         </>
     )
 }

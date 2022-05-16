@@ -1,21 +1,26 @@
 import { Link } from "react-router-dom"
-import Button from 'react-bootstrap/Button'
 
 function BrewerySearch(props) {
 
     function loaded() {
+
+        let formattedLocation = `${props.location.city[0].toUpperCase()}${props.location.city.slice(1)}, ${props.location.state[0].toUpperCase()}${props.location.state.slice(1)}`
+
         return(
-            props.breweries.map(brewery => (
+            <section>
+                <h3 className='mb-3'>Breweries in {formattedLocation}</h3>
+            {props.breweries.map(brewery => (
                 <Link to={`/brewery/${brewery.id}`} key={brewery.name}><p>{brewery.name}</p></Link>
-            ))
+            ))}
+            </section>
         )
     }
 
     return(
         <>
-            <h2>Brewery Search</h2>
+            <h2 className='mb-4'>Brewery Search</h2>
 
-            <form className='location-form mb-2 row g-1' onSubmit={props.handleSubmit}>
+            <form className='location-form mb-4 row g-1' onSubmit={props.handleSubmit}>
 
                 <div className='mb-2 col-sm'>
                 <input placeholder='City' id='city' name='city' type='text' className='form-control' value={props.location.city} onChange={props.handleChange}></input>
@@ -23,7 +28,7 @@ function BrewerySearch(props) {
 
                 <div className='mb-2 col-sm'>
                 <select placeholder='State' id='state' name='state' className='form-select' value={props.location.state} onChange={props.handleChange}>
-                    <option selected>State</option>
+                    <option>State</option>
                     <option value='alabama'>Alabama</option>
                     <option value='alaska'>Alaska</option>
                     <option value='arizona'>Arizona</option>
@@ -79,7 +84,7 @@ function BrewerySearch(props) {
                 </div>
 
                 <div className='mb-2 col-sm'>
-                <Button type='submit'>Submit</Button>
+                <button type='submit' className='btn btn-primary'>Submit</button>
                 </div>
             </form>
 

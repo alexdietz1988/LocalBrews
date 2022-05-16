@@ -1,15 +1,16 @@
 import { Route, Routes } from "react-router-dom";
 import { useState } from 'react';
 
+import './styles.css'
 import Header from "./components/Header";
-import Nav from "./components/Nav";
+
 import Footer from "./components/Footer";
 
 import Home from './pages/Home'
 import BrewerySearch from "./pages/BrewerySearch";
 import Brewery from "./pages/Brewery";
 
-import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 function App() {
 
@@ -37,8 +38,9 @@ function App() {
   return (
     <>
       <Header />
-      <Nav />
 
+      <main className='flex-shrink-0'>
+        <div className='container'>
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route path='/search' element={<BrewerySearch
@@ -49,6 +51,8 @@ function App() {
         />} />
         <Route path='/brewery/:id' element={<Brewery breweries={breweries}/>} />
       </Routes>
+      </div>
+      </main>
       <Footer />
     </>
   );
