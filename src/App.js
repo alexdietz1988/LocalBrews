@@ -14,7 +14,7 @@ import Brewery from "./pages/Brewery";
 
 function App() {
 
-  const [breweries, setBreweries] = useState(null)
+  const [breweries, setBreweries] = useState([])
   const [location, setLocation] = useState({city: '', state: ''})
 
   return (
