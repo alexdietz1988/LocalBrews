@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom"
+
 function Nav() {
     return(
         <nav>
             <ul>
-                <li>Home</li>
-                <li>Brewery Search</li>
+                <Link to='/'><li>Home</li></Link>
+                <Link to='/search'><li>Brewery Search</li></Link>
             </ul>
         </nav>
     )
