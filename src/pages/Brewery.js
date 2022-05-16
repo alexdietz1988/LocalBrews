@@ -3,11 +3,11 @@ import { useParams } from "react-router-dom"
 
 function Brewery(props) {
 
-    const [brewery, setBrewery] = useState(null)
+    // const [brewery, setBrewery] = useState(null)
 
     const id = useParams().id
 
-    setBrewery(props.breweries.find(element => element.id === id))
+    const brewery = props.breweries.find(element => element.id === id)
 
     // useEffect(() => {
     //     fetch(`https://api.openbrewerydb.org/breweries/${id}`)

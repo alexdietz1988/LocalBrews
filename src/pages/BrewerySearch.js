@@ -1,12 +1,26 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
 function BrewerySearch(props) {
 
+    const [page, setPage] = useState(1)
+
     function searchByCity() {
-        fetch(`https://api.openbrewerydb.org/breweries?by_city=${props.location.city}&by_state=${props.location.state}`)
+        fetch(`https://api.openbrewerydb.org/breweries?by_city=${props.location.city}&by_state=${props.location.state}&page=${page}`)
             .then(response => response.json())
             .then(data => props.setBreweries(data) )
+    }
 
+    function nextPage(e) {
+        e.preventDefault()
+        setPage(page + 1)
+        searchByCity()
+    }
+
+    function previousPage(e) {
+        e.preventDefault()
+        setPage(page - 1)
+        searchByCity()
     }
 
     function handleChange(e) {
@@ -23,14 +37,23 @@ function BrewerySearch(props) {
 
     function loaded() {
 
-        let formattedLocation = `${props.location.city[0].toUpperCase()}${props.location.city.slice(1)}, ${props.location.state[0].toUpperCase()}${props.location.state.slice(1)}`
-
         return(
             <section>
-                <h3 className='mb-3'>Breweries in {formattedLocation}</h3>
-            {props.breweries.map(brewery => (
+                <h3 className='mb-3'>Results</h3>
+                {props.breweries.map(brewery => (
                 <Link to={`/brewery/${brewery.id}`} key={brewery.id}><p>{brewery.name}</p></Link>
-            ))}
+                ))}
+
+                <div className='mb-4 row g-1'>
+                {page > 1 && (<form className='col-sm' onSubmit={previousPage}>
+                    <button type='submit' className='btn btn-secondary'>Previous</button>
+                </form>)}
+
+                <form className='col-sm' onSubmit={nextPage}>
+                    <button type='submit' className='btn btn-secondary'>Next</button>
+                </form>
+                </div>
+            
             </section>
         )
     }
@@ -39,7 +62,7 @@ function BrewerySearch(props) {
         <>
             <h2 className='mb-4'>Brewery Search</h2>
 
-            <form className='location-form mb-4 row g-1' onSubmit={handleSubmit}>
+            <form className='mb-4 row g-1' onSubmit={handleSubmit}>
 
                 <div className='mb-2 col-sm'>
                 <input placeholder='City' id='city' name='city' type='text' className='form-control' value={props.location.city} onChange={handleChange}></input>
