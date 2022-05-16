@@ -2,6 +2,25 @@ import { Link } from "react-router-dom"
 
 function BrewerySearch(props) {
 
+    function searchByCity() {
+        fetch(`https://api.openbrewerydb.org/breweries?by_city=${props.location.city}&by_state=${props.location.state}`)
+            .then(response => response.json())
+            .then(data => props.setBreweries(data) )
+
+    }
+
+    function handleChange(e) {
+        props.setLocation((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        searchByCity()
+    }
+
     function loaded() {
 
         let formattedLocation = `${props.location.city[0].toUpperCase()}${props.location.city.slice(1)}, ${props.location.state[0].toUpperCase()}${props.location.state.slice(1)}`
@@ -10,7 +29,7 @@ function BrewerySearch(props) {
             <section>
                 <h3 className='mb-3'>Breweries in {formattedLocation}</h3>
             {props.breweries.map(brewery => (
-                <Link to={`/brewery/${brewery.id}`} key={brewery.name}><p>{brewery.name}</p></Link>
+                <Link to={`/brewery/${brewery.id}`} key={brewery.id}><p>{brewery.name}</p></Link>
             ))}
             </section>
         )
@@ -20,14 +39,14 @@ function BrewerySearch(props) {
         <>
             <h2 className='mb-4'>Brewery Search</h2>
 
-            <form className='location-form mb-4 row g-1' onSubmit={props.handleSubmit}>
+            <form className='location-form mb-4 row g-1' onSubmit={handleSubmit}>
 
                 <div className='mb-2 col-sm'>
-                <input placeholder='City' id='city' name='city' type='text' className='form-control' value={props.location.city} onChange={props.handleChange}></input>
+                <input placeholder='City' id='city' name='city' type='text' className='form-control' value={props.location.city} onChange={handleChange}></input>
                 </div>
 
                 <div className='mb-2 col-sm'>
-                <select placeholder='State' id='state' name='state' className='form-select' value={props.location.state} onChange={props.handleChange}>
+                <select placeholder='State' id='state' name='state' className='form-select' value={props.location.state} onChange={handleChange}>
                     <option>State</option>
                     <option value='alabama'>Alabama</option>
                     <option value='alaska'>Alaska</option>

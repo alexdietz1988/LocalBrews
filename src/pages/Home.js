@@ -6,7 +6,7 @@ function Home() {
             <section>
                 <p>Like trying new beers from local breweries?</p>
                 <p>You can use Local Brews to find breweries near you.</p>
-                <p>Powered by data from Open Brewery DB.</p>
+                <p>Powered by data from <a href='https://www.openbrewerydb.org' target='blank' rel='noreferrer'>Open Brewery DB</a>.</p>
             </section>
         </div>
     )

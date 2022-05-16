@@ -17,24 +17,6 @@ function App() {
   const [breweries, setBreweries] = useState(null)
   const [location, setLocation] = useState({city: '', state: ''})
 
-  function searchBreweries() {
-      fetch(`https://api.openbrewerydb.org/breweries?by_city=${location.city}&by_state=${location.state}`)
-          .then(response => response.json())
-          .then(data => setBreweries(data))
-  }
-
-  function handleSubmit(e) {
-      e.preventDefault()
-      searchBreweries()
-  }
-
-  function handleChange(e) {
-      setLocation((prevState) => ({
-          ...prevState,
-          [e.target.name]: e.target.value
-      }))
-  }
-
   return (
     <>
       <Header />
@@ -45,9 +27,9 @@ function App() {
         <Route exact path='/' element={<Home />} />
         <Route path='/search' element={<BrewerySearch
           breweries={breweries}
+          setBreweries={setBreweries}
           location={location}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
+          setLocation={setLocation}
         />} />
         <Route path='/brewery/:id' element={<Brewery breweries={breweries}/>} />
       </Routes>

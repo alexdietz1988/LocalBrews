@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 function Header() {
     return(
-        <nav className='navbar navbar-expand-md navbar-dark bg-dark mb-5'>
+        <nav className='navbar navbar-expand-sm navbar-dark bg-dark mb-5'>
             <div className='navbar-brand'>Local Brews</div>
             <div className='container-fluid'>
             <div className='navbar-nav'>
