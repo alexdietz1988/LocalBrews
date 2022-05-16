@@ -1,8 +1,12 @@
+import { Link } from "react-router-dom"
+
 function BrewerySearch(props) {
 
     function loaded() {
         return(
-            props.breweries.map(brewery => (<p key={brewery.name}>{brewery.name}</p>))
+            props.breweries.map(brewery => (
+                <Link to={`/brewery/${brewery.id}`} key={brewery.name}><p>{brewery.name}</p></Link>
+            ))
         )
     }
 
