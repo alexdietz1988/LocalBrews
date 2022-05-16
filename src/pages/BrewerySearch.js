@@ -1,33 +1,8 @@
-import { useState } from 'react';
-import React from 'react';
-
-function BrewerySearch() {
-
-    const [location, setLocation] = useState({city: '', state: ''})
-    const [breweries, setBreweries] = useState(null)
-
-    function searchBreweries() {
-        fetch(`https://api.openbrewerydb.org/breweries?by_city=${location.city}&by_state=${location.state}`)
-            .then(response => response.json())
-            .then(data => setBreweries(data))
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault()
-        console.log(location)
-        searchBreweries()
-    }
-
-    function handleChange(e) {
-        setLocation((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }))
-    }
+function BrewerySearch(props) {
 
     function loaded() {
         return(
-            breweries.map(brewery => (<p key={brewery.name}>{brewery.name}</p>))
+            props.breweries.map(brewery => (<p key={brewery.name}>{brewery.name}</p>))
         )
     }
 
@@ -35,12 +10,12 @@ function BrewerySearch() {
         <>
             <h2>Brewery Search</h2>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={props.handleSubmit}>
                 <label>City</label>
-                <input id='city' name='city' type='text' value={location.city} onChange={handleChange}></input>
+                <input id='city' name='city' type='text' value={props.location.city} onChange={props.handleChange}></input>
 
                 <label>State</label>
-                <select id='state' name='state' value={location.state} onChange={handleChange}>
+                <select id='state' name='state' value={props.location.state} onChange={props.handleChange}>
                     <option value='alabama'>Alabama</option>
                     <option value='alaska'>Alaska</option>
                     <option value='arizona'>Arizona</option>
@@ -97,7 +72,7 @@ function BrewerySearch() {
                 <button>Submit</button>
             </form>
 
-            {breweries ? loaded() : <p>Something</p>}
+            {props.breweries ? loaded() : null}
         </>
     )
 }
