@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import Home from './pages/Home'
 import BrewerySearch from "./pages/BrewerySearch";
 import Brewery from "./pages/Brewery";
-
+import MyList from "./pages/MyList";
 
 
 function App() {
@@ -32,6 +32,7 @@ function App() {
           setLocation={setLocation}
         />} />
         <Route path='/brewery/:id' element={<Brewery breweries={breweries}/>} />
+        <Route path='/mylist' element={<MyList />}/>
       </Routes>
       </div>
       </main>
