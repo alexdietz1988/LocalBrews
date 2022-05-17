@@ -18,6 +18,20 @@ function Brewery(props) {
             
     }
 
+    function handleChange(e) {
+        props.setLocation((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        let newUserList = props.userList
+        newUserList.push(thisBrewery)
+        props.setUserList(newUserList)
+    }
+
     return(
         <>
             <h2 className='mb-4'>{thisBrewery.name}</h2>
@@ -27,6 +41,10 @@ function Brewery(props) {
                 <p>{thisBrewery.city}, {thisBrewery.state}</p>
                 <p><a href={thisBrewery.website_url} target='_blank' rel='noreferrer'>Website</a></p>
             </section>
+
+            <form onSubmit={handleSubmit}>
+                <button className="btn btn-primary">Add to My List</button>
+            </form>
         </>
     )
 
