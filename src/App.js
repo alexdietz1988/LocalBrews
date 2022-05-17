@@ -16,6 +16,8 @@ function App() {
 
   const [breweries, setBreweries] = useState([])
   const [location, setLocation] = useState({city: '', state: ''})
+
+  const [user, setUser] = useState('alex')
   const [userList, setUserList] = useState([])
 
   return (
@@ -36,10 +38,12 @@ function App() {
           breweries={breweries}
           userList={userList}
           setUserList={setUserList}
+          user={user}
         />} />
         <Route path='/mylist' element={<MyList
           userList={userList}
           setUserList={setUserList}
+          user={user}
         />}/>
       </Routes>
       </div>

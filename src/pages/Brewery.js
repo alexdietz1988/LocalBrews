@@ -19,12 +19,10 @@ function Brewery(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        fetch(`http://localhost:4000/add-brewery/`, {
+        fetch(`http://localhost:4000/add-brewery/${props.user}/${thisBrewery.city}/${thisBrewery.state}/${id}`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({'hello': 'hello'})
         })
-            .then(data => console.log(data))
         // let newUserList = props.userList
         // newUserList.push(thisBrewery)
         // props.setUserList(newUserList)
