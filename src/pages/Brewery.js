@@ -15,21 +15,18 @@ function Brewery(props) {
         fetch(`https://api.openbrewerydb.org/breweries/${id}`)
             .then(response => response.json())
             .then(data => {setThisBrewery(data)})
-            
-    }
-
-    function handleChange(e) {
-        props.setLocation((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }))
     }
 
     function handleSubmit(e) {
         e.preventDefault()
-        let newUserList = props.userList
-        newUserList.push(thisBrewery)
-        props.setUserList(newUserList)
+        fetch(`http://localhost:4000/add-brewery/?id=${id}&name=${thisBrewery.name}`, {
+            method: 'POST',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        })
+            .then(data => console.log(data))
+        // let newUserList = props.userList
+        // newUserList.push(thisBrewery)
+        // props.setUserList(newUserList)
     }
 
     return(
