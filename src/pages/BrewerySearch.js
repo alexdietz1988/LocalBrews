@@ -3,24 +3,10 @@ import { Link } from "react-router-dom"
 
 function BrewerySearch(props) {
 
-    const [page, setPage] = useState(1)
-
     function searchByCity() {
-        fetch(`https://api.openbrewerydb.org/breweries?by_city=${props.location.city}&by_state=${props.location.state}&page=${page}`)
+        fetch(`https://api.openbrewerydb.org/breweries?by_city=${props.location.city}&by_state=${props.location.state}`)
             .then(response => response.json())
             .then(data => props.setBreweries(data) )
-    }
-
-    function nextPage(e) {
-        e.preventDefault()
-        setPage(page + 1)
-        searchByCity()
-    }
-
-    function previousPage(e) {
-        e.preventDefault()
-        setPage(page - 1)
-        searchByCity()
     }
 
     function handleChange(e) {
@@ -43,17 +29,6 @@ function BrewerySearch(props) {
                 {props.breweries.map(brewery => (
                 <Link to={`/brewery/${brewery.id}`} key={brewery.id}><p>{brewery.name}</p></Link>
                 ))}
-
-                <div className='mb-4 row g-1'>
-                {page > 1 && (<form className='col-sm' onSubmit={previousPage}>
-                    <button type='submit' className='btn btn-secondary'>Previous</button>
-                </form>)}
-
-                <form className='col-sm' onSubmit={nextPage}>
-                    <button type='submit' className='btn btn-secondary'>Next</button>
-                </form>
-                </div>
-            
             </section>
         )
     }
