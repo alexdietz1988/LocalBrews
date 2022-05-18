@@ -11,8 +11,7 @@ import MyList from "./pages/MyList";
 
 function App() {
 
-  const [breweries, setBreweries] = useState([])
-  const [user, setUser] = useState('alex')
+  const user = 'alex'
   const [userList, setUserList] = useState([])
 
   return (
@@ -25,21 +24,15 @@ function App() {
 
             <Route exact path='/' element={<Home />} />
 
-            <Route path='/search' element={<BrewerySearch
-              breweries={breweries}
-              setBreweries={setBreweries}
-            />} />
+            <Route path='/search' element={<BrewerySearch/>} />
 
             <Route path='/brewery/:id' element={<Brewery
-              breweries={breweries}
-              userList={userList}
-              setUserList={setUserList}
+              userList={userList} setUserList={setUserList}
               user={user}
             />} />
 
             <Route path='/mylist' element={<MyList
-              userList={userList}
-              setUserList={setUserList}
+              userList={userList} setUserList={setUserList}
               user={user}
             />}/>
 

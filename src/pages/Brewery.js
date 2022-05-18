@@ -2,19 +2,19 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import BreweryUI from "../components/BreweryUI"
+import LogBeer from "../components/LogBeer"
 
 function Brewery(props) {
 
     const [thisBrewery, setThisBrewery] = useState({})
     const id = useParams().id
     
-    useEffect(() => {callAPI()}, [])
+    useEffect(() => {getBrewery()}, [])
 
-    function callAPI() {
+    function getBrewery() {
         fetch(`https://api.openbrewerydb.org/breweries/${id}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data.website_url)
                 setThisBrewery(
                     {
                         'username': props.user,
@@ -23,9 +23,7 @@ function Brewery(props) {
                         'location': `${data.city}, ${data.state}`,
                         'street': data.street,
                         'url': data.website_url
-                    }
-                )
-        })
+                    })})
     }
 
     function addToMyList(e) {
@@ -38,16 +36,12 @@ function Brewery(props) {
         axios.delete(`http://localhost:4000/brewery/${props.user}/${thisBrewery.brewery_id}`)
     }
 
-    if (thisBrewery) {
-        return(
-            <BreweryUI
-                thisBrewery={thisBrewery}
-                addToMyList={addToMyList}
-                removeFromMyList={removeFromMyList}
-            />
-        )
-    } else return <p>Loading...</p>
-
+    return(
+        <>
+            <BreweryUI thisBrewery={thisBrewery} addToMyList={addToMyList} removeFromMyList={removeFromMyList}/>
+            <LogBeer thisBrewery={thisBrewery} />
+        </>
+    )
 }
 
 export default Brewery

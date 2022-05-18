@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 function MyList(props) {
 
     function getMyList() {
-        fetch(`http://localhost:4000/lists/my-list/${props.user}`)
+        fetch(`http://localhost:4000/logs/my-list/${props.user}`)
             .then(response => response.json())
             .then(data => props.setUserList(data))
     }
@@ -12,11 +12,10 @@ function MyList(props) {
     useEffect(() => {getMyList()}, [])
 
     function loaded() {
-        console.log(props.userList)
         return(
             <section>
                 {props.userList.map(brewery => (
-                    <Link to={`/brewery/${brewery.brewery_id}`} key={brewery.brewery_id}><p>{brewery.name}, {brewery.location}</p></Link>
+                    <Link to={`/brewery/${brewery.brewery_id}`} key={brewery._id}><p>{brewery.name}, {brewery.location}</p></Link>
                 ))}
             </section>
         )

@@ -1,5 +1,4 @@
 function BreweryUI(props) {
-    console.log(props.thisBrewery.name)
     return (
         <>
             <h2 className='mb-4'>{props.thisBrewery.name}</h2>

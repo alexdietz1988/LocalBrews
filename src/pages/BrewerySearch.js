@@ -4,12 +4,13 @@ import SearchResults from "../components/SearchResults"
 
 function BrewerySearch(props) {
 
+    const [breweries, setBreweries] = useState([])
     const [location, setLocation] = useState({city: '', state: ''})
 
     function searchByCity() {
         fetch(`https://api.openbrewerydb.org/breweries?by_city=${location.city}&by_state=${location.state}`)
             .then(response => response.json())
-            .then(data => props.setBreweries(data) )
+            .then(data => setBreweries(data) )
     }
 
     function handleChange(e) {
@@ -28,7 +29,7 @@ function BrewerySearch(props) {
         <>
             <h2 className='mb-4'>Brewery Search</h2>
             <SearchForm location={location} handleChange={handleChange} handleSubmit={handleSubmit}/>
-            {props.breweries ? <SearchResults breweries={props.breweries}/> : null}
+            {props.breweries ? <SearchResults breweries={breweries}/> : null}
         </>
     )
 }
