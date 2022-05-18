@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import BreweryUI from "../components/BreweryUI"
 
 function Brewery(props) {
 
     const [thisBrewery, setThisBrewery] = useState({})
     const id = useParams().id
     
-    useEffect(() => {if (props.breweries.length > 0) {
-        setThisBrewery(props.breweries.find(element => element.id === id))
-    } else callAPI()
-    }, [])
+    useEffect(() => {
+            if (props.breweries.length > 0) {
+                setThisBrewery(props.breweries.find(element => element.id === id))
+            } else callAPI()
+        }, [])
 
     function callAPI() {
         fetch(`https://api.openbrewerydb.org/breweries/${id}`)
@@ -19,29 +21,15 @@ function Brewery(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        fetch(`http://localhost:4000/add-brewery/${props.user}/${thisBrewery.city}/${thisBrewery.state}/${id}`, {
+        const params = `${props.user}/${id}/${thisBrewery.name}/${thisBrewery.city}/${thisBrewery.state}`
+        fetch('http://localhost:4000/add-brewery/' + params, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
         })
-        // let newUserList = props.userList
-        // newUserList.push(thisBrewery)
-        // props.setUserList(newUserList)
     }
 
     return(
-        <>
-            <h2 className='mb-4'>{thisBrewery.name}</h2>
-            
-            <section>
-                <p>{thisBrewery.street}</p>
-                <p>{thisBrewery.city}, {thisBrewery.state}</p>
-                <p><a href={thisBrewery.website_url} target='_blank' rel='noreferrer'>Website</a></p>
-            </section>
-
-            <form onSubmit={handleSubmit}>
-                <button className="btn btn-primary">Add to My List</button>
-            </form>
-        </>
+        <BreweryUI handleSubmit={handleSubmit} thisBrewery={thisBrewery} />
     )
 
 }
