@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
-import BreweryUI from "../components/BreweryUI"
-import LogBeer from "../components/LogBeer"
+import BreweryUI from "../components/brewery/BreweryUI"
+import BreweryBeerLog from "../components/brewery/BreweryBeerLog"
+import LogBeer from "../components/brewery/LogBeer"
 
 function Brewery(props) {
 
@@ -39,6 +40,7 @@ function Brewery(props) {
     return(
         <>
             <BreweryUI thisBrewery={thisBrewery} addToMyList={addToMyList} removeFromMyList={removeFromMyList}/>
+            <BreweryBeerLog thisBrewery={thisBrewery} user={props.user} />
             <LogBeer user={props.user} thisBrewery={thisBrewery} />
         </>
     )
