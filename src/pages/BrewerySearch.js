@@ -7,10 +7,11 @@ function BrewerySearch(props) {
     const [breweries, setBreweries] = useState([])
     const [location, setLocation] = useState({city: '', state: ''})
 
-    function searchByCity() {
-        fetch(`https://api.openbrewerydb.org/breweries?by_city=${location.city}&by_state=${location.state}`)
+function searchByCity() {
+        const URL = `https://api.openbrewerydb.org/breweries?by_city=${location.city}&by_state=${location.state}`
+        fetch(URL)
             .then(response => response.json())
-            .then(data => setBreweries(data) )
+            .then(data => {setBreweries(data)})
     }
 
     function handleChange(e) {
@@ -29,7 +30,7 @@ function BrewerySearch(props) {
         <>
             <h2 className='mb-4'>Brewery Search</h2>
             <SearchForm location={location} handleChange={handleChange} handleSubmit={handleSubmit}/>
-            {props.breweries ? <SearchResults breweries={breweries}/> : null}
+            {breweries ? <SearchResults breweries={breweries}/> : null}
         </>
     )
 }

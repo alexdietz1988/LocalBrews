@@ -39,7 +39,7 @@ function Brewery(props) {
     return(
         <>
             <BreweryUI thisBrewery={thisBrewery} addToMyList={addToMyList} removeFromMyList={removeFromMyList}/>
-            <LogBeer thisBrewery={thisBrewery} />
+            <LogBeer user={props.user} thisBrewery={thisBrewery} />
         </>
     )
 }
