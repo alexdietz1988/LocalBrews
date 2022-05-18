@@ -1,20 +1,21 @@
 function BreweryInfo(props) {
 
-    function addButton() {
-        return(
-            <form onSubmit={props.addToMyList}>
-                <button className="btn btn-primary">Add to My List</button>
-            </form>
-        )
+    function getBrewery() {
+        fetch(`https://api.openbrewerydb.org/breweries/${id}`)
+            .then(response => response.json())
+            .then(data => {
+                setThisBrewery(
+                    {
+                        'username': props.username,
+                        'brewery_id': data.id,
+                        'name': data.name,
+                        'location': `${data.city}, ${data.state}`,
+                        'street': data.street,
+                        'url': data.website_url
+                    })})
     }
 
-    function removeButton() {
-        return(
-            <form onSubmit={props.removeFromMyList}>
-                <button className="btn btn-warning">Remove from My List</button>
-            </form>
-        )
-    }
+    useEffect(() => {getBrewery()}, [])
 
     return (
         <>
@@ -24,8 +25,6 @@ function BreweryInfo(props) {
                 <p>{props.thisBrewery.street}<br />{props.thisBrewery.location}</p>
                 <p><a href={props.thisBrewery.url} target='_blank' rel='noreferrer'>Website</a></p>
             </section>
-
-            {inMyList ? removeButton() : addButton()}
         </>
     )
 }
