@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import axios from "axios"
 import BreweryUI from "../components/BreweryUI"
 
 function Brewery(props) {
@@ -19,17 +20,23 @@ function Brewery(props) {
             .then(data => {setThisBrewery(data)})
     }
 
-    function handleSubmit(e) {
+    function addToMyList(e) {
         e.preventDefault()
-        const params = `${props.user}/${id}/${thisBrewery.name}/${thisBrewery.city}/${thisBrewery.state}`
-        fetch('http://localhost:4000/add-brewery/' + params, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+        axios.post('http://localhost:4000/brewery/', {
+            username: 'alex',
+            brewery_id: 'something',
+            name: 'another brewery',
+            location: `City, State`,
         })
     }
 
+    function removeFromMyList(e) {
+        e.preventDefault()
+        fetch(`http://localhost:4000/brewery/:${id}?_method=DELETE`)
+    }
+
     return(
-        <BreweryUI handleSubmit={handleSubmit} thisBrewery={thisBrewery} />
+        <BreweryUI addToMyList={addToMyList} thisBrewery={thisBrewery} />
     )
 
 }

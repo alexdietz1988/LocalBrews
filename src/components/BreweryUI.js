@@ -9,7 +9,7 @@ function BreweryUI(props) {
                 <p><a href={props.thisBrewery.website_url} target='_blank' rel='noreferrer'>Website</a></p>
             </section>
 
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={props.addToMyList}>
                 <button className="btn btn-primary">Add to My List</button>
             </form>
         </>
