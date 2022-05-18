@@ -1,10 +1,12 @@
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 function MyList(props) {
 
+    const [userList, setUserList] = useState([])
+
     function getMyList() {
-        fetch(`http://localhost:4000/logs/my-list/${props.user}`)
+        fetch(`http://localhost:4000/logs/my-list/${props.username}`)
             .then(response => response.json())
             .then(data => props.setUserList(data))
     }
@@ -14,7 +16,7 @@ function MyList(props) {
     function loaded() {
         return(
             <section>
-                {props.userList.map(brewery => (
+                {userList.map(brewery => (
                     <Link to={`/brewery/${brewery.brewery_id}`} key={brewery._id}><p>{brewery.name}, {brewery.location}</p></Link>
                 ))}
             </section>
@@ -24,7 +26,7 @@ function MyList(props) {
     return(
         <>
         <h2 className='mb-4'>My List</h2>
-        {props.userList ? loaded() : <p>Loading...</p>}
+        {userList ? loaded() : <p>Loading...</p>}
         </>
     )
 

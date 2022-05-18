@@ -2,12 +2,12 @@ import { useState } from "react"
 import SearchForm from "../components/search/SearchForm"
 import SearchResults from "../components/search/SearchResults"
 
-function BrewerySearch(props) {
+function Search(props) {
 
     const [breweries, setBreweries] = useState([])
     const [location, setLocation] = useState({city: '', state: ''})
 
-function searchByCity() {
+    function searchByCity() {
         const URL = `https://api.openbrewerydb.org/breweries?by_city=${location.city}&by_state=${location.state}`
         fetch(URL)
             .then(response => response.json())
@@ -35,4 +35,4 @@ function searchByCity() {
     )
 }
 
-export default BrewerySearch
+export default Search

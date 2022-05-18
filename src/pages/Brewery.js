@@ -18,7 +18,7 @@ function Brewery(props) {
             .then(data => {
                 setThisBrewery(
                     {
-                        'username': props.user,
+                        'username': props.username,
                         'brewery_id': data.id,
                         'name': data.name,
                         'location': `${data.city}, ${data.state}`,
@@ -40,8 +40,8 @@ function Brewery(props) {
     return(
         <>
             <BreweryUI thisBrewery={thisBrewery} addToMyList={addToMyList} removeFromMyList={removeFromMyList}/>
-            <BreweryBeerLog thisBrewery={thisBrewery} user={props.user} />
-            <LogBeer user={props.user} thisBrewery={thisBrewery} />
+            <BreweryBeerLog thisBrewery={thisBrewery} username={props.username} />
+            <LogBeer username={props.username} thisBrewery={thisBrewery} />
         </>
     )
 }

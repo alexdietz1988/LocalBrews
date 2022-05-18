@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react"
 
-function BreweryBeerLog(props) {
-
+function BeerLog(props) {
     const [beerLog, setBeerLog] = useState([])
 
     function getBeerLog() {
-        fetch(`http://localhost:4000/logs/my-list/${props.username}/${props.thisBrewery.name}`)
+        fetch(`http://localhost:4000/logs/my-list/${props.username}`)
             .then(response => response.json())
             .then(data => setBeerLog(data))
     }
@@ -19,6 +18,7 @@ function BreweryBeerLog(props) {
                     <div key={beer.id}>
                         <p>
                             <b>{beer.name}</b><br />
+                            <i>Brewery:</i> {beer.brewery_name}<br />
                             <i>Style:</i> {beer.style}<br />
                             <i>Your Rating:</i> {beer.rating}
                         </p>
@@ -34,6 +34,7 @@ function BreweryBeerLog(props) {
         {beerLog ? loaded() : <p>Loading...</p>}
         </>
     )
+    
 }
 
-export default BreweryBeerLog
+export default BeerLog

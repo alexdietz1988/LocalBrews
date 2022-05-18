@@ -4,15 +4,16 @@ import './styles.css'
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+
 import Home from './pages/Home'
-import BrewerySearch from "./pages/BrewerySearch";
+import Search from "./pages/Search";
 import Brewery from "./pages/Brewery";
 import MyList from "./pages/MyList";
+import BeerLog from "./pages/BeerLog";
 
 function App() {
 
-  const user = 'alex'
-  const [userList, setUserList] = useState([])
+  const username = 'alex'
 
   return (
     <>
@@ -21,21 +22,11 @@ function App() {
         <div className='container'>
 
           <Routes>
-
             <Route exact path='/' element={<Home />} />
-
-            <Route path='/search' element={<BrewerySearch/>} />
-
-            <Route path='/brewery/:id' element={<Brewery
-              userList={userList} setUserList={setUserList}
-              user={user}
-            />} />
-
-            <Route path='/mylist' element={<MyList
-              userList={userList} setUserList={setUserList}
-              user={user}
-            />}/>
-
+            <Route path='/search' element={<Search/>} />
+            <Route path='/brewery/:id' element={<Brewery username={username}/>} />
+            <Route path='/mylist' element={<MyList username={username}/>}/>
+            <Route path='/beer-log' element={<BeerLog username={username}/>}/>
           </Routes>
 
         </div>

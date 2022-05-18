@@ -23,7 +23,7 @@ function LogBeer(props) {
         e.preventDefault()
         setBeer((prevState) => ({
             ...prevState,
-            username: props.user,
+            username: props.username,
             brewery_name: props.thisBrewery.name,
         }))
         axios.post('http://localhost:4000/logs/beer', {beer})
