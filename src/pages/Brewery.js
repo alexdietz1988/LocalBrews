@@ -19,11 +19,15 @@ function Brewery(props) {
 
     return(
         <>
-            <BreweryInfo thisBrewery={thisBrewery} inMyList={inMyList} addToMyList={addToMyList} removeFromMyList={removeFromMyList}/>
-            <AddOrRemove thisBrewery={thisBrewery} />
+            <section className='mb-5'>
+                <BreweryInfo thisBrewery={thisBrewery} setThisBrewery={setThisBrewery} id={id} />
+                <AddOrRemove thisBrewery={thisBrewery} username={props.username} />
+            </section>
 
-            <BreweryBeerLog thisBrewery={thisBrewery} username={props.username} />
-            <LogBeer username={props.username} thisBrewery={thisBrewery} />
+            <section>
+                <BreweryBeerLog thisBrewery={thisBrewery} username={props.username} />
+                <LogBeer username={props.username} thisBrewery={thisBrewery} />
+            </section>
         </>
     )
 }

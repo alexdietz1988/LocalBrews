@@ -24,7 +24,7 @@ function AddOrRemove(props) {
             'name': props.thisBrewery.name,
             'location': props.thisBrewery.location,
             'street': props.thisBrewery.street,
-            'url': props.thisBrewery.website_url
+            'url': props.thisBrewery.url
         })
     }
 
@@ -49,8 +49,9 @@ function AddOrRemove(props) {
         )
     }
 
-    if (inMyList) removeButton()
-    else addButton()
+    return(
+        inMyList ? removeButton() : addButton()
+    )
 }
 
 export default AddOrRemove

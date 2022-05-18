@@ -28,12 +28,15 @@ function BeerLog(props) {
         )
     }
 
-    return(
-        <>
-        <h3 className='mb-4'>Beers Logged</h3>
-        {beerLog ? loaded() : <p>Loading...</p>}
-        </>
-    )
+    if (beerLog.length > 0) {
+        console.log(beerLog)
+        return(
+            <>
+            <h4 className='mb-4'>Beers Logged</h4>
+            {beerLog ? loaded() : <p>Loading...</p>}
+            </>
+        )
+    }
     
 }
 

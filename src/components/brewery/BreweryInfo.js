@@ -1,10 +1,12 @@
+import { useEffect } from "react"
+
 function BreweryInfo(props) {
 
     function getBrewery() {
-        fetch(`https://api.openbrewerydb.org/breweries/${id}`)
+        fetch(`https://api.openbrewerydb.org/breweries/${props.id}`)
             .then(response => response.json())
             .then(data => {
-                setThisBrewery(
+                props.setThisBrewery(
                     {
                         'username': props.username,
                         'brewery_id': data.id,
