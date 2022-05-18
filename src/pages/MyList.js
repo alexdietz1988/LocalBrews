@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 function MyList(props) {
 
     function getMyList() {
-        fetch(`http://localhost:4000/my-list/${props.user}`)
+        fetch(`http://localhost:4000/lists/my-list/${props.user}`)
             .then(response => response.json())
             .then(data => props.setUserList(data))
     }

@@ -1,16 +1,21 @@
 function BreweryUI(props) {
+    console.log(props.thisBrewery.name)
     return (
         <>
             <h2 className='mb-4'>{props.thisBrewery.name}</h2>
             
             <section>
                 <p>{props.thisBrewery.street}</p>
-                <p>{props.thisBrewery.city}, {props.thisBrewery.state}</p>
-                <p><a href={props.thisBrewery.website_url} target='_blank' rel='noreferrer'>Website</a></p>
+                <p>{props.thisBrewery.location}</p>
+                <p><a href={props.thisBrewery.url} target='_blank' rel='noreferrer'>Website</a></p>
             </section>
 
             <form onSubmit={props.addToMyList}>
                 <button className="btn btn-primary">Add to My List</button>
+            </form>
+
+            <form onSubmit={props.removeFromMyList}>
+                <button className="btn btn-warning">Remove from My List</button>
             </form>
         </>
     )

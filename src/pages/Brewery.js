@@ -8,36 +8,45 @@ function Brewery(props) {
     const [thisBrewery, setThisBrewery] = useState({})
     const id = useParams().id
     
-    useEffect(() => {
-            if (props.breweries.length > 0) {
-                setThisBrewery(props.breweries.find(element => element.id === id))
-            } else callAPI()
-        }, [])
+    useEffect(() => {callAPI()}, [])
 
     function callAPI() {
         fetch(`https://api.openbrewerydb.org/breweries/${id}`)
             .then(response => response.json())
-            .then(data => {setThisBrewery(data)})
+            .then(data => {
+                console.log(data.website_url)
+                setThisBrewery(
+                    {
+                        'username': props.user,
+                        'brewery_id': data.id,
+                        'name': data.name,
+                        'location': `${data.city}, ${data.state}`,
+                        'street': data.street,
+                        'url': data.website_url
+                    }
+                )
+        })
     }
 
     function addToMyList(e) {
         e.preventDefault()
-        axios.post('http://localhost:4000/brewery/', {
-            username: 'alex',
-            brewery_id: 'something',
-            name: 'another brewery',
-            location: `City, State`,
-        })
+        axios.post('http://localhost:4000/brewery/', {thisBrewery})
     }
 
     function removeFromMyList(e) {
         e.preventDefault()
-        fetch(`http://localhost:4000/brewery/:${id}?_method=DELETE`)
+        axios.delete(`http://localhost:4000/brewery/${props.user}/${thisBrewery.brewery_id}`)
     }
 
-    return(
-        <BreweryUI addToMyList={addToMyList} thisBrewery={thisBrewery} />
-    )
+    if (thisBrewery) {
+        return(
+            <BreweryUI
+                thisBrewery={thisBrewery}
+                addToMyList={addToMyList}
+                removeFromMyList={removeFromMyList}
+            />
+        )
+    } else return <p>Loading...</p>
 
 }
 
