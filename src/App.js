@@ -15,8 +15,6 @@ import MyList from "./pages/MyList";
 function App() {
 
   const [breweries, setBreweries] = useState([])
-  const [location, setLocation] = useState({city: '', state: ''})
-
   const [user, setUser] = useState('alex')
   const [userList, setUserList] = useState([])
 
@@ -31,8 +29,6 @@ function App() {
         <Route path='/search' element={<BrewerySearch
           breweries={breweries}
           setBreweries={setBreweries}
-          location={location}
-          setLocation={setLocation}
         />} />
         <Route path='/brewery/:id' element={<Brewery
           breweries={breweries}
