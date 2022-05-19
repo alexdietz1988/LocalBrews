@@ -3,13 +3,13 @@ import { useEffect } from "react"
 function BreweryInfo(props) {
 
     function getBrewery() {
-        fetch(`https://api.openbrewerydb.org/breweries/${props.id}`)
+        fetch(`https://api.openbrewerydb.org/breweries/${props.brewery_id}`)
             .then(response => response.json())
             .then(data => {
                 props.setThisBrewery(
                     {
                         'username': props.username,
-                        'brewery_id': data.id,
+                        'brewery_id': props.brewery_id,
                         'name': data.name,
                         'location': `${data.city}, ${data.state}`,
                         'street': data.street,

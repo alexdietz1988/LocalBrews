@@ -7,20 +7,22 @@ import AddOrRemove from "../components/brewery/AddOrRemove"
 
 function Brewery(props) {
 
+    const brewery_id = useParams().id
+
     const [thisBrewery, setThisBrewery] = useState({
         'username': props.username,
-        'brewery_id': '',
+        'brewery_id': brewery_id,
         'name': '',
         'location': '',
         'street': '',
         'url': ''
     })
-    const id = useParams().id
+    
 
     return(
         <>
             <section className='mb-5'>
-                <BreweryInfo thisBrewery={thisBrewery} setThisBrewery={setThisBrewery} id={id} />
+                <BreweryInfo thisBrewery={thisBrewery} setThisBrewery={setThisBrewery} brewery_id={brewery_id} />
                 <AddOrRemove thisBrewery={thisBrewery} username={props.username} />
             </section>
 

@@ -1,15 +1,18 @@
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios"
 
 function AddOrRemove(props) {
-    let inMyList = false
+    const [inMyList, setInMyList] = useState(false)
 
     function checkMyList() {
         fetch(`http://localhost:4000/logs/my-list/${props.username}`)
             .then(response => response.json())
             .then(data => {
+                console.log(data)
+                console.log(props.thisBrewery.brewery_id)
                 if (data.some(element => element.brewery_id === props.thisBrewery.brewery_id)) {
-                    inMyList = true
+                    console.log('it is in your list')
+                    setInMyList(true)
                 }
             })
     }

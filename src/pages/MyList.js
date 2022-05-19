@@ -8,10 +8,7 @@ function MyList(props) {
     function getMyList() {
         fetch(`http://localhost:4000/logs/my-list/${props.username}`)
             .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                setUserList(data)
-            })
+            .then(data => {setUserList(data)})
     }
 
     useEffect(() => {getMyList()}, [])
