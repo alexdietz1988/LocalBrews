@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import axios from "axios"
 
 function MyList(props) {
 
@@ -13,13 +14,23 @@ function MyList(props) {
 
     useEffect(() => {getMyList()}, [])
 
+    function removeBrewery(e) {
+        e.preventDefault()
+        axios.delete(props.backend + `brewery/${props.username}/${e.target.name}`)
+    }
+
     function loaded() {
         return(
             <section>
                 {userList.map(brewery => (
-                    <Link to={`/brewery/${brewery.brewery_id}`} key={brewery._id}>
+                    <div key={brewery._id} className="mb-2">
+                    <Link to={`/brewery/${brewery.brewery_id}`}>
                         <p>{brewery.name}, {brewery.location}</p>
                     </Link>
+                    <form name={brewery.brewery_id} onSubmit={removeBrewery}>
+                        <button className="btn btn-warning">Remove Brewery</button>
+                    </form>
+                    </div>
                 ))}
             </section>
         )
@@ -28,7 +39,7 @@ function MyList(props) {
     return(
         <>
         <h2 className='mb-4'>My List</h2>
-        {userList ? loaded() : <p>Loading...</p>}
+        {userList.length > 0 ? loaded() : <h4><Link to='/search'>Search for some breweries</Link> to add to your list!</h4>}
         </>
     )
 
