@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import BreweryInfo from "../components/brewery/BreweryInfo"
 import BreweryBeerLog from "../components/brewery/BreweryBeerLog"
 import LogBeer from "../components/brewery/LogBeer"
-import AddOrRemove from "../components/brewery/AddOrRemove"
+import MyListButtons from "../components/brewery/MyListButtons"
 
 function Brewery(props) {
 
@@ -39,7 +39,7 @@ function Brewery(props) {
         <>
             <section className='mb-5'>
                 <BreweryInfo thisBrewery={thisBrewery} />
-                <AddOrRemove thisBrewery={thisBrewery} username={props.username} backend={props.backend}/>
+                <MyListButtons thisBrewery={thisBrewery} username={props.username} backend={props.backend}/>
             </section>
 
             <section>
