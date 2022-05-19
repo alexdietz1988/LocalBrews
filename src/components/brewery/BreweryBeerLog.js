@@ -5,7 +5,7 @@ function BreweryBeerLog(props) {
     const [beerLog, setBeerLog] = useState([])
 
     function getBeerLog() {
-        fetch(`http://localhost:4000/logs/beer-log/${props.username}/${props.thisBrewery.name}`)
+        fetch(`http://localhost:4000/logs/beer-log/${props.username}/${props.brewery_id}`)
             .then(response => response.json())
             .then(data => setBeerLog(data))
     }
