@@ -6,7 +6,7 @@ function MyList(props) {
     const [userList, setUserList] = useState([])
 
     function getMyList() {
-        fetch(`http://localhost:4000/logs/my-list/${props.username}`)
+        fetch(`https://alexdietz-localbrews-backend.herokuapp.com/logs/my-list/${props.username}`)
             .then(response => response.json())
             .then(data => {setUserList(data)})
     }

@@ -5,7 +5,7 @@ function AddOrRemove(props) {
     const [inMyList, setInMyList] = useState(false)
 
     function checkMyList() {
-        fetch(`http://localhost:4000/logs/my-list/${props.username}`)
+        fetch(`https://alexdietz-localbrews-backend.herokuapp.com/logs/my-list/${props.username}`)
             .then(response => response.json())
             .then(data => {
                 if (data.some(element => element.brewery_id === props.thisBrewery.brewery_id)) {
@@ -18,7 +18,7 @@ function AddOrRemove(props) {
 
     function addToMyList(e) {
         e.preventDefault()
-        axios.post('http://localhost:4000/brewery/', { 
+        axios.post('https://alexdietz-localbrews-backend.herokuapp.com/brewery/', { 
             'username': props.username,
             'brewery_id': props.thisBrewery.brewery_id,
             'name': props.thisBrewery.name,
@@ -30,7 +30,7 @@ function AddOrRemove(props) {
 
     function removeFromMyList(e) {
         e.preventDefault()
-        axios.delete(`http://localhost:4000/brewery/${props.username}/${props.thisBrewery.brewery_id}`)
+        axios.delete(`https://alexdietz-localbrews-backend.herokuapp.com/brewery/${props.username}/${props.thisBrewery.brewery_id}`)
     }
 
     function addButton() {

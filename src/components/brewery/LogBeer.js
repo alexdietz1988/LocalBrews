@@ -21,7 +21,7 @@ function LogBeer(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.post('http://localhost:4000/logs/beer', {
+        axios.post('https://alexdietz-localbrews-backend.herokuapp.com/logs/beer', {
             username: beer.username,
             brewery_id: beer.brewery_id,
             brewery_name: props.thisBrewery.name,
