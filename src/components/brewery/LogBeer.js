@@ -21,10 +21,12 @@ function LogBeer(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(beer)
         axios.post('http://localhost:4000/logs/beer', {
             username: beer.username,
             brewery_id: beer.brewery_id,
+            brewery_name: props.thisBrewery.name,
+            brewery_location: props.thisBrewery.location,
+
             name: beer.name,
             style: beer.style,
             rating: beer.rating

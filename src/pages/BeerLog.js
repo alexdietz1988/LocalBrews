@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
 function BeerLog(props) {
     const [beerLog, setBeerLog] = useState([])
@@ -6,7 +7,9 @@ function BeerLog(props) {
     function getBeerLog() {
         fetch(`http://localhost:4000/logs/beer-log/${props.username}/`)
             .then(response => response.json())
-            .then(data => setBeerLog(data))
+            .then(data => {
+                setBeerLog(data)
+            })
     }
 
     useEffect(() => {getBeerLog()}, [])
@@ -18,7 +21,7 @@ function BeerLog(props) {
                     <div key={beer.id}>
                         <p>
                             <b>{beer.name}</b><br />
-                            <i>Brewery:</i> {beer.brewery_name}<br />
+                            <i>Brewery:</i> <Link to={`/brewery/${beer.brewery_id}`}>{beer.brewery_name}</Link>, {beer.brewery_location}<br />
                             <i>Style:</i> {beer.style}<br />
                             <i>Your Rating:</i> {beer.rating}
                         </p>

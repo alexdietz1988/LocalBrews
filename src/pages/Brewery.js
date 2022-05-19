@@ -17,12 +17,28 @@ function Brewery(props) {
         'street': '',
         'url': ''
     })
-    
+
+    function getBreweryInfo() {
+        fetch(`https://api.openbrewerydb.org/breweries/${brewery_id}`)
+            .then(response => response.json())
+            .then(data => {
+                setThisBrewery(
+                    {
+                        'username': props.username,
+                        'brewery_id': brewery_id,
+                        'name': data.name,
+                        'location': `${data.city}, ${data.state}`,
+                        'street': data.street,
+                        'url': data.website_url
+                    })})
+    }
+
+    useEffect(() => {getBreweryInfo()}, [])
 
     return(
         <>
             <section className='mb-5'>
-                <BreweryInfo thisBrewery={thisBrewery} setThisBrewery={setThisBrewery} brewery_id={brewery_id} />
+                <BreweryInfo thisBrewery={thisBrewery} />
                 <AddOrRemove thisBrewery={thisBrewery} username={props.username} />
             </section>
 
