@@ -10,7 +10,6 @@ function AddOrRemove(props) {
             .then(response => response.json())
             .then(data => {
                 setInMyList(data.some(element => element.brewery_id === props.thisBrewery.brewery_id))
-                console.log(inMyList)
             })
     }
 
@@ -26,13 +25,13 @@ function AddOrRemove(props) {
             'street': props.thisBrewery.street,
             'url': props.thisBrewery.url
         })
-        checkMyList()
+        setInMyList(true)
     }
 
     function removeFromMyList(e) {
         e.preventDefault()
         axios.delete(props.backend + `brewery/${props.username}/${props.thisBrewery.brewery_id}`)
-        checkMyList()
+        setInMyList(false)
     }
 
     function addButton() {
