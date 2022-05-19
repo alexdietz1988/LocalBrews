@@ -1,11 +1,14 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import BreweryBeerLogForm from "./BreweryBeerLogForm"
 import BreweryBeerLogList from "./BreweryBeerLogList"
 
 function BreweryBeerLog(props) {
 
     const [beerLog, setBeerLog] = useState([])
+    const [addBeerFeedback, setAddBeerFeedback] = useState(false)
+    const [removeBeerFeedback, setRemoveBeerFeedback] = useState(false)
 
     function getBeerLog() {
         fetch(props.backend + `logs/beer-log/${props.username}/${props.brewery_id}`)
@@ -42,19 +45,21 @@ function BreweryBeerLog(props) {
             style: beer.style,
             rating: beer.rating
         })
-        getBeerLog()
+        setAddBeerFeedback(true)
     }
 
     function removeBeer(e) {
         e.preventDefault()
         axios.delete(props.backend + `logs/beer/${e.target.name}`)
-        getBeerLog()
+        setRemoveBeerFeedback(true)
     }
 
     return (
         <>
             <BreweryBeerLogForm beer={beer} handleChange={handleChange} handleSubmit={handleSubmit} />
-            <BreweryBeerLogList beerLog={beerLog} removeBeer={removeBeer} />
+            {addBeerFeedback ? <p>Beer Logged! Refresh to see your updated list.</p> : null}
+            <BreweryBeerLogList beerLog={beerLog} removeBeer={removeBeer}/>
+            {removeBeerFeedback ? <p>Beer Removed! Refresh to see your updated list.</p> : null}
         </>
     )
 }
