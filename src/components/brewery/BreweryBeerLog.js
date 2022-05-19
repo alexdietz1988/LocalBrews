@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react"
 import axios from "axios"
+import { useState, useEffect } from "react"
+import BreweryBeerLogForm from "./BreweryBeerLogForm"
+import BreweryBeerLogList from "./BreweryBeerLogList"
 
 function BreweryBeerLog(props) {
 
@@ -13,34 +15,46 @@ function BreweryBeerLog(props) {
 
     useEffect(() => {getBeerLog()}, [])
 
+    const [beer, setBeer] = useState({
+        username: props.username,
+        brewery_id: props.brewery_id,
+        name: '',
+        style: '',
+        rating: ''
+    })
+
+    function handleChange(e) {
+        setBeer((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        axios.post(props.backend + 'logs/beer', {
+            username: beer.username,
+            brewery_id: beer.brewery_id,
+            brewery_name: props.thisBrewery.name,
+            brewery_location: props.thisBrewery.location,
+
+            name: beer.name,
+            style: beer.style,
+            rating: beer.rating
+        })
+        getBeerLog()
+    }
+
     function removeBeer(e) {
         e.preventDefault()
         axios.delete(props.backend + `logs/beer/${e.target.name}`)
+        getBeerLog()
     }
 
-    function loaded() {
-        return(
-            <section>
-                <h4>Beers Logged</h4>
-                {beerLog.map(beer => (
-                    <div key={beer._id} className='mb-2'>
-                        <p>
-                            <b>{beer.name}</b><br />
-                            <i>Style:</i> {beer.style}<br />
-                            <i>Your Rating:</i> {beer.rating}
-                        </p>
-                    <form name={beer._id} onSubmit={removeBeer}>
-                        <button className="btn btn-warning">Remove Beer</button>
-                    </form>
-                    </div>
-                ))}
-            </section>
-        )
-    }
-
-    return(
+    return (
         <>
-        {beerLog.length > 0 ? loaded() : null}
+            <BreweryBeerLogForm beer={beer} handleChange={handleChange} handleSubmit={handleSubmit} />
+            <BreweryBeerLogList beerLog={beerLog} removeBeer={removeBeer} />
         </>
     )
 }
