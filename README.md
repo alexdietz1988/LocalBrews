@@ -30,4 +30,4 @@ If you'd like to contribute to the app, you can fork and clone this repo and/or 
 - [ ] Brewery Search: Suggest Nearby Cities
 
 ## Known Issues
-Some components are not re-rendering appropriately after information is updated. For example, when the user clicks the "Add to My List" button on a brewery page, that button should be replaced by the "Remove from My List" button.
+Some components are not re-rendering appropriately after information is updated.
