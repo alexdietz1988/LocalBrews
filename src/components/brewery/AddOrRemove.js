@@ -5,12 +5,12 @@ function AddOrRemove(props) {
     const [inMyList, setInMyList] = useState(false)
 
     function checkMyList() {
-        fetch(`https://alexdietz-localbrews-backend.herokuapp.com/logs/my-list/${props.username}`)
+        fetch(props.backend + `logs/my-list/${props.username}`)
             .then(response => response.json())
             .then(data => {
                 if (data.some(element => element.brewery_id === props.thisBrewery.brewery_id)) {
                     setInMyList(true)
-                }
+                } else setInMyList(false)
             })
     }
 
@@ -18,7 +18,7 @@ function AddOrRemove(props) {
 
     function addToMyList(e) {
         e.preventDefault()
-        axios.post('https://alexdietz-localbrews-backend.herokuapp.com/brewery/', { 
+        axios.post(props.backend + 'brewery/', { 
             'username': props.username,
             'brewery_id': props.thisBrewery.brewery_id,
             'name': props.thisBrewery.name,
@@ -26,11 +26,13 @@ function AddOrRemove(props) {
             'street': props.thisBrewery.street,
             'url': props.thisBrewery.url
         })
+        checkMyList()
     }
 
     function removeFromMyList(e) {
         e.preventDefault()
-        axios.delete(`https://alexdietz-localbrews-backend.herokuapp.com/brewery/${props.username}/${props.thisBrewery.brewery_id}`)
+        axios.delete(props.backend + `brewery/${props.username}/${props.thisBrewery.brewery_id}`)
+        checkMyList()
     }
 
     function addButton() {

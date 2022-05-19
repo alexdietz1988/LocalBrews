@@ -6,7 +6,7 @@ function BreweryBeerLog(props) {
     const [beerLog, setBeerLog] = useState([])
 
     function getBeerLog() {
-        fetch(`https://alexdietz-localbrews-backend.herokuapp.com/logs/beer-log/${props.username}/${props.brewery_id}`)
+        fetch(props.backend + `logs/beer-log/${props.username}/${props.brewery_id}`)
             .then(response => response.json())
             .then(data => setBeerLog(data))
     }
@@ -15,12 +15,13 @@ function BreweryBeerLog(props) {
 
     function removeBeer(e) {
         e.preventDefault()
-        axios.delete(`https://alexdietz-localbrews-backend.herokuapp.com/logs/beer/${e.target.name}`)
+        axios.delete(props.backend + `logs/beer/${e.target.name}`)
     }
 
     function loaded() {
         return(
             <section>
+                <h4>Beers Logged</h4>
                 {beerLog.map(beer => (
                     <div key={beer._id} className='mb-2'>
                         <p>
@@ -39,8 +40,7 @@ function BreweryBeerLog(props) {
 
     return(
         <>
-        <h4>Beers Logged</h4>
-        {beerLog ? loaded() : <p>Loading...</p>}
+        {beerLog.length > 0 ? loaded() : null}
         </>
     )
 }

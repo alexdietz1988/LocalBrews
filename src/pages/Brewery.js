@@ -39,12 +39,12 @@ function Brewery(props) {
         <>
             <section className='mb-5'>
                 <BreweryInfo thisBrewery={thisBrewery} />
-                <AddOrRemove thisBrewery={thisBrewery} username={props.username} />
+                <AddOrRemove thisBrewery={thisBrewery} username={props.username} backend={props.backend}/>
             </section>
 
             <section>
-                <LogBeer thisBrewery={thisBrewery} username={props.username} brewery_id={brewery_id} />
-                <BreweryBeerLog thisBrewery={thisBrewery} username={props.username} brewery_id={brewery_id} />
+                <LogBeer thisBrewery={thisBrewery} username={props.username} brewery_id={brewery_id} backend={props.backend}/>
+                <BreweryBeerLog thisBrewery={thisBrewery} username={props.username} brewery_id={brewery_id} backend={props.backend}/>
             </section>
         </>
     )

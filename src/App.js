@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import { useState } from 'react';
 import './styles.css'
 
 import Header from "./components/Header";
@@ -14,6 +13,7 @@ import BeerLog from "./pages/BeerLog";
 function App() {
 
   const username = 'alex'
+  const backend = 'https://alexdietz-localbrews-backend.herokuapp.com/'
 
   return (
     <>
@@ -24,9 +24,9 @@ function App() {
           <Routes>
             <Route exact path='/' element={<Home />} />
             <Route path='/search' element={<Search/>} />
-            <Route path='/brewery/:id' element={<Brewery username={username}/>} />
-            <Route path='/mylist' element={<MyList username={username}/>}/>
-            <Route path='/beer-log' element={<BeerLog username={username}/>}/>
+            <Route path='/brewery/:id' element={<Brewery username={username} backend={backend}/>} />
+            <Route path='/mylist' element={<MyList username={username} backend={backend}/>}/>
+            <Route path='/beer-log' element={<BeerLog username={username} backend={backend}/>}/>
           </Routes>
 
         </div>

@@ -6,7 +6,7 @@ function BeerLog(props) {
     const [beerLog, setBeerLog] = useState([])
 
     function getBeerLog() {
-        fetch(`https://alexdietz-localbrews-backend.herokuapp.com/logs/beer-log/${props.username}/`)
+        fetch(props.backend + `logs/beer-log/${props.username}/`)
             .then(response => response.json())
             .then(data => {setBeerLog(data)})
     }
@@ -15,7 +15,7 @@ function BeerLog(props) {
 
     function removeBeer(e) {
         e.preventDefault()
-        axios.delete(`https://alexdietz-localbrews-backend.herokuapp.com/logs/beer/${e.target.name}`)
+        axios.delete(props.backend + `logs/beer/${e.target.name}`)
     }
 
     return <BeerLogUI beerLog={beerLog} removeBeer={removeBeer}/>
