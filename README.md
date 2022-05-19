@@ -3,6 +3,8 @@
 ## Project Description 
 The app helps users find breweries in their area and keep track of the local beers they’ve tried, using data from [Open Brewery DB](https://www.openbrewerydb.org).
 
+You can visit the deployed app [here](https://thriving-pixie-9817b1.netlify.app/).
+
 ## Screenshots
 <img width="838" alt="Screen Shot 2022-05-19 at 10 39 34 AM" src="https://user-images.githubusercontent.com/100381791/169323541-1d9ee5d8-f1bd-4c36-9c91-fc03d20da046.png">
 <img width="887" alt="Screen Shot 2022-05-19 at 10 40 19 AM" src="https://user-images.githubusercontent.com/100381791/169323550-b26528bb-b30e-4f94-8839-4b9b2877793a.png">
