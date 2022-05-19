@@ -5,6 +5,7 @@ import axios from "axios"
 function MyList(props) {
 
     const [userList, setUserList] = useState([])
+    const [feedback, setFeedback] = useState(false)
 
     function getMyList() {
         fetch(props.backend + `logs/my-list/${props.username}`)
@@ -17,6 +18,7 @@ function MyList(props) {
     function removeBrewery(e) {
         e.preventDefault()
         axios.delete(props.backend + `brewery/${props.username}/${e.target.name}`)
+        setFeedback(true)
     }
 
     function loaded() {
@@ -40,6 +42,7 @@ function MyList(props) {
         <>
         <h2 className='mb-4'>My List</h2>
         {userList.length > 0 ? loaded() : <h4><Link to='/search'>Search for some breweries</Link> to add to your list!</h4>}
+        {feedback ? <p>Brewery removed! Refresh to see your updated list.</p> : null}
         </>
     )
 

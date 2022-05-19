@@ -1,6 +1,5 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
 import BreweryBeerLogForm from "./BreweryBeerLogForm"
 import BreweryBeerLogList from "./BreweryBeerLogList"
 
@@ -57,9 +56,9 @@ function BreweryBeerLog(props) {
     return (
         <>
             <BreweryBeerLogForm beer={beer} handleChange={handleChange} handleSubmit={handleSubmit} />
-            {addBeerFeedback ? <p>Beer Logged! Refresh to see your updated list.</p> : null}
+            {addBeerFeedback ? <p>Beer logged! Refresh to see your updated list.</p> : null}
             <BreweryBeerLogList beerLog={beerLog} removeBeer={removeBeer}/>
-            {removeBeerFeedback ? <p>Beer Removed! Refresh to see your updated list.</p> : null}
+            {removeBeerFeedback ? <p>Beer removed! Refresh to see your updated list.</p> : null}
         </>
     )
 }
