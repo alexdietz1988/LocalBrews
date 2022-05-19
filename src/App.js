@@ -14,6 +14,7 @@ function App() {
 
   const username = 'alex'
   const backend = 'https://alexdietz-localbrews-backend.herokuapp.com/'
+  const openBrewery = 'https://api.openbrewerydb.org/breweries/'
 
   return (
     <>
@@ -23,8 +24,8 @@ function App() {
 
           <Routes>
             <Route exact path='/' element={<Home />} />
-            <Route path='/search' element={<Search/>} />
-            <Route path='/brewery/:id' element={<Brewery username={username} backend={backend}/>} />
+            <Route path='/search' element={<Search openBrewery={openBrewery}/>} />
+            <Route path='/brewery/:id' element={<Brewery username={username} backend={backend} openBrewery={openBrewery}/>} />
             <Route path='/mylist' element={<MyList username={username} backend={backend}/>}/>
             <Route path='/beer-log' element={<BeerLog username={username} backend={backend}/>}/>
           </Routes>

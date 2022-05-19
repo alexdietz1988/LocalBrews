@@ -36,7 +36,11 @@ function LogBeer(props) {
     return (
         <>
             <h4 className='mb-4'>Log a Beer from This Brewery</h4>
-            <LogBeerForm beer={beer} handleChange={handleChange} handleSubmit={handleSubmit}/>
+            <LogBeerForm
+                beer={beer}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+            />
         </>
     )
 }

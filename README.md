@@ -17,17 +17,7 @@ You can use the app by clicking [here](https://thriving-pixie-9817b1.netlify.app
 
 If you'd like to contribute to the app, you can fork and clone this repo and/or the [backend repo](https://github.com/alexdietz1988/local-brews-backend), make changes, and submit a pull request. If you notice a bug or want to propose an idea for improving the app, you can submit it as an issue to this repo.
 
-## User Stories
-1. I want to be able to enter my current city, and see a list of local breweries.
-2. I want to be able to click on a brewery to see more information about it.
-3. I want to be able to save a brewery if I’m interested in trying their beers, and see a list of the breweries I’ve saved. I want to be able to remove a brewery if I’m no longer interested in it.
-4. (Stretch) I want to be able to register for an account and login in order to save information about breweries I’m interested in or beers I’ve tried from them.
-5. (Stretch) I want to be able to log a beer that I’ve tried from a particular brewery, with the option to add information about the beer (e.g. style) and a rating.
-6. (Stretch) I want to be able to see a chronological list of all the beers I’ve logged.
-7. (Stretch) I want to be able to see a list of the beers I’ve logged sorted by brewery.
-8. (Stretch) I want to get suggestions of other nearby cities that I might also want to search.
-
-## MVP Goals
+## Development Roadmap
 - [x] Home
 - [x] Header, Nav, Footer
 - [x] Brewery Search
@@ -35,8 +25,9 @@ If you'd like to contribute to the app, you can fork and clone this repo and/or 
 - [x] Add/Remove a Brewery to My List
 - [x] Log a Beer
 - [x] Beer Log (Index Page)
-
-## Stretch Goals
 - [ ] Register / Login
 - [ ] Beer Log: Sort by Brewery
 - [ ] Brewery Search: Suggest Nearby Cities
+
+## Known Issues
+Some components are not re-rendering appropriately after information is updated. For example, when the user clicks the "Add to My List" button on a brewery page, that button should be replaced by the "Remove from My List" button.

@@ -2,14 +2,13 @@ import { useState } from "react"
 import SearchForm from "../components/search/SearchForm"
 import SearchResults from "../components/search/SearchResults"
 
-function Search() {
+function Search(props) {
 
     const [breweries, setBreweries] = useState([])
     const [location, setLocation] = useState({city: '', state: ''})
 
     function searchByCity() {
-        const URL = `https://api.openbrewerydb.org/breweries?by_city=${location.city}&by_state=${location.state}`
-        fetch(URL)
+        fetch(props.openBrewery + `?by_city=${location.city}&by_state=${location.state}`)
             .then(response => response.json())
             .then(data => {setBreweries(data)})
     }

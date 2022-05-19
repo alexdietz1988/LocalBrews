@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
+import MyListButtons from "./MyListButtons"
 
 function AddOrRemove(props) {
+
     const [inMyList, setInMyList] = useState(false)
 
     function checkMyList() {
@@ -35,25 +37,11 @@ function AddOrRemove(props) {
         checkMyList()
     }
 
-    function addButton() {
-        return(
-            <form onSubmit={addToMyList}>
-                <button className="btn btn-primary">Add to My List</button>
-            </form>
-        )
-    }
-
-    function removeButton() {
-        return(
-            <form onSubmit={removeFromMyList}>
-                <button className="btn btn-warning">Remove from My List</button>
-            </form>
-        )
-    }
-
-    return(
-        inMyList ? removeButton() : addButton()
-    )
+    return(<MyListButtons
+        inMyList={inMyList}
+        addToMyList={addToMyList}
+        removeFromMyList={removeFromMyList}
+    />)
 }
 
 export default AddOrRemove

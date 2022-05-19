@@ -17,7 +17,9 @@ function MyList(props) {
         return(
             <section>
                 {userList.map(brewery => (
-                    <Link to={`/brewery/${brewery.brewery_id}`} key={brewery._id}><p>{brewery.name}, {brewery.location}</p></Link>
+                    <Link to={`/brewery/${brewery.brewery_id}`} key={brewery._id}>
+                        <p>{brewery.name}, {brewery.location}</p>
+                    </Link>
                 ))}
             </section>
         )

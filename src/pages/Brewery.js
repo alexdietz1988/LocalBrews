@@ -19,7 +19,7 @@ function Brewery(props) {
     })
 
     function getBreweryInfo() {
-        fetch(`https://api.openbrewerydb.org/breweries/${brewery_id}`)
+        fetch(props.openBrewery + brewery_id)
             .then(response => response.json())
             .then(data => {
                 setThisBrewery(
@@ -43,8 +43,8 @@ function Brewery(props) {
             </section>
 
             <section>
-                <LogBeer thisBrewery={thisBrewery} username={props.username} brewery_id={brewery_id} backend={props.backend}/>
-                <BreweryBeerLog thisBrewery={thisBrewery} username={props.username} brewery_id={brewery_id} backend={props.backend}/>
+                <LogBeer thisBrewery={thisBrewery} username={props.username} brewery_id={brewery_id} backend={props.backend} />
+                <BreweryBeerLog thisBrewery={thisBrewery} username={props.username} brewery_id={brewery_id} backend={props.backend} />
             </section>
         </>
     )
