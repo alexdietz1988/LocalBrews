@@ -27,8 +27,8 @@ function Brewery(props) {
             </section>
 
             <section>
-                <BreweryBeerLog thisBrewery={thisBrewery} username={props.username} />
-                <LogBeer username={props.username} thisBrewery={thisBrewery} />
+                <BreweryBeerLog thisBrewery={thisBrewery} username={props.username} brewery_id={brewery_id} />
+                <LogBeer thisBrewery={thisBrewery} username={props.username} brewery_id={brewery_id} />
             </section>
         </>
     )

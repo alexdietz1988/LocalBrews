@@ -5,8 +5,8 @@ import LogBeerForm from "./LogBeerForm"
 function LogBeer(props) {
 
     const [beer, setBeer] = useState({
-        username: '',
-        brewery_name: '',
+        username: props.username,
+        brewery_id: props.brewery_id,
         name: '',
         style: '',
         rating: ''
@@ -21,12 +21,14 @@ function LogBeer(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        setBeer((prevState) => ({
-            ...prevState,
-            username: props.username,
-            brewery_name: props.thisBrewery.name,
-        }))
-        axios.post('http://localhost:4000/logs/beer', {beer})
+        console.log(beer)
+        axios.post('http://localhost:4000/logs/beer', {
+            username: beer.username,
+            brewery_id: beer.brewery_id,
+            name: beer.name,
+            style: beer.style,
+            rating: beer.rating
+        })
     }
 
     return (

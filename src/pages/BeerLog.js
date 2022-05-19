@@ -29,7 +29,6 @@ function BeerLog(props) {
     }
 
     if (beerLog.length > 0) {
-        console.log(beerLog)
         return(
             <>
             <h4 className='mb-4'>Beers Logged</h4>

@@ -8,10 +8,7 @@ function AddOrRemove(props) {
         fetch(`http://localhost:4000/logs/my-list/${props.username}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
-                console.log(props.thisBrewery.brewery_id)
                 if (data.some(element => element.brewery_id === props.thisBrewery.brewery_id)) {
-                    console.log('it is in your list')
                     setInMyList(true)
                 }
             })
