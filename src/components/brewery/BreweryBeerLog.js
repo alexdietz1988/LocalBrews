@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import axios from "axios"
 
 function BreweryBeerLog(props) {
 
@@ -12,16 +13,24 @@ function BreweryBeerLog(props) {
 
     useEffect(() => {getBeerLog()}, [])
 
+    function removeBeer(e) {
+        e.preventDefault()
+        axios.delete(`http://localhost:4000/logs/beer/${e.target.name}`)
+    }
+
     function loaded() {
         return(
             <section>
                 {beerLog.map(beer => (
-                    <div key={beer.id}>
+                    <div key={beer._id} className='mb-2'>
                         <p>
                             <b>{beer.name}</b><br />
                             <i>Style:</i> {beer.style}<br />
                             <i>Your Rating:</i> {beer.rating}
                         </p>
+                    <form name={beer._id} onSubmit={removeBeer}>
+                        <button className="btn btn-warning">Remove Beer</button>
+                    </form>
                     </div>
                 ))}
             </section>
@@ -30,7 +39,7 @@ function BreweryBeerLog(props) {
 
     return(
         <>
-        <h3 className='mb-4'>Beers Logged</h3>
+        <h4>Beers Logged</h4>
         {beerLog ? loaded() : <p>Loading...</p>}
         </>
     )
