@@ -23,7 +23,7 @@ function BeerLog(props) {
     return(
         <>
             <BeerLogUI beerLog={beerLog} removeBeer={removeBeer}/>
-            {removeBeerFeedback ? <p>Beer removed! Refresh to see your updated list.</p> : null}
+            {removeBeerFeedback ? <p>Beer removed!</p> : null}
         </>
     )
 }

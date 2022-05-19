@@ -56,9 +56,9 @@ function BreweryBeerLog(props) {
     return (
         <>
             <BreweryBeerLogForm beer={beer} handleChange={handleChange} handleSubmit={handleSubmit} />
-            {addBeerFeedback ? <p>Beer logged! Refresh to see your updated list.</p> : null}
+            {addBeerFeedback ? <p>Beer logged!</p> : null}
             <BreweryBeerLogList beerLog={beerLog} removeBeer={removeBeer}/>
-            {removeBeerFeedback ? <p>Beer removed! Refresh to see your updated list.</p> : null}
+            {removeBeerFeedback ? <p>Beer removed!</p> : null}
         </>
     )
 }

@@ -42,7 +42,7 @@ function MyList(props) {
         <>
         <h2 className='mb-4'>My List</h2>
         {userList.length > 0 ? loaded() : <h4><Link to='/search'>Search for some breweries</Link> to add to your list!</h4>}
-        {feedback ? <p>Brewery removed! Refresh to see your updated list.</p> : null}
+        {feedback ? <p>Brewery removed!</p> : null}
         </>
     )
 
