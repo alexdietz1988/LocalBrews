@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import BreweryInfo from "../components/brewery/BreweryInfo"
-import BreweryBeerLog from "../components/brewery/BreweryBeerLogList"
-import LogBeer from "../components/brewery/BreweryBeerLog"
+import BreweryBeerLog from "../components/brewery/BreweryBeerLog"
 import MyListButtons from "../components/brewery/MyListButtons"
 
 function Brewery(props) {
@@ -42,7 +41,7 @@ function Brewery(props) {
                 <MyListButtons thisBrewery={thisBrewery} username={props.username} backend={props.backend}/>
             </section>
 
-            <LogBeer thisBrewery={thisBrewery} username={props.username} brewery_id={brewery_id} backend={props.backend} />
+            <BreweryBeerLog thisBrewery={thisBrewery} username={props.username} brewery_id={brewery_id} backend={props.backend} />
         </>
     )
 }
