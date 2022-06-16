@@ -8,6 +8,7 @@ function Header() {
             <div className='navbar-nav'>
                 <Link to='/' className='nav-link'>Home</Link>
                 <Link to='/signup' className='nav-link'>Sign Up</Link>
+                <Link to='/login' className='nav-link'>Log In</Link>
                 <Link to='/search' className='nav-link'>Brewery Search</Link>
                 <Link to='/mylist' className='nav-link'>My List</Link>
                 <Link to='/beer-log' className='nav-link'>Beer Log</Link>
