@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header user={user} />
       <main className='flex-shrink-0'>
         <div className='container'>
 
