@@ -25,7 +25,7 @@ function LogIn(props) {
 
     return(
         <>
-            <h4 className='mb-4'>Sign Up</h4>
+            <h4 className='mb-4'>Log In</h4>
             <form className='mb-4 row g-1' onSubmit={handleSubmit}>
                 <div className='mb-2 col-sm'>
                     <input placeholder='Username' name='username' type="text" className='form-control' onChange={handleChange} required />

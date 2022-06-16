@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Route, Routes } from "react-router-dom";
 import './styles.css'
 
@@ -10,11 +11,14 @@ import Brewery from "./pages/Brewery";
 import MyList from "./pages/MyList";
 import BeerLog from "./pages/BeerLog";
 import SignUp from "./pages/SignUp";
+import LogIn from "./pages/LogIn";
 
 function App() {
 
-  const username = 'alex'
-  const backend = 'https://alexdietz-localbrews-backend.herokuapp.com/'
+  const [username, setUsername] = useState('')
+
+  const backend = 'http://localhost:4000/'
+  // const backend = 'https://alexdietz-localbrews-backend.herokuapp.com/'
   const openBrewery = 'https://api.openbrewerydb.org/breweries/'
 
   return (
@@ -25,7 +29,8 @@ function App() {
 
           <Routes>
             <Route exact path='/' element={<Home />} />
-            <Route path='/signup' element={<SignUp backend={backend} />} />
+            <Route path='/signup' element={<SignUp backend={backend} setUsername={setUsername}/>} />
+            <Route path='/login' element={<LogIn backend={backend} />} />
             <Route path='/search' element={<Search openBrewery={openBrewery}/>} />
             <Route path='/brewery/:id' element={<Brewery username={username} backend={backend} openBrewery={openBrewery}/>} />
             <Route path='/mylist' element={<MyList username={username} backend={backend}/>}/>

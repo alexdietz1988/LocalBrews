@@ -1,7 +1,9 @@
 import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 function SignUp(props) {
+    let navigate = useNavigate()
 
     const [formData, setFormData] = useState({
         username: '',
@@ -20,7 +22,19 @@ function SignUp(props) {
         axios.post(props.backend + 'auth', {
             username: formData.username,
             password: formData.password
-        })
+            })
+            .then((response) => {
+                console.log(response.data)
+                if (response.data === 'user already exists') {
+                    navigate('/login')
+
+                } else if (response.data === 'user created') {
+                    props.setUsername(formData.username)
+                    console.log(props.username)
+                    navigate('/search')
+                }
+            })
+            .catch((error) => console.log(error))
     }
 
     return(
