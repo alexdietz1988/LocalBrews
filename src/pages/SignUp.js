@@ -24,13 +24,11 @@ function SignUp(props) {
             password: formData.password
             })
             .then((response) => {
-                console.log(response.data)
                 if (response.data === 'user already exists') {
                     navigate('/login')
 
                 } else if (response.data === 'user created') {
                     props.setUsername(formData.username)
-                    console.log(props.username)
                     navigate('/search')
                 }
             })
