@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 import Home from './pages/Home'
-import Search from "./search/Search";
+import Search from "./pages/search/Search";
 import Brewery from "./pages/brewery/Brewery";
 import MyList from "./pages/MyList";
 import BeerLog from "./pages/beerlog/BeerLog";
