@@ -31,3 +31,6 @@ If you'd like to contribute to the app, you can fork and clone this repo and/or 
 
 ## Known Issues
 Some components are not re-rendering appropriately after information is updated.
+
+## Acknowledgments
+The favicon is from the open source project [Twemoji](https://twemoji.twitter.com), copyright 2020 Twitter, Inc and other contributors, and are licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
