@@ -1,7 +1,7 @@
 import axios from "axios"
-import useState from "react"
+import { useState } from "react"
 
-function SignUp() {
+function SignUp(props) {
 
     const [formData, setFormData] = useState({
         username: '',
@@ -17,10 +17,10 @@ function SignUp() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.post(props.backend + 'logs/beer', {
-            username: formData.username,
-            password: formData.password
-        })
+        // axios.post(props.backend + 'logs/beer', {
+        //     username: formData.username,
+        //     password: formData.password
+        // })
     }
 
     return(
@@ -31,7 +31,7 @@ function SignUp() {
                     <input placeholder='Username' name='username' type="text" className='form-control' onChange={handleChange} required />
                 </div>
                 <div className='mb-2 col-sm'>
-                    <input placeholder='Password' type="password" className='form-control' onChange={handleChange} required />
+                    <input placeholder='Password' name='password' type='password' className='form-control' onChange={handleChange} required />
                 </div>
                 <div className='mb-2 col-sm'>
                     <button type='submit' className='btn btn-primary'>Submit</button>

@@ -25,7 +25,7 @@ function App() {
 
           <Routes>
             <Route exact path='/' element={<Home />} />
-            <Route path='/signup' element={<SignUp />} />
+            <Route path='/signup' element={<SignUp backend={backend} />} />
             <Route path='/search' element={<Search openBrewery={openBrewery}/>} />
             <Route path='/brewery/:id' element={<Brewery username={username} backend={backend} openBrewery={openBrewery}/>} />
             <Route path='/mylist' element={<MyList username={username} backend={backend}/>}/>
