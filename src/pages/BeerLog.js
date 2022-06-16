@@ -7,7 +7,7 @@ function BeerLog(props) {
     const [removeBeerFeedback, setRemoveBeerFeedback] = useState(false)
 
     function getBeerLog() {
-        fetch(props.backend + `logs/beer-log/${props.username}/`)
+        fetch(props.backend + `logs/beer-log/${props.user}/`)
             .then(response => response.json())
             .then(data => {setBeerLog(data)})
     }

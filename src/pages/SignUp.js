@@ -28,7 +28,7 @@ function SignUp(props) {
                     navigate('/login')
 
                 } else if (response.data === 'user created') {
-                    props.setUsername(formData.username)
+                    props.setUser(formData.username)
                     navigate('/search')
                 }
             })

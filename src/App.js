@@ -15,7 +15,7 @@ import LogIn from "./pages/LogIn";
 
 function App() {
 
-  const [username, setUsername] = useState('')
+  const [user, setUser] = useState('')
 
   const backend = 'http://localhost:4000/'
   // const backend = 'https://alexdietz-localbrews-backend.herokuapp.com/'
@@ -29,12 +29,13 @@ function App() {
 
           <Routes>
             <Route exact path='/' element={<Home />} />
-            <Route path='/signup' element={<SignUp backend={backend} setUsername={setUsername}/>} />
-            <Route path='/login' element={<LogIn backend={backend} setUsername={setUsername} />} />
+            <Route path='/signup' element={<SignUp backend={backend} setUser={setUser}/>} />
+            <Route path='/login' element={<LogIn backend={backend} setUser={setUser} />} />
+
             <Route path='/search' element={<Search openBrewery={openBrewery}/>} />
-            <Route path='/brewery/:id' element={<Brewery username={username} backend={backend} openBrewery={openBrewery}/>} />
-            <Route path='/mylist' element={<MyList username={username} backend={backend}/>}/>
-            <Route path='/beer-log' element={<BeerLog username={username} backend={backend}/>}/>
+            <Route path='/brewery/:id' element={<Brewery user={user} backend={backend} openBrewery={openBrewery}/>} />
+            <Route path='/mylist' element={<MyList user={user} backend={backend}/>}/>
+            <Route path='/beer-log' element={<BeerLog user={user} backend={backend}/>}/>
           </Routes>
 
         </div>

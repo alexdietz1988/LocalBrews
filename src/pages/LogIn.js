@@ -29,9 +29,9 @@ function LogIn(props) {
                 console.log(response.data)
                 if (response.data === 'invalid username or password') {
                     setWarning(true)
-                    
+
                 } else if (response.data === 'successfully logged in') {
-                    props.setUsername(formData.username)
+                    props.setUser(formData.username)
                     navigate('/search')
                 }
             })
