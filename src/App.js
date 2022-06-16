@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import './styles.css'
 
 import Header from "./components/Header";
@@ -14,6 +14,7 @@ import SignUp from "./pages/auth/SignUp";
 import LogIn from "./pages/auth/LogIn";
 
 function App() {
+  let navigate = useNavigate()
 
   const [user, setUser] = useState('')
 
@@ -21,9 +22,14 @@ function App() {
   // const backend = 'https://alexdietz-localbrews-backend.herokuapp.com/'
   const openBrewery = 'https://api.openbrewerydb.org/breweries/'
 
+  function Logout() {
+    setUser('')
+    navigate('/')
+  }
+
   return (
     <>
-      <Header user={user} />
+      <Header user={user} setUser={setUser} />
       <main className='flex-shrink-0'>
         <div className='container'>
 
@@ -31,6 +37,7 @@ function App() {
             <Route exact path='/' element={<Home />} />
             <Route path='/signup' element={<SignUp backend={backend} setUser={setUser}/>} />
             <Route path='/login' element={<LogIn backend={backend} setUser={setUser} />} />
+            <Route path='/logout' element={<Logout />}/>
 
             <Route path='/search' element={<Search openBrewery={openBrewery}/>} />
             <Route path='/brewery/:id' element={<Brewery user={user} backend={backend} openBrewery={openBrewery}/>} />

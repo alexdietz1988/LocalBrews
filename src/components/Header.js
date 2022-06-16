@@ -15,12 +15,17 @@ function Header(props) {
 
     function userLoggedIn() {
         return(
+            <>
             <div className='navbar-nav'>
                 <Link to='/' className='nav-link'>Home</Link>
                 <Link to='/search' className='nav-link'>Brewery Search</Link>
                 <Link to='/mylist' className='nav-link'>My List</Link>
                 <Link to='/beer-log' className='nav-link'>Beer Log</Link>
+                <Link to='logout' className='nav-link'>Logout</Link>
+
+
             </div>
+            </>
         )
     }
 
