@@ -9,6 +9,7 @@ import Search from "./pages/Search";
 import Brewery from "./pages/Brewery";
 import MyList from "./pages/MyList";
 import BeerLog from "./pages/BeerLog";
+import SignUp from "./pages/SignUp";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
 
           <Routes>
             <Route exact path='/' element={<Home />} />
+            <Route path='/signup' element={<SignUp />} />
             <Route path='/search' element={<Search openBrewery={openBrewery}/>} />
             <Route path='/brewery/:id' element={<Brewery username={username} backend={backend} openBrewery={openBrewery}/>} />
             <Route path='/mylist' element={<MyList username={username} backend={backend}/>}/>
