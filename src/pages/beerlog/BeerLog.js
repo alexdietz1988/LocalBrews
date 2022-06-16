@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import BeerLogUI from "../components/BeerLogUI"
+import BeerLogUI from "./BeerLogUI"
 
 function BeerLog(props) {
     const [beerLog, setBeerLog] = useState([])

@@ -6,12 +6,12 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 import Home from './pages/Home'
-import Search from "./pages/Search";
-import Brewery from "./pages/Brewery";
+import Search from "./search/Search";
+import Brewery from "./pages/brewery/Brewery";
 import MyList from "./pages/MyList";
-import BeerLog from "./pages/BeerLog";
-import SignUp from "./pages/SignUp";
-import LogIn from "./pages/LogIn";
+import BeerLog from "./pages/beerlog/BeerLog";
+import SignUp from "./pages/auth/SignUp";
+import LogIn from "./pages/auth/LogIn";
 
 function App() {
 

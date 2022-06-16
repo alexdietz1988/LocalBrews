@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import BreweryInfo from "../components/brewery/BreweryInfo"
-import BreweryBeerLog from "../components/brewery/BreweryBeerLog"
-import MyListButtons from "../components/brewery/MyListButtons"
+import BreweryInfo from "./BreweryInfo"
+import BreweryBeerLog from "./BreweryBeerLog"
+import MyListButtons from "./MyListButtons"
 
 function Brewery(props) {
 
