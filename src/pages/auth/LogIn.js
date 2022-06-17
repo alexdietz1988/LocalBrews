@@ -32,7 +32,7 @@ function LogIn(props) {
 
                 } else if (response.data === 'successfully logged in') {
                     props.setUser(formData.username)
-                    navigate('/search')
+                    navigate('/')
                 }
             })
             .catch((error) => console.log(error))
@@ -44,21 +44,20 @@ function LogIn(props) {
 
     return(
         <>
-            <h4 className='mb-4'>Log In</h4>
-            
-            <form className='mb-4 row g-1' onSubmit={handleSubmit}>
-                <div className='mb-2 col-sm'>
-                    <input placeholder='Username' name='username' type="text" className='form-control' onChange={handleChange} required />
-                </div>
-                <div className='mb-2 col-sm'>
-                    <input placeholder='Password' name='password' type='password' className='form-control' onChange={handleChange} required />
-                </div>
-                <div className='mb-2 col-sm'>
-                    <button type='submit' className='btn btn-primary'>Submit</button>
-                </div>
-            </form>
+        <h4 className='mb-4'>Log In</h4>
+        <form className='mb-4 row g-1' onSubmit={handleSubmit}>
+            <div className='mb-2 col-sm'>
+                <input placeholder='Username' name='username' type="text" className='form-control' onChange={handleChange} required />
+            </div>
+            <div className='mb-2 col-sm'>
+                <input placeholder='Password' name='password' type='password' className='form-control' onChange={handleChange} required />
+            </div>
+            <div className='mb-2 col-sm'>
+                <button type='submit' className='btn btn-primary'>Submit</button>
+            </div>
+        </form>
 
-            {warning ? warningMessage() : null}
+        {warning ? warningMessage() : null}
         </>
     )
 }

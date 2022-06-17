@@ -34,9 +34,9 @@ function App() {
         <div className='container'>
 
           <Routes>
-            <Route exact path='/' element={<Home />} />
+            <Route exact path='/' element={<Home user={user} />} />
             <Route path='/signup' element={<SignUp backend={backend} setUser={setUser}/>} />
-            <Route path='/login' element={<LogIn backend={backend} setUser={setUser} />} />
+            <Route path='/login' element={<LogIn backend={backend} user={user} setUser={setUser} />} />
             <Route path='/logout' element={<Logout />}/>
 
             <Route path='/search' element={<Search openBrewery={openBrewery}/>} />
