@@ -10,7 +10,7 @@ function BreweryBeerLog(props) {
     const [removeBeerFeedback, setRemoveBeerFeedback] = useState(false)
 
     function getBeerLog() {
-        fetch(props.backend + `logs/beer-log/${props.username}/${props.brewery_id}`)
+        fetch(props.backend + `logs/beer-log/${props.user}/${props.brewery_id}`)
             .then(response => response.json())
             .then(data => setBeerLog(data))
     }
@@ -18,7 +18,7 @@ function BreweryBeerLog(props) {
     useEffect(() => {getBeerLog()}, [])
 
     const [beer, setBeer] = useState({
-        username: props.username,
+        username: props.user,
         brewery_id: props.brewery_id,
         name: '',
         style: '',

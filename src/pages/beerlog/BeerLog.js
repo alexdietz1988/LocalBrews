@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import BeerLogUI from "../components/BeerLogUI"
+import BeerLogUI from "./BeerLogUI"
 
 function BeerLog(props) {
     const [beerLog, setBeerLog] = useState([])
     const [removeBeerFeedback, setRemoveBeerFeedback] = useState(false)
 
     function getBeerLog() {
-        fetch(props.backend + `logs/beer-log/${props.username}/`)
+        fetch(props.backend + `logs/beer-log/${props.user}/`)
             .then(response => response.json())
             .then(data => {setBeerLog(data)})
     }

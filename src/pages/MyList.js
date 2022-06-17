@@ -8,7 +8,7 @@ function MyList(props) {
     const [feedback, setFeedback] = useState(false)
 
     function getMyList() {
-        fetch(props.backend + `logs/my-list/${props.username}`)
+        fetch(props.backend + `logs/my-list/${props.user}`)
             .then(response => response.json())
             .then(data => {setUserList(data)})
     }
@@ -17,7 +17,7 @@ function MyList(props) {
 
     function removeBrewery(e) {
         e.preventDefault()
-        axios.delete(props.backend + `brewery/${props.username}/${e.target.name}`)
+        axios.delete(props.backend + `brewery/${props.user}/${e.target.name}`)
         setFeedback(true)
     }
 

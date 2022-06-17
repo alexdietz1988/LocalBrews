@@ -6,7 +6,7 @@ function AddOrRemove(props) {
     const [inMyList, setInMyList] = useState(false)
 
     function checkMyList() {
-        fetch(props.backend + `logs/my-list/${props.username}`)
+        fetch(props.backend + `logs/my-list/${props.user}`)
             .then(response => response.json())
             .then(data => {
                 setInMyList(data.some(element => element.brewery_id === props.thisBrewery.brewery_id))
@@ -18,7 +18,7 @@ function AddOrRemove(props) {
     function addToMyList(e) {
         e.preventDefault()
         axios.post(props.backend + 'brewery/', { 
-            'username': props.username,
+            'username': props.user,
             'brewery_id': props.thisBrewery.brewery_id,
             'name': props.thisBrewery.name,
             'location': props.thisBrewery.location,
@@ -30,7 +30,7 @@ function AddOrRemove(props) {
 
     function removeFromMyList(e) {
         e.preventDefault()
-        axios.delete(props.backend + `brewery/${props.username}/${props.thisBrewery.brewery_id}`)
+        axios.delete(props.backend + `brewery/${props.user}/${props.thisBrewery.brewery_id}`)
         setInMyList(false)
     }
 

@@ -1,6 +1,6 @@
 import { useState } from "react"
-import SearchForm from "../components/search/SearchForm"
-import SearchResults from "../components/search/SearchResults"
+import SearchForm from "./SearchForm"
+import SearchResults from "./SearchResults"
 
 function Search(props) {
 

@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import BreweryInfo from "../components/brewery/BreweryInfo"
-import BreweryBeerLog from "../components/brewery/BreweryBeerLog"
-import MyListButtons from "../components/brewery/MyListButtons"
+import BreweryInfo from "./BreweryInfo"
+import BreweryBeerLog from "./BreweryBeerLog"
+import MyListButtons from "./MyListButtons"
 
 function Brewery(props) {
 
     const brewery_id = useParams().id
 
     const [thisBrewery, setThisBrewery] = useState({
-        'username': props.username,
+        'username': props.user,
         'brewery_id': brewery_id,
         'name': '',
         'location': '',
@@ -23,7 +23,7 @@ function Brewery(props) {
             .then(data => {
                 setThisBrewery(
                     {
-                        'username': props.username,
+                        'username': props.user,
                         'brewery_id': brewery_id,
                         'name': data.name,
                         'location': `${data.city}, ${data.state}`,
@@ -38,10 +38,10 @@ function Brewery(props) {
         <>
             <section className='mb-5'>
                 <BreweryInfo thisBrewery={thisBrewery} />
-                <MyListButtons thisBrewery={thisBrewery} username={props.username} backend={props.backend}/>
+                <MyListButtons thisBrewery={thisBrewery} user={props.user} backend={props.backend}/>
             </section>
 
-            <BreweryBeerLog thisBrewery={thisBrewery} username={props.username} brewery_id={brewery_id} backend={props.backend} />
+            <BreweryBeerLog thisBrewery={thisBrewery} user={props.user} brewery_id={brewery_id} backend={props.backend} />
         </>
     )
 }
