@@ -20,8 +20,7 @@ function App() {
   const [newUser, setNewUser] = useState(false)
   const [logout, setLogout] = useState(false)
 
-  const backend = 'http://localhost:4000/'
-  // const backend = 'https://alexdietz-localbrews-backend.herokuapp.com/'
+  const backend = 'https://alexdietz-localbrews-backend.herokuapp.com/'
   const openBrewery = 'https://api.openbrewerydb.org/breweries/'
 
   function Logout() {
