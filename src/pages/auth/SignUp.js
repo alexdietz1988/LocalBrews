@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 function SignUp(props) {
     let navigate = useNavigate()
@@ -9,6 +9,8 @@ function SignUp(props) {
         username: '',
         password: ''
     })
+
+    const [warning, setWarning] = useState(false)
 
     function handleChange(e) {
         setFormData((prevState) => ({
@@ -25,14 +27,24 @@ function SignUp(props) {
             })
             .then((response) => {
                 if (response.data === 'user already exists') {
-                    navigate('/login')
+                    setWarning(true)
 
                 } else if (response.data === 'user created') {
                     props.setUser(formData.username)
-                    navigate('/search')
+                    props.setNewUser(true)
+                    navigate('/')
                 }
             })
             .catch((error) => console.log(error))
+    }
+
+    function warningMessage() {
+        return(
+            <>
+            <p>An account with that username already exists.</p>
+            <p>If you already have an account, please <Link to='/login'>log in</Link>; otherwise, try entering a different username.</p>
+            </>
+        )
     }
 
     return(
@@ -49,6 +61,7 @@ function SignUp(props) {
                     <button type='submit' className='btn btn-primary'>Submit</button>
                 </div>
             </form>
+            {warning ? warningMessage() : null}
         </>
     )
 }

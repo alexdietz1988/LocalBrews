@@ -17,6 +17,7 @@ function App() {
   let navigate = useNavigate()
 
   const [user, setUser] = useState('')
+  const [newUser, setNewUser] = useState(false)
 
   const backend = 'http://localhost:4000/'
   // const backend = 'https://alexdietz-localbrews-backend.herokuapp.com/'
@@ -24,6 +25,7 @@ function App() {
 
   function Logout() {
     setUser('')
+    setNewUser(false)
     navigate('/')
   }
 
@@ -34,8 +36,8 @@ function App() {
         <div className='container'>
 
           <Routes>
-            <Route exact path='/' element={<Home user={user} />} />
-            <Route path='/signup' element={<SignUp backend={backend} setUser={setUser}/>} />
+            <Route exact path='/' element={<Home user={user} newUser={newUser} />} />
+            <Route path='/signup' element={<SignUp backend={backend} setUser={setUser} setNewUser={setNewUser} />} />
             <Route path='/login' element={<LogIn backend={backend} user={user} setUser={setUser} />} />
             <Route path='/logout' element={<Logout />}/>
 
