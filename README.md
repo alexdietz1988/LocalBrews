@@ -3,7 +3,7 @@
 ## Description 
 The app helps users find breweries in their area and keep track of the local beers they’ve tried, using data from [Open Brewery DB](https://www.openbrewerydb.org). 
 
-You can visit the deployed app [here](https://thriving-pixie-9817b1.netlify.app/). You can find the backend repo [here](https://github.com/alexdietz1988/local-brews-backend).
+You can visit the deployed app [here](https://localbrews.netlify.app/). You can find the backend repo [here](https://github.com/alexdietz1988/local-brews-backend).
 
 ## Screenshots
 <img width="838" alt="Screen Shot 2022-05-19 at 10 39 34 AM" src="https://user-images.githubusercontent.com/100381791/169323541-1d9ee5d8-f1bd-4c36-9c91-fc03d20da046.png">
@@ -13,7 +13,7 @@ You can visit the deployed app [here](https://thriving-pixie-9817b1.netlify.app/
 MongoDB, Express, React, Node.js, Bootstrap, Heroku, Netlify
 
 ## Getting Started / Contribution Guidelines
-You can use the app by clicking [here](https://thriving-pixie-9817b1.netlify.app/).
+You can use the app by clicking [here](https://localbrews.netlify.app/).
 
 If you'd like to contribute to the app, you can fork and clone this repo and/or the [backend repo](https://github.com/alexdietz1988/local-brews-backend), make changes, and submit a pull request. If you notice a bug or want to propose an idea for improving the app, you can submit it as an issue to this repo.
 
