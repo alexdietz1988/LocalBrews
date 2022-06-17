@@ -3,6 +3,16 @@ import { Link } from "react-router-dom"
 function Home(props) {
 
     function userNotLoggedIn() {
+
+        if (props.logout) {
+            return (
+                <>
+                <h4 className='mb-4'>Logout Successful</h4>
+                <p>Come again soon!</p>
+                </>
+            )
+        }
+
         return(
             <>
                 <h2 className='mb-3'>Welcome to Local Brews!</h2>

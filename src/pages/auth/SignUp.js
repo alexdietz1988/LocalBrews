@@ -32,6 +32,7 @@ function SignUp(props) {
                 } else if (response.data === 'user created') {
                     props.setUser(formData.username)
                     props.setNewUser(true)
+                    props.setLogout(false)
                     navigate('/')
                 }
             })

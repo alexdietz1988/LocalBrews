@@ -32,6 +32,7 @@ function LogIn(props) {
 
                 } else if (response.data === 'successfully logged in') {
                     props.setUser(formData.username)
+                    props.setLogout(false)
                     navigate('/')
                 }
             })
