@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 
-function Home(props) {
+function Home({user, newUser, logout}) {
 
     function userNotLoggedIn() {
 
-        if (props.logout) {
+        if (logout) {
             return (
                 <>
                 <h4 className='mb-4'>Logout Successful</h4>
@@ -29,8 +29,8 @@ function Home(props) {
     function userLoggedIn() {
         return(
             <>
-            {props.newUser ? <h4 className='mb-4'>Welcome to Local Brews, {props.user}!</h4>
-                : <h4 className='mb-4'>Welcome back, {props.user}!</h4>}
+            {newUser ? <h4 className='mb-4'>Welcome to Local Brews, {user}!</h4>
+                : <h4 className='mb-4'>Welcome back, {user}!</h4>}
             <p>Try <Link to='/search'>searching for a brewery to add to your list</Link>.</p>
             <p>Or see what <Link to='/mylist'>breweries</Link> and <Link to='/beer-log'>beers</Link> you've saved so far.</p>
             </>
@@ -39,7 +39,7 @@ function Home(props) {
 
     return(
         <div className='home'>
-            {props.user === '' ? userNotLoggedIn() : userLoggedIn()}
+            {user === '' ? userNotLoggedIn() : userLoggedIn()}
         </div>
     )
 }
