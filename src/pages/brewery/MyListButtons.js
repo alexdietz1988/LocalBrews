@@ -32,9 +32,11 @@ function AddOrRemove({user, backend, thisBrewery}) {
         setInMyList(false)
     }
 
-    let [buttonClass, clickHandler] = inMyList ? ['warning', removeFromMyList] : ['primary', addToMyList]
+    let [buttonClass, clickHandler, buttonMessage] = inMyList ?
+        ['warning', removeFromMyList, 'Remove from My List']
+        : ['primary', addToMyList, 'Add to My List']
 
-    return <button className={`btn btn-${buttonClass}`} onClick={clickHandler}>Remove from My List</button>
+    return <button className={`btn btn-${buttonClass}`} onClick={clickHandler}>{buttonMessage}</button>
 }
 
 export default AddOrRemove
