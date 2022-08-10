@@ -1,20 +1,19 @@
 import { Link } from "react-router-dom"
 
-function Home(props) {
+function Home({user, newUser, logout}) {
 
-    function userNotLoggedIn() {
-
-        if (props.logout) {
-            return (
-                <>
+    if (user === '' && logout) {
+        return (
+            <div className='home'>
                 <h4 className='mb-4'>Logout Successful</h4>
                 <p>Come again soon!</p>
-                </>
-            )
-        }
+            </div>
+        )
+    }
 
+    else if (user === '') {
         return(
-            <>
+            <div className='home'>
                 <h2 className='mb-3'>Welcome to Local Brews!</h2>
 
                 <section>
@@ -22,24 +21,17 @@ function Home(props) {
                     <p>Try <Link to='/search'>searching for a brewery near you</Link>.</p>
                     <p><Link to='/signup'>Sign up</Link> or <Link to='/login'>log in</Link> to save your favorite local breweries and beers.</p>
                 </section>
-            </>
+            </div>
         )
     }
 
-    function userLoggedIn() {
-        return(
-            <>
-            {props.newUser ? <h4 className='mb-4'>Welcome to Local Brews, {props.user}!</h4>
-                : <h4 className='mb-4'>Welcome back, {props.user}!</h4>}
-            <p>Try <Link to='/search'>searching for a brewery to add to your list</Link>.</p>
-            <p>Or see what <Link to='/mylist'>breweries</Link> and <Link to='/beer-log'>beers</Link> you've saved so far.</p>
-            </>
-        )
-    }
+    let welcome = newUser ? 'Welcome to Local Brews' : 'Welcome back'
 
     return(
         <div className='home'>
-            {props.user === '' ? userNotLoggedIn() : userLoggedIn()}
+            <h4 className='mb-4'>{welcome}, {user}!</h4>
+            <p>Try <Link to='/search'>searching for a brewery to add to your list</Link>.</p>
+            <p>Or see what <Link to='/mylist'>breweries</Link> and <Link to='/beer-log'>beers</Link> you've saved so far.</p>
         </div>
     )
 }

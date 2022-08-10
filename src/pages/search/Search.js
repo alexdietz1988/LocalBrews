@@ -1,17 +1,23 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
+import axios from "axios"
 import SearchForm from "./SearchForm"
-import SearchResults from "./SearchResults"
 
-function Search(props) {
+function Search({ openBrewery }) {
 
     const [breweries, setBreweries] = useState([])
     const [location, setLocation] = useState({city: '', state: ''})
-    const [search, setSearch] = useState(false)
 
     function searchByCity() {
-        fetch(props.openBrewery + `?by_city=${location.city}&by_state=${location.state}&per_page=50`)
-            .then(response => response.json())
-            .then(data => {setBreweries(data)})
+        axios.get(openBrewery, {
+            params: {
+                by_city: location.city,
+                by_state: location.state,
+                per_page: 50
+            }
+        })
+            .then(({ data }) => setBreweries(data))
+            .catch((error) => console.log(error))
     }
 
     function handleChange(e) {
@@ -24,14 +30,26 @@ function Search(props) {
     function handleSubmit(e) {
         e.preventDefault()
         searchByCity()
-        setSearch(true)
+    }
+
+    function SearchResults() {
+        return(
+            <section>
+                <h3 className='mb-3'>Results</h3>
+                {breweries.map(brewery => (
+                    <Link to={`/brewery/${brewery.id}`} key={brewery.id}>
+                        <p>{brewery.name}</p>
+                    </Link>
+                ))}
+            </section>
+        )
     }
 
     return(
         <>
             <h2 className='mb-4'>Brewery Search</h2>
             <SearchForm location={location} handleChange={handleChange} handleSubmit={handleSubmit}/>
-            {search ? <SearchResults breweries={breweries}/> : null}
+            {breweries.length > 0 ? SearchResults() : null}
         </>
     )
 }

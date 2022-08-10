@@ -1,13 +1,13 @@
-function SearchForm(props) {
+function SearchForm({ handleSubmit, handleChange, location}) {
     return(
-        <form className='mb-4 row g-1' onSubmit={props.handleSubmit}>
+        <form className='mb-4 row g-1' onSubmit={handleSubmit}>
 
             <div className='mb-2 col-sm'>
-            <input placeholder='City' id='city' name='city' type='text' className='form-control' value={props.location.city} onChange={props.handleChange}></input>
+            <input placeholder='City' id='city' name='city' type='text' className='form-control' value={location.city} onChange={handleChange} />
             </div>
 
             <div className='mb-2 col-sm'>
-            <select placeholder='State' id='state' name='state' className='form-select' value={props.location.state} onChange={props.handleChange}>
+            <select placeholder='State' id='state' name='state' className='form-select' value={location.state} onChange={handleChange}>
                 <option>State</option>
                 <option value='alabama'>Alabama</option>
                 <option value='alaska'>Alaska</option>

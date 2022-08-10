@@ -1,60 +1,40 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 
-function AddOrRemove(props) {
+function AddOrRemove({user, backend, thisBrewery}) {
 
     const [inMyList, setInMyList] = useState(false)
 
     function checkMyList() {
-        fetch(props.backend + `logs/my-list/${props.user}`)
-            .then(response => response.json())
-            .then(data => {
-                setInMyList(data.some(element => element.brewery_id === props.thisBrewery.brewery_id))
+        axios.get(backend + `logs/my-list/${user}`)
+            .then(({data}) => {
+                setInMyList(data.some(element => element.brewery_id === thisBrewery.brewery_id))
             })
+            .catch((error) => console.log(error))
     }
 
     useEffect(() => {checkMyList()},[])
 
-    function addToMyList(e) {
-        e.preventDefault()
-        axios.post(props.backend + 'brewery/', { 
-            'username': props.user,
-            'brewery_id': props.thisBrewery.brewery_id,
-            'name': props.thisBrewery.name,
-            'location': props.thisBrewery.location,
-            'street': props.thisBrewery.street,
-            'url': props.thisBrewery.url
+    function addToMyList() {
+        axios.post(backend + 'brewery/', { 
+            'username': user,
+            'brewery_id': thisBrewery.brewery_id,
+            'name': thisBrewery.name,
+            'location': thisBrewery.location,
+            'street': thisBrewery.street,
+            'url': thisBrewery.url
         })
         setInMyList(true)
     }
 
-    function removeFromMyList(e) {
-        e.preventDefault()
-        axios.delete(props.backend + `brewery/${props.user}/${props.thisBrewery.brewery_id}`)
+    function removeFromMyList() {
+        axios.delete(backend + `brewery/${user}/${thisBrewery.brewery_id}`)
         setInMyList(false)
     }
 
-    function addButton() {
-        return (
-            <form onSubmit={removeFromMyList}>
-                <button className="btn btn-warning">Remove from My List</button>
-            </form>
-        )
-    }
+    let [buttonClass, clickHandler] = inMyList ? ['warning', removeFromMyList] : ['primary', addToMyList]
 
-    function removeButton() {
-        return(
-            <form onSubmit={addToMyList}>
-                <button className="btn btn-primary">Add to My List</button>
-            </form>
-        )
-    }
-
-    return(
-        <>
-            {inMyList ? addButton() : removeButton()}
-        </>
-    )
+    return <button className={`btn btn-${buttonClass}`} onClick={clickHandler}>Remove from My List</button>
 }
 
 export default AddOrRemove

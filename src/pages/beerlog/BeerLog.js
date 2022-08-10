@@ -4,26 +4,24 @@ import BeerLogUI from "./BeerLogUI"
 
 function BeerLog(props) {
     const [beerLog, setBeerLog] = useState([])
-    const [removeBeerFeedback, setRemoveBeerFeedback] = useState(false)
 
     function getBeerLog() {
-        fetch(props.backend + `logs/beer-log/${props.user}/`)
-            .then(response => response.json())
-            .then(data => {setBeerLog(data)})
+        axios.get(props.backend + `logs/beer-log/${props.user}/`)
+            .then(({ data }) => setBeerLog(data))
+            .catch((error) => console.log(error))
     }
 
-    useEffect(() => {getBeerLog()}, [])
+    useEffect(() => getBeerLog(), [])
 
-    function removeBeer(e) {
-        e.preventDefault()
-        axios.delete(props.backend + `logs/beer/${e.target.name}`)
-        setRemoveBeerFeedback(true)
+    function removeBeer(id) {
+        axios.delete(props.backend + 'logs/beer/' + id)
+            .then(() => getBeerLog())
+            .catch((error) => console.log(error))
     }
 
     return(
         <>
             <BeerLogUI beerLog={beerLog} removeBeer={removeBeer}/>
-            {removeBeerFeedback ? <p>Beer removed!</p> : null}
         </>
     )
 }
