@@ -11,10 +11,7 @@ function BeerLogUI(props) {
                 <i>Style:</i> {beer.style}<br />
                 <i>Your Rating:</i> {beer.rating}
             </p>
-
-            <form name={beer._id} onSubmit={props.removeBeer}>
-                <button className="btn btn-warning">Remove Beer</button>
-            </form>
+            <button className="btn btn-warning" onClick={() => props.removeBeer(beer._id)}>Remove Beer</button>
         </div>
     ))
 

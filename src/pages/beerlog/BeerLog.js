@@ -13,9 +13,9 @@ function BeerLog(props) {
 
     useEffect(() => getBeerLog(), [])
 
-    function removeBeer(e) {
+    function removeBeer(id) {
         e.preventDefault()
-        axios.delete(props.backend + `logs/beer/${e.target.name}`)
+        axios.delete(props.backend + 'logs/beer/' + id)
             .then(() => getBeerLog())
             .catch((error) => console.log(error))
     }
