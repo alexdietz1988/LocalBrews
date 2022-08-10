@@ -1,7 +1,7 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import axios from "axios"
 import SearchForm from "./SearchForm"
-import SearchResults from "./SearchResults"
 
 function Search({ openBrewery }) {
 
@@ -32,11 +32,24 @@ function Search({ openBrewery }) {
         searchByCity()
     }
 
+    function SearchResults() {
+        return(
+            <section>
+                <h3 className='mb-3'>Results</h3>
+                {breweries.map(brewery => (
+                    <Link to={`/brewery/${brewery.id}`} key={brewery.id}>
+                        <p>{brewery.name}</p>
+                    </Link>
+                ))}
+            </section>
+        )
+    }
+
     return(
         <>
             <h2 className='mb-4'>Brewery Search</h2>
             <SearchForm location={location} handleChange={handleChange} handleSubmit={handleSubmit}/>
-            {breweries.length > 0 ? <SearchResults breweries={breweries}/> : null}
+            {breweries.length > 0 ? SearchResults() : null}
         </>
     )
 }
