@@ -14,9 +14,8 @@ function MyList({backend, user}) {
 
     useEffect(() => {getMyList()}, [])
 
-    function removeBrewery(e) {
-        e.preventDefault()
-        axios.delete(backend + `brewery/${user}/${e.target.name}`)
+    function removeBrewery(id) {
+        axios.delete(backend + `brewery/${user}/${id}`)
             .then(() => getMyList())
             .catch((error) => console.log(error))
     }
@@ -29,9 +28,7 @@ function MyList({backend, user}) {
                     <Link to={`/brewery/${brewery.brewery_id}`}>
                         <p>{brewery.name}, {brewery.location}</p>
                     </Link>
-                    <form name={brewery.brewery_id} onSubmit={removeBrewery}>
-                        <button className="btn btn-warning">Remove Brewery</button>
-                    </form>
+                    <button className="btn btn-warning" onClick={() => removeBrewery(brewery.brewery_id)}>Remove Brewery</button>
                     </div>
                 ))}
             </section>
