@@ -1,19 +1,19 @@
-function LogBeerForm(props) {
+function LogBeerForm({handleSubmit, handleChange, beer}) {
     return(
         <section className='mb-5'>
             <h4 className='mb-4'>Log a Beer from This Brewery</h4>
-            <form className='mb-4 row g-1' onSubmit={props.handleSubmit}>
+            <form className='mb-4 row g-1' onSubmit={handleSubmit}>
 
                 <div className='mb-2 col-sm'>
-                <input placeholder='Beer Name'  name='name' type='text' className='form-control' value={props.beer.name} onChange={props.handleChange}></input>
+                <input placeholder='Beer Name'  name='name' type='text' className='form-control' value={beer.name} onChange={handleChange} />
                 </div>
 
                 <div className='mb-2 col-sm'>
-                <input placeholder='Beer Style'  name='style' type='text' className='form-control' value={props.beer.style} onChange={props.handleChange}></input>
+                <input placeholder='Beer Style'  name='style' type='text' className='form-control' value={beer.style} onChange={handleChange} />
                 </div>
 
                 <div className='mb-2 col-sm'>
-                <select placeholder='Rating' id='rating' name='rating' className='form-select' value={props.beer.rating} onChange={props.handleChange}>
+                <select placeholder='Rating' id='rating' name='rating' className='form-select' value={beer.rating} onChange={handleChange}>
                     <option>Rating</option>
                     <option value='5'>5</option>
                     <option value='4'>4</option>

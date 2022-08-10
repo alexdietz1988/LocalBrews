@@ -3,13 +3,13 @@ import { useState, useEffect } from "react"
 import BreweryBeerLogForm from "./BreweryBeerLogForm"
 import BreweryBeerLogList from "./BreweryBeerLogList"
 
-function BreweryBeerLog(props) {
+function BreweryBeerLog({user, brewery_id, backend, thisBrewery}) {
 
     const [beerLog, setBeerLog] = useState([])
 
     function getBeerLog() {
         setBeerLog([])
-        axios.get(props.backend + `logs/beer-log/${props.user}/${props.brewery_id}`)
+        axios.get(backend + `logs/beer-log/${user}/${brewery_id}`)
             .then(({ data }) => setBeerLog(data))
             .catch((error) => console.log(error))
     }
@@ -17,8 +17,8 @@ function BreweryBeerLog(props) {
     useEffect(() => {getBeerLog()}, [])
 
     const [beer, setBeer] = useState({
-        username: props.user,
-        brewery_id: props.brewery_id,
+        username: user,
+        brewery_id: brewery_id,
         name: '',
         style: '',
         rating: ''
@@ -33,11 +33,11 @@ function BreweryBeerLog(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.post(props.backend + 'logs/beer', {
+        axios.post(backend + 'logs/beer', {
             username: beer.username,
             brewery_id: beer.brewery_id,
-            brewery_name: props.thisBrewery.name,
-            brewery_location: props.thisBrewery.location,
+            brewery_name: thisBrewery.name,
+            brewery_location: thisBrewery.location,
 
             name: beer.name,
             style: beer.style,
@@ -47,9 +47,8 @@ function BreweryBeerLog(props) {
             .catch((error) => console.log(error))
     }
 
-    function removeBeer(e) {
-        e.preventDefault()
-        axios.delete(props.backend + `logs/beer/${e.target.name}`)
+    function removeBeer(id) {
+        axios.delete(backend + `logs/beer/${id}`)
             .then(() => getBeerLog())
             .catch((error) => console.log(error))
     }
