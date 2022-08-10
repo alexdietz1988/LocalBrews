@@ -3,13 +3,13 @@ import axios from "axios"
 import SearchForm from "./SearchForm"
 import SearchResults from "./SearchResults"
 
-function Search(props) {
+function Search({ openBrewery }) {
 
     const [breweries, setBreweries] = useState([])
     const [location, setLocation] = useState({city: '', state: ''})
 
     function searchByCity() {
-        axios.get(props.openBrewery, {
+        axios.get(openBrewery, {
             params: {
                 by_city: location.city,
                 by_state: location.state,
