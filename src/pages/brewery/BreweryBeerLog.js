@@ -6,13 +6,12 @@ import BreweryBeerLogList from "./BreweryBeerLogList"
 function BreweryBeerLog(props) {
 
     const [beerLog, setBeerLog] = useState([])
-    const [addBeerFeedback, setAddBeerFeedback] = useState(false)
-    const [removeBeerFeedback, setRemoveBeerFeedback] = useState(false)
 
     function getBeerLog() {
-        fetch(props.backend + `logs/beer-log/${props.user}/${props.brewery_id}`)
-            .then(response => response.json())
-            .then(data => setBeerLog(data))
+        setBeerLog([])
+        axios.get(props.backend + `logs/beer-log/${props.user}/${props.brewery_id}`)
+            .then(({ data }) => setBeerLog(data))
+            .catch((error) => console.log(error))
     }
 
     useEffect(() => {getBeerLog()}, [])
@@ -43,22 +42,22 @@ function BreweryBeerLog(props) {
             name: beer.name,
             style: beer.style,
             rating: beer.rating
-        })
-        setAddBeerFeedback(true)
+            })
+            .then(() => getBeerLog())
+            .catch((error) => console.log(error))
     }
 
     function removeBeer(e) {
         e.preventDefault()
         axios.delete(props.backend + `logs/beer/${e.target.name}`)
-        setRemoveBeerFeedback(true)
+            .then(() => getBeerLog())
+            .catch((error) => console.log(error))
     }
 
     return (
         <>
             <BreweryBeerLogForm beer={beer} handleChange={handleChange} handleSubmit={handleSubmit} />
-            {addBeerFeedback ? <p>Beer logged!</p> : null}
             <BreweryBeerLogList beerLog={beerLog} removeBeer={removeBeer}/>
-            {removeBeerFeedback ? <p>Beer removed!</p> : null}
         </>
     )
 }

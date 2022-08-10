@@ -15,7 +15,8 @@ function BreweryBeerLogList(props) {
 
     return(
         <>
-        {mapping.length > 0 ? <><h4>Beers Logged</h4> {mapping}</> : null}
+        <h4>Beers Logged</h4>
+        {mapping.length > 0 ? <>{mapping}</> : `You haven't logged any beers from this brewery yet!`}
         </>
     )
 }
