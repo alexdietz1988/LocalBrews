@@ -13,6 +13,7 @@ function SignUp(props) {
     })
 
     const [warning, setWarning] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     function handleChange(e) {
         setFormData((prevState) => ({
@@ -23,6 +24,7 @@ function SignUp(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
+        setLoading(true)
         requestSignup(formData.username, formData.password)
             .then(({ data }) => {
                 if (data === 'user already exists') {
@@ -62,6 +64,7 @@ function SignUp(props) {
                 </div>
             </form>
             {warning ? warningMessage() : null}
+            {loading ? <>Loading...</> : null}
         </>
     )
 }
