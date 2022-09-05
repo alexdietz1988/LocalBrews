@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { requestSignup } from '../../apis'
+import { requestSignup } from '../../apis/auth'
 import { setUser } from '../../actions'
 
 function SignUp(props) {

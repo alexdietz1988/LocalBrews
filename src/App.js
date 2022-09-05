@@ -10,7 +10,7 @@ import Home from './pages/Home'
 import Search from './pages/search/Search'
 import Brewery from './pages/brewery/Brewery'
 import MyList from './pages/MyList'
-import BeerLog from './pages/beerlog/BeerLog'
+import BeerLog from './pages/auth/beerlog/BeerLog'
 import SignUp from './pages/auth/SignUp'
 import LogIn from './pages/auth/LogIn'
 

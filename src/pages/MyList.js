@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { requestMyList, requestRemoveBrewery } from '../apis'
+import { requestRemoveBrewery } from '../apis/brewery'
+import { requestMyList } from '../apis/mylist'
 
 function MyList({user}) {
 

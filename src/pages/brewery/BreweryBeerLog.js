@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import BreweryBeerLogForm from './BreweryBeerLogForm'
 import BreweryBeerLogList from './BreweryBeerLogList'
-import { requestBeerLog, requestDeleteBeer } from '../../apis'
+import { requestDeleteBeer, requestLogBeer, requestBreweryBeerLog } from '../../apis/beerlog'
 import { connect } from 'react-redux'
 
 function BreweryBeerLog({user, brewery_id, thisBrewery}) {
@@ -10,12 +10,12 @@ function BreweryBeerLog({user, brewery_id, thisBrewery}) {
 
     function getBeerLog() {
         setBeerLog([])
-        requestBeerLog(user, brewery_id)
+        requestBreweryBeerLog(user, brewery_id)
             .then(({ data }) => setBeerLog(data))
             .catch((error) => console.log(error))
     }
 
-    useEffect(() => {getBeerLog()}, [])
+    useEffect(() => getBeerLog(), [])
 
     const [beer, setBeer] = useState({
         name: '',

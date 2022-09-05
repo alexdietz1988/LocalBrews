@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { requestLogin } from '../../apis'
+import { requestLogin } from '../../apis/auth'
 import { setUser } from '../../actions'
 
 function LogIn(props) {

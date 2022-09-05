@@ -5,6 +5,6 @@ function userReducer(user = null, action) {
     return user
 }
 
-combineReducers({
+export default combineReducers({
     user: userReducer
 })

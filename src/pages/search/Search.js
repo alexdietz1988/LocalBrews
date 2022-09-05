@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import SearchForm from "./SearchForm"
-import { requestSearch } from '../../apis'
+import { requestSearch } from '../../apis/search'
 
 function Search() {
 

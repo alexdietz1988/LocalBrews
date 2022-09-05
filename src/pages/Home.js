@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 function Home({user, newUser, logout}) {
 
-    if (user === '' && logout) {
+    if (!user && logout) {
         return (
             <div className='home'>
                 <h4 className='mb-4'>Logout Successful</h4>
@@ -12,7 +12,7 @@ function Home({user, newUser, logout}) {
         )
     }
 
-    else if (user === '') {
+    else if (!user) {
         return(
             <div className='home'>
                 <h2 className='mb-3'>Welcome to Local Brews!</h2>

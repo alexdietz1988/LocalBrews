@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { requestCheckMyList, requestAddToMyList, requestDelete } from '../../apis'
+import { requestRemoveBrewery } from '../../apis/brewery'
+import { requestMyList, requestAddToMyList } from '../../apis/mylist'
 
 function AddOrRemove({user, thisBrewery}) {
 
     const [inMyList, setInMyList] = useState(false)
 
     function checkMyList() {
-        requestCheckMyList(user)
+        requestMyList(user)
             .then(({data}) => {
                 setInMyList(data.some(element => element.brewery_id === thisBrewery.brewery_id))
             })
@@ -22,7 +23,7 @@ function AddOrRemove({user, thisBrewery}) {
     }
 
     function removeFromMyList() {
-        requestDelete(user, thisBrewery.brewery_id)
+        requestRemoveBrewery(user, thisBrewery.brewery_id)
         setInMyList(false)
     }
 

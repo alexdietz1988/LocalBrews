@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import BreweryBeerLog from './BreweryBeerLog'
 import MyListButtons from './MyListButtons'
-import { requestBrewery } from '../../apis'
+import { requestBrewery } from '../../apis/brewery'
 
 function Brewery({user}) {
 

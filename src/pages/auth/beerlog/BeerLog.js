@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import BeerLogUI from './BeerLogUI'
-import { requestBeerLog, requestDeleteBeer } from '../../apis'
+import { requestBeerLog, requestDeleteBeer } from '../../../apis/beerlog'
 
-function BeerLog(props) {
+function BeerLog({ user }) {
     const [beerLog, setBeerLog] = useState([])
 
     function getBeerLog() {
-        requestBeerLog(props.user)
+        requestBeerLog(user)
             .then(({ data }) => setBeerLog(data))
             .catch((error) => console.log(error))
     }
@@ -28,9 +28,7 @@ function BeerLog(props) {
 }
 
 function mapStateToProps(state) {
-    return {
-        user: state.user
-    }
+    return {user: state.user}
 }
 
 export default connect(mapStateToProps)(BeerLog)
