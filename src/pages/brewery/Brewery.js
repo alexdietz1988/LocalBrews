@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
-import { Link } from "react-router-dom"
-import BreweryBeerLog from "./BreweryBeerLog"
-import MyListButtons from "./MyListButtons"
-import axios from "axios"
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import BreweryBeerLog from './BreweryBeerLog'
+import MyListButtons from './MyListButtons'
+import { requestBrewery } from '../../apis/brewery'
 
-function Brewery({user, openBrewery, backend}) {
+function Brewery({user}) {
 
     const brewery_id = useParams().id
 
@@ -19,7 +20,7 @@ function Brewery({user, openBrewery, backend}) {
     })
 
     function getBreweryInfo() {
-        axios.get(openBrewery + brewery_id)
+        requestBrewery(brewery_id)
             .then(({ data }) => {
                 setThisBrewery(
                     {
@@ -65,12 +66,18 @@ function Brewery({user, openBrewery, backend}) {
         <>
             <section className='mb-5'>
                 {BreweryInfo()}
-                <MyListButtons thisBrewery={thisBrewery} user={user} backend={backend}/>
+                <MyListButtons thisBrewery={thisBrewery} />
             </section>
 
-            <BreweryBeerLog thisBrewery={thisBrewery} user={user} brewery_id={brewery_id} backend={backend} />
+            <BreweryBeerLog thisBrewery={thisBrewery} brewery_id={brewery_id} />
         </>
     )
 }
 
-export default Brewery
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(Brewery)

@@ -1,21 +1,15 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import axios from "axios"
 import SearchForm from "./SearchForm"
+import { requestSearch } from '../../apis/search'
 
-function Search({ openBrewery }) {
+function Search() {
 
     const [breweries, setBreweries] = useState([])
     const [location, setLocation] = useState({city: '', state: ''})
 
     function searchByCity() {
-        axios.get(openBrewery, {
-            params: {
-                by_city: location.city,
-                by_state: location.state,
-                per_page: 50
-            }
-        })
+        requestSearch(location)
             .then(({ data }) => setBreweries(data))
             .catch((error) => console.log(error))
     }

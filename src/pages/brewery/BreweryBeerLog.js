@@ -1,24 +1,23 @@
-import axios from "axios"
-import { useState, useEffect } from "react"
-import BreweryBeerLogForm from "./BreweryBeerLogForm"
-import BreweryBeerLogList from "./BreweryBeerLogList"
+import { useState, useEffect } from 'react'
+import BreweryBeerLogForm from './BreweryBeerLogForm'
+import BreweryBeerLogList from './BreweryBeerLogList'
+import { requestDeleteBeer, requestLogBeer, requestBreweryBeerLog } from '../../apis/beerlog'
+import { connect } from 'react-redux'
 
-function BreweryBeerLog({user, brewery_id, backend, thisBrewery}) {
+function BreweryBeerLog({user, brewery_id, thisBrewery}) {
 
     const [beerLog, setBeerLog] = useState([])
 
     function getBeerLog() {
         setBeerLog([])
-        axios.get(backend + `logs/beer-log/${user}/${brewery_id}`)
+        requestBreweryBeerLog(user, brewery_id)
             .then(({ data }) => setBeerLog(data))
             .catch((error) => console.log(error))
     }
 
-    useEffect(() => {getBeerLog()}, [])
+    useEffect(() => getBeerLog(), [])
 
     const [beer, setBeer] = useState({
-        username: user,
-        brewery_id: brewery_id,
         name: '',
         style: '',
         rating: ''
@@ -33,22 +32,13 @@ function BreweryBeerLog({user, brewery_id, backend, thisBrewery}) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.post(backend + 'logs/beer', {
-            username: beer.username,
-            brewery_id: beer.brewery_id,
-            brewery_name: thisBrewery.name,
-            brewery_location: thisBrewery.location,
-
-            name: beer.name,
-            style: beer.style,
-            rating: beer.rating
-            })
+        requestLogBeer(user, brewery_id, thisBrewery, beer)
             .then(() => getBeerLog())
             .catch((error) => console.log(error))
     }
 
     function removeBeer(id) {
-        axios.delete(backend + `logs/beer/${id}`)
+        requestDeleteBeer(id)
             .then(() => getBeerLog())
             .catch((error) => console.log(error))
     }
@@ -61,4 +51,10 @@ function BreweryBeerLog({user, brewery_id, backend, thisBrewery}) {
     )
 }
 
-export default BreweryBeerLog
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(BreweryBeerLog)

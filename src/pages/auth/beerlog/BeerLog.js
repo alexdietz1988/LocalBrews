@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react"
-import axios from "axios"
-import BeerLogUI from "./BeerLogUI"
+import { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import BeerLogUI from './BeerLogUI'
+import { requestBeerLog, requestDeleteBeer } from '../../../apis/beerlog'
 
-function BeerLog(props) {
+function BeerLog({ user }) {
     const [beerLog, setBeerLog] = useState([])
 
     function getBeerLog() {
-        axios.get(props.backend + `logs/beer-log/${props.user}/`)
+        requestBeerLog(user)
             .then(({ data }) => setBeerLog(data))
             .catch((error) => console.log(error))
     }
@@ -14,7 +15,7 @@ function BeerLog(props) {
     useEffect(() => getBeerLog(), [])
 
     function removeBeer(id) {
-        axios.delete(props.backend + 'logs/beer/' + id)
+        requestDeleteBeer(id)
             .then(() => getBeerLog())
             .catch((error) => console.log(error))
     }
@@ -26,4 +27,8 @@ function BeerLog(props) {
     )
 }
 
-export default BeerLog
+function mapStateToProps(state) {
+    return {user: state.user}
+}
+
+export default connect(mapStateToProps)(BeerLog)

@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react"
-import axios from "axios"
+import { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { requestRemoveBrewery } from '../../apis/brewery'
+import { requestMyList, requestAddToMyList } from '../../apis/mylist'
 
-function AddOrRemove({user, backend, thisBrewery}) {
+function AddOrRemove({user, thisBrewery}) {
 
     const [inMyList, setInMyList] = useState(false)
 
     function checkMyList() {
-        axios.get(backend + `logs/my-list/${user}`)
+        requestMyList(user)
             .then(({data}) => {
                 setInMyList(data.some(element => element.brewery_id === thisBrewery.brewery_id))
             })
@@ -16,19 +18,12 @@ function AddOrRemove({user, backend, thisBrewery}) {
     useEffect(() => {checkMyList()},[])
 
     function addToMyList() {
-        axios.post(backend + 'brewery/', { 
-            'username': user,
-            'brewery_id': thisBrewery.brewery_id,
-            'name': thisBrewery.name,
-            'location': thisBrewery.location,
-            'street': thisBrewery.street,
-            'url': thisBrewery.url
-        })
+        requestAddToMyList(user, thisBrewery)
         setInMyList(true)
     }
 
     function removeFromMyList() {
-        axios.delete(backend + `brewery/${user}/${thisBrewery.brewery_id}`)
+        requestRemoveBrewery(user, thisBrewery.brewery_id)
         setInMyList(false)
     }
 
@@ -39,4 +34,10 @@ function AddOrRemove({user, backend, thisBrewery}) {
     return <button className={`btn btn-${buttonClass}`} onClick={clickHandler}>{buttonMessage}</button>
 }
 
-export default AddOrRemove
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(AddOrRemove)

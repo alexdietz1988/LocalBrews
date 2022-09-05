@@ -1,6 +1,8 @@
-import axios from "axios"
-import { useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { requestSignup } from '../../apis/auth'
+import { setUser } from '../../actions'
 
 function SignUp(props) {
     let navigate = useNavigate()
@@ -11,6 +13,7 @@ function SignUp(props) {
     })
 
     const [warning, setWarning] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     function handleChange(e) {
         setFormData((prevState) => ({
@@ -21,15 +24,13 @@ function SignUp(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.post(props.backend + 'auth', {
-            username: formData.username,
-            password: formData.password
-            })
-            .then((response) => {
-                if (response.data === 'user already exists') {
+        setLoading(true)
+        requestSignup(formData.username, formData.password)
+            .then(({ data }) => {
+                if (data === 'user already exists') {
                     setWarning(true)
 
-                } else if (response.data === 'user created') {
+                } else if (data === 'user created') {
                     props.setUser(formData.username)
                     props.setNewUser(true)
                     props.setLogout(false)
@@ -63,8 +64,10 @@ function SignUp(props) {
                 </div>
             </form>
             {warning ? warningMessage() : null}
+            {loading ? <>Loading...</> : null}
         </>
     )
 }
 
-export default SignUp
+
+export default connect(null, { setUser })(SignUp)
