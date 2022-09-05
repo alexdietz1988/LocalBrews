@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-function Header(props) {
+function Header({ user }) {
 
     function userNotLoggedIn() {
         return(
@@ -34,7 +35,7 @@ function Header(props) {
         <nav className='navbar navbar-expand-sm navbar-dark bg-dark mb-5'>
             <Link to='/' className='nav-link navbar-brand'>Local Brews</Link>
             <div className='container-fluid'>
-                {props.user === '' ? userNotLoggedIn() : userLoggedIn()}
+                {user ? userNotLoggedIn() : userLoggedIn()}
             </div>
             
         </nav>
@@ -42,4 +43,10 @@ function Header(props) {
     )
 }
 
-export default Header
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(Header)

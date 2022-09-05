@@ -1,6 +1,8 @@
-import { useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { requestSignup } from '../../apis'
+import { setUser } from '../../actions'
 
 function SignUp(props) {
     let navigate = useNavigate()
@@ -22,11 +24,11 @@ function SignUp(props) {
     function handleSubmit(e) {
         e.preventDefault()
         requestSignup(formData.username, formData.password)
-            .then((response) => {
-                if (response.data === 'user already exists') {
+            .then(({ data }) => {
+                if (data === 'user already exists') {
                     setWarning(true)
 
-                } else if (response.data === 'user created') {
+                } else if (data === 'user created') {
                     props.setUser(formData.username)
                     props.setNewUser(true)
                     props.setLogout(false)
@@ -64,4 +66,5 @@ function SignUp(props) {
     )
 }
 
-export default SignUp
+
+export default connect(null, { setUser })(SignUp)

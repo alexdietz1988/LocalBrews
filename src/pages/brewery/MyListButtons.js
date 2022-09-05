@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import { requestCheckMyList, requestAddToMyList, requestDelete } from '../../apis'
 
 function AddOrRemove({user, thisBrewery}) {
@@ -32,4 +33,10 @@ function AddOrRemove({user, thisBrewery}) {
     return <button className={`btn btn-${buttonClass}`} onClick={clickHandler}>{buttonMessage}</button>
 }
 
-export default AddOrRemove
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(AddOrRemove)

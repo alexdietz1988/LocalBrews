@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { requestMyList, requestRemoveBrewery } from '../apis'
 
 function MyList({user}) {
@@ -24,11 +25,11 @@ function MyList({user}) {
         return(
             <section>
                 {userList.map(brewery => (
-                    <div key={brewery._id} className="mb-2">
+                    <div key={brewery._id} className='mb-2'>
                     <Link to={`/brewery/${brewery.brewery_id}`}>
                         <p>{brewery.name}, {brewery.location}</p>
                     </Link>
-                    <button className="btn btn-warning" onClick={() => removeBrewery(brewery.brewery_id)}>Remove Brewery</button>
+                    <button className='btn btn-warning' onClick={() => removeBrewery(brewery.brewery_id)}>Remove Brewery</button>
                     </div>
                 ))}
             </section>
@@ -44,4 +45,10 @@ function MyList({user}) {
 
 }
 
-export default MyList
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(MyList)

@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react"
-import BeerLogUI from "./BeerLogUI"
+import { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import BeerLogUI from './BeerLogUI'
 import { requestBeerLog, requestDeleteBeer } from '../../apis'
 
 function BeerLog(props) {
@@ -26,4 +27,10 @@ function BeerLog(props) {
     )
 }
 
-export default BeerLog
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(BeerLog)

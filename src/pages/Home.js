@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 function Home({user, newUser, logout}) {
 
@@ -36,4 +37,10 @@ function Home({user, newUser, logout}) {
     )
 }
 
-export default Home
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(Home)

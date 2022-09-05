@@ -1,6 +1,8 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { requestLogin } from '../../apis'
+import { setUser } from '../../actions'
 
 function LogIn(props) {
     let navigate = useNavigate()
@@ -22,11 +24,11 @@ function LogIn(props) {
     function handleSubmit(e) {
         e.preventDefault()
         requestLogin(formData.username, formData.password)
-            .then((response) => {
-                if (response.data === 'invalid username or password') {
+            .then(({ data }) => {
+                if (data === 'invalid username or password') {
                     setWarning(true)
 
-                } else if (response.data === 'successfully logged in') {
+                } else if (data === 'successfully logged in') {
                     props.setUser(formData.username)
                     props.setLogout(false)
                     navigate('/')
@@ -59,4 +61,10 @@ function LogIn(props) {
     )
 }
 
-export default LogIn
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps, { setUser })(LogIn)

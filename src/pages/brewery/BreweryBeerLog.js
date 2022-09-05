@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react"
-import BreweryBeerLogForm from "./BreweryBeerLogForm"
-import BreweryBeerLogList from "./BreweryBeerLogList"
+import { useState, useEffect } from 'react'
+import BreweryBeerLogForm from './BreweryBeerLogForm'
+import BreweryBeerLogList from './BreweryBeerLogList'
 import { requestBeerLog, requestDeleteBeer } from '../../apis'
+import { connect } from 'react-redux'
 
-function BreweryBeerLog({user, brewery_id, backend, thisBrewery}) {
+function BreweryBeerLog({user, brewery_id, thisBrewery}) {
 
     const [beerLog, setBeerLog] = useState([])
 
@@ -50,4 +51,10 @@ function BreweryBeerLog({user, brewery_id, backend, thisBrewery}) {
     )
 }
 
-export default BreweryBeerLog
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(BreweryBeerLog)
