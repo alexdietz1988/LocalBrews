@@ -1,7 +1,7 @@
 # Local Brews
 
 ## Description 
-A React/Redux app helps users find breweries in their area and keep track of the local beers they’ve tried, using data from [Open Brewery DB](https://www.openbrewerydb.org). 
+A React/Redux app that helps users find breweries in their area and keep track of the local beers they’ve tried, using data from [Open Brewery DB](https://www.openbrewerydb.org). 
 
 You can visit the deployed app [here](https://localbrews.netlify.app/). You can find the backend repo [here](https://github.com/alexdietz1988/local-brews-backend).
 
