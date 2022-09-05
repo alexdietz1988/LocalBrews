@@ -1,6 +1,6 @@
-import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { requestLogin } from '../../apis'
 
 function LogIn(props) {
     let navigate = useNavigate()
@@ -21,12 +21,8 @@ function LogIn(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.post(props.backend + 'auth/login', {
-            username: formData.username,
-            password: formData.password
-            })
+        requestLogin(formData.username, formData.password)
             .then((response) => {
-                console.log(response.data)
                 if (response.data === 'invalid username or password') {
                     setWarning(true)
 

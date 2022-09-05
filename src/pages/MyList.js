@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import axios from "axios"
+import { requestMyList, requestRemoveBrewery } from '../apis'
 
-function MyList({backend, user}) {
+function MyList({user}) {
 
     const [userList, setUserList] = useState([])
 
     function getMyList() {
-        axios.get(backend + `logs/my-list/${user}`)
+        requestMyList(user)
             .then(({ data }) => setUserList(data))
             .catch((error) => console.log(error))
     }
@@ -15,7 +15,7 @@ function MyList({backend, user}) {
     useEffect(() => {getMyList()}, [])
 
     function removeBrewery(id) {
-        axios.delete(backend + `brewery/${user}/${id}`)
+        requestRemoveBrewery(user, id)
             .then(() => getMyList())
             .catch((error) => console.log(error))
     }

@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import BreweryBeerLog from "./BreweryBeerLog"
 import MyListButtons from "./MyListButtons"
-import axios from "axios"
+import { requestBrewery } from "../../apis"
 
-function Brewery({user, openBrewery, backend}) {
+function Brewery({user, backend}) {
 
     const brewery_id = useParams().id
 
@@ -19,7 +19,7 @@ function Brewery({user, openBrewery, backend}) {
     })
 
     function getBreweryInfo() {
-        axios.get(openBrewery + brewery_id)
+        requestBrewery(brewery_id)
             .then(({ data }) => {
                 setThisBrewery(
                     {
@@ -65,10 +65,10 @@ function Brewery({user, openBrewery, backend}) {
         <>
             <section className='mb-5'>
                 {BreweryInfo()}
-                <MyListButtons thisBrewery={thisBrewery} user={user} backend={backend}/>
+                <MyListButtons thisBrewery={thisBrewery} user={user} />
             </section>
 
-            <BreweryBeerLog thisBrewery={thisBrewery} user={user} brewery_id={brewery_id} backend={backend} />
+            <BreweryBeerLog thisBrewery={thisBrewery} user={user} brewery_id={brewery_id} />
         </>
     )
 }

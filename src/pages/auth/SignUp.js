@@ -1,6 +1,6 @@
-import axios from "axios"
 import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
+import { requestSignup } from '../../apis'
 
 function SignUp(props) {
     let navigate = useNavigate()
@@ -21,10 +21,7 @@ function SignUp(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.post(props.backend + 'auth', {
-            username: formData.username,
-            password: formData.password
-            })
+        requestSignup(formData.username, formData.password)
             .then((response) => {
                 if (response.data === 'user already exists') {
                     setWarning(true)

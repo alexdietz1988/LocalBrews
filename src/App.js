@@ -20,10 +20,6 @@ function App() {
   const [newUser, setNewUser] = useState(false)
   const [logout, setLogout] = useState(false)
 
-  const backend = 'https://alexdietz-localbrews-backend.herokuapp.com/'
-  // const backend = 'http://localhost:4000/'
-  const openBrewery = 'https://api.openbrewerydb.org/breweries/'
-
   function Logout() {
     setUser('')
     setNewUser(false)
@@ -39,14 +35,14 @@ function App() {
 
           <Routes>
             <Route exact path='/' element={<Home user={user} newUser={newUser} logout={logout}/>} />
-            <Route path='/signup' element={<SignUp backend={backend} setUser={setUser} setNewUser={setNewUser} setLogout={setLogout} />} />
-            <Route path='/login' element={<LogIn backend={backend} user={user} setUser={setUser} setLogout={setLogout} />} />
+            <Route path='/signup' element={<SignUp setUser={setUser} setNewUser={setNewUser} setLogout={setLogout} />} />
+            <Route path='/login' element={<LogIn user={user} setUser={setUser} setLogout={setLogout} />} />
             <Route path='/logout' element={<Logout />}/>
 
-            <Route path='/search' element={<Search openBrewery={openBrewery}/>} />
-            <Route path='/brewery/:id' element={<Brewery user={user} backend={backend} openBrewery={openBrewery}/>} />
-            <Route path='/mylist' element={<MyList user={user} backend={backend}/>}/>
-            <Route path='/beer-log' element={<BeerLog user={user} backend={backend}/>}/>
+            <Route path='/search' element={<Search />} />
+            <Route path='/brewery/:id' element={<Brewery user={user} />} />
+            <Route path='/mylist' element={<MyList user={user} />}/>
+            <Route path='/beer-log' element={<BeerLog user={user} />}/>
           </Routes>
 
         </div>
