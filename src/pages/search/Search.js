@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import SearchForm from "./SearchForm"
-import { requestSearch } from '../../apis/search'
+import { searchBreweries } from '../../apis/search'
 
 function Search() {
 
@@ -9,7 +9,7 @@ function Search() {
     const [location, setLocation] = useState({city: '', state: ''})
 
     function searchByCity() {
-        requestSearch(location)
+        searchBreweries(location)
             .then(({ data }) => setBreweries(data))
             .catch((error) => console.log(error))
     }

@@ -1,9 +1,9 @@
 import { backend } from './apis'
 
-export function requestAddToMyList(user, thisBrewery) {
+export function addToMyList(user, thisBrewery) {
     return backend.post('brewery/', { user, ...thisBrewery })
 }
 
-export function requestMyList(user) {
+export function fetchMyList(user) {
     return backend.get(`logs/my-list/${user}`)
 }

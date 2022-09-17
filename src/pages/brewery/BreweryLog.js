@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react'
-import BreweryBeerLogForm from './BreweryBeerLogForm'
-import BreweryBeerLogList from './BreweryBeerLogList'
-import { requestDeleteBeer, requestLogBeer, requestBreweryBeerLog } from '../../apis/beerlog'
+import BreweryLogForm from './BreweryLogForm'
+import BreweryLogList from './BreweryLogList'
+import { deleteBeer, logBeer, fetchBreweryLog } from '../../apis/beerlog'
 import { connect } from 'react-redux'
 
-function BreweryBeerLog({user, brewery_id, thisBrewery}) {
-
+function BreweryLog({user, brewery_id, thisBrewery}) {
     const [beerLog, setBeerLog] = useState([])
 
     function getBeerLog() {
         setBeerLog([])
-        requestBreweryBeerLog(user, brewery_id)
+        fetchBreweryLog(user, brewery_id)
             .then(({ data }) => setBeerLog(data))
             .catch((error) => console.log(error))
     }
@@ -32,21 +31,21 @@ function BreweryBeerLog({user, brewery_id, thisBrewery}) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        requestLogBeer(user, brewery_id, thisBrewery, beer)
+        logBeer(user, brewery_id, thisBrewery, beer)
             .then(() => getBeerLog())
             .catch((error) => console.log(error))
     }
 
     function removeBeer(id) {
-        requestDeleteBeer(id)
-            .then(() => getBeerLog())
+        deleteBeer(id)
+            .then(() => fetchBreweryLog())
             .catch((error) => console.log(error))
     }
 
     return (
         <>
-            <BreweryBeerLogForm beer={beer} handleChange={handleChange} handleSubmit={handleSubmit} />
-            <BreweryBeerLogList beerLog={beerLog} removeBeer={removeBeer}/>
+            <BreweryLogForm beer={beer} handleChange={handleChange} handleSubmit={handleSubmit} />
+            <BreweryLogList beerLog={beerLog} removeBeer={removeBeer}/>
         </>
     )
 }
@@ -57,4 +56,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(BreweryBeerLog)
+export default connect(mapStateToProps)(BreweryLog)

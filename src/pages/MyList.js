@@ -1,24 +1,21 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { requestRemoveBrewery } from '../apis/brewery'
-import { requestMyList } from '../apis/mylist'
+import { deleteBrewery } from '../apis/brewery'
+import { fetchMyList } from '../apis/mylist'
 
 function MyList({user}) {
-
     const [userList, setUserList] = useState([])
 
-    function getMyList() {
-        requestMyList(user)
+    useEffect(() => {
+        fetchMyList(user)
             .then(({ data }) => setUserList(data))
             .catch((error) => console.log(error))
-    }
+        }, [])
 
-    useEffect(() => {getMyList()}, [])
-
-    function removeBrewery(id) {
-        requestRemoveBrewery(user, id)
-            .then(() => getMyList())
+    function handleRemove(id) {
+        deleteBrewery(user, id)
+            .then(() => fetchMyList())
             .catch((error) => console.log(error))
     }
 
@@ -30,7 +27,7 @@ function MyList({user}) {
                     <Link to={`/brewery/${brewery.brewery_id}`}>
                         <p>{brewery.name}, {brewery.location}</p>
                     </Link>
-                    <button className='btn btn-warning' onClick={() => removeBrewery(brewery.brewery_id)}>Remove Brewery</button>
+                    <button className='btn btn-warning' onClick={() => handleRemove(brewery.brewery_id)}>Remove Brewery</button>
                     </div>
                 ))}
             </section>

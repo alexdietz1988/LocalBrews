@@ -2,17 +2,17 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import BreweryBeerLog from './BreweryBeerLog'
+import BreweryLog from './BreweryLog'
 import MyListButtons from './MyListButtons'
-import { requestBrewery } from '../../apis/brewery'
+import { fetchBrewery } from '../../apis/brewery'
 
 function Brewery({user}) {
 
     const brewery_id = useParams().id
 
     const [thisBrewery, setThisBrewery] = useState({
-        'username': user,
-        'brewery_id': brewery_id,
+        user,
+        brewery_id,
         'name': '',
         'location': '',
         'street': '',
@@ -20,7 +20,7 @@ function Brewery({user}) {
     })
 
     function getBreweryInfo() {
-        requestBrewery(brewery_id)
+        fetchBrewery(brewery_id)
             .then(({ data }) => {
                 setThisBrewery(
                     {
@@ -69,7 +69,7 @@ function Brewery({user}) {
                 <MyListButtons thisBrewery={thisBrewery} />
             </section>
 
-            <BreweryBeerLog thisBrewery={thisBrewery} brewery_id={brewery_id} />
+            <BreweryLog thisBrewery={thisBrewery} brewery_id={brewery_id} />
         </>
     )
 }

@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { requestRemoveBrewery } from '../../apis/brewery'
-import { requestMyList, requestAddToMyList } from '../../apis/mylist'
+import { deleteBrewery } from '../../apis/brewery'
+import { fetchMyList, addToMyList } from '../../apis/mylist'
 
 function AddOrRemove({user, thisBrewery}) {
 
     const [inMyList, setInMyList] = useState(false)
 
     function checkMyList() {
-        requestMyList(user)
+        fetchMyList(user)
             .then(({data}) => {
                 setInMyList(data.some(element => element.brewery_id === thisBrewery.brewery_id))
             })
@@ -17,19 +17,19 @@ function AddOrRemove({user, thisBrewery}) {
 
     useEffect(() => {checkMyList()},[])
 
-    function addToMyList() {
-        requestAddToMyList(user, thisBrewery)
+    function handleAdd() {
+        addToMyList(user, thisBrewery)
         setInMyList(true)
     }
 
-    function removeFromMyList() {
-        requestRemoveBrewery(user, thisBrewery.brewery_id)
+    function handleRemove() {
+        deleteBrewery(user, thisBrewery.brewery_id)
         setInMyList(false)
     }
 
     let [buttonClass, clickHandler, buttonMessage] = inMyList ?
-        ['warning', removeFromMyList, 'Remove from My List']
-        : ['primary', addToMyList, 'Add to My List']
+        ['warning', handleAdd, 'Remove from My List']
+        : ['primary', handleRemove, 'Add to My List']
 
     return <button className={`btn btn-${buttonClass}`} onClick={clickHandler}>{buttonMessage}</button>
 }

@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import BeerLogUI from './BeerLogUI'
-import { requestBeerLog, requestDeleteBeer } from '../../../apis/beerlog'
+import { fetchBeerLog, deleteBeer } from '../../apis/beerlog'
 
 function BeerLog({ user }) {
     const [beerLog, setBeerLog] = useState([])
 
     function getBeerLog() {
-        requestBeerLog(user)
+        fetchBeerLog(user)
             .then(({ data }) => setBeerLog(data))
             .catch((error) => console.log(error))
     }
@@ -15,15 +15,13 @@ function BeerLog({ user }) {
     useEffect(() => getBeerLog(), [])
 
     function removeBeer(id) {
-        requestDeleteBeer(id)
+        deleteBeer(id)
             .then(() => getBeerLog())
             .catch((error) => console.log(error))
     }
 
     return(
-        <>
-            <BeerLogUI beerLog={beerLog} removeBeer={removeBeer}/>
-        </>
+        <BeerLogUI beerLog={beerLog} removeBeer={removeBeer}/>
     )
 }
 

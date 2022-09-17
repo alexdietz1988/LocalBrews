@@ -1,6 +1,6 @@
 import { openBrewery } from './apis'
 
-export function requestSearch(location) {
+export function searchBreweries(location) {
     return openBrewery.get({
         params: {
             by_city: location.city,

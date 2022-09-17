@@ -1,4 +1,4 @@
-function BreweryBeerLogList({beerLog, removeBeer}) {
+function BreweryLogList({beerLog, removeBeer}) {
 
     const beerLogDisplay = beerLog.map((beer, idx) => (
         <div key={idx} className='mb-3'>
@@ -20,4 +20,4 @@ function BreweryBeerLogList({beerLog, removeBeer}) {
     )
 }
 
-export default BreweryBeerLogList
+export default BreweryLogList

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { requestLogin } from '../../apis/auth'
+import { login } from '../../apis/auth'
 import { setUser } from '../../actions'
 
 function LogIn(props) {
@@ -23,7 +23,7 @@ function LogIn(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        requestLogin(formData.username, formData.password)
+        login(formData.username, formData.password)
             .then(({ data }) => {
                 if (data === 'invalid username or password') {
                     setWarning(true)

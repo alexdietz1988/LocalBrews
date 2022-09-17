@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { requestSignup } from '../../apis/auth'
+import { signup } from '../../apis/auth'
 import { setUser } from '../../actions'
 
 function SignUp(props) {
@@ -25,7 +25,7 @@ function SignUp(props) {
     function handleSubmit(e) {
         e.preventDefault()
         setLoading(true)
-        requestSignup(formData.username, formData.password)
+        signup(formData.username, formData.password)
             .then(({ data }) => {
                 if (data === 'user already exists') {
                     setWarning(true)
