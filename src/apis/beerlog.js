@@ -1,29 +1,23 @@
-import axios from 'axios'
-
-const backend = 'https://alexdietz-localbrews-backend.herokuapp.com/'
-// const backend = 'http://localhost:4000/'
+import { backend } from './apis'
 
 export function requestBeerLog(user) {
-    return axios.get(backend + `logs/beer-log/${user}/`)
+    return backend.get(`logs/beer-log/${user}/`)
 }
 
 export function requestDeleteBeer(id) {
-    return axios.delete(backend + `logs/beer/${id}`)
+    return backend.delete(`logs/beer/${id}`)
 }
 
 export function requestLogBeer(user, breweryId, thisBrewery, beer) {
-    return axios.post(backend + 'logs/beer', {
-        username: user,
+    return backend.post('logs/beer', { 
+        user,
         brewery_id: breweryId,
         brewery_name: thisBrewery.name,
         brewery_location: thisBrewery.location,
-
-        name: beer.name,
-        style: beer.style,
-        rating: beer.rating
-        })
+        ...beer
+    })
 }
 
 export function requestBreweryBeerLog(user, breweryId) {
-    return axios.get(backend + `logs/beer-log/${user}/${breweryId}`)
+    return backend.get(`logs/beer-log/${user}/${breweryId}`)
 }

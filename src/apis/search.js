@@ -1,9 +1,7 @@
-import axios from 'axios'
-
-const openBrewery = 'https://api.openbrewerydb.org/breweries/'
+import { openBrewery } from './apis'
 
 export function requestSearch(location) {
-    return axios.get(openBrewery, {
+    return openBrewery.get({
         params: {
             by_city: location.city,
             by_state: location.state,
