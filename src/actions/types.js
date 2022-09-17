@@ -1,0 +1,13 @@
+export const LOGIN = 'LOGIN'
+export const LOGOUT = 'LOGOUT'
+
+export const FETCH_BREWERY = 'FETCH_BREWERY'
+export const FETCH_BREWERIES = 'FETCH_BREWERIES'
+export const FETCH_BREWERY_LOG = 'FETCH_BREWERY_LOG'
+export const SEARCH_BREWERIES = 'SEARCH_BREWERIES'
+export const ADD_BREWERY = 'ADD_BREWERY'
+export const REMOVE_BREWERY = 'REMOVE_BREWERY'
+
+export const FETCH_BEERS = 'FETCH_BEERS'
+export const LOG_BEER = 'LOG_BEER'
+export const DELETE_BEER = 'DELETE_BEER'

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-function BeerLogUI(props) {
+function BeersUI(props) {
 
     const mapping = props.beerLog.map(beer => (
         <div key={beer._id} className='mb-4'>
@@ -23,4 +23,4 @@ function BeerLogUI(props) {
     )
 }
 
-export default BeerLogUI
+export default BeersUI

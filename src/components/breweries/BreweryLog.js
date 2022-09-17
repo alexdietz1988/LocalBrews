@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
 import BreweryLogForm from './BreweryLogForm'
 import BreweryLogList from './BreweryLogList'
-import { deleteBeer, logBeer, fetchBreweryLog } from '../../apis/beerlog'
+import { deleteBeer, logBeer, fetchBreweryLog } from '../../actions/beers'
 import { connect } from 'react-redux'
 
-function BreweryLog({user, brewery_id, thisBrewery}) {
+function BreweryLog({brewery_id, thisBrewery}) {
     const [beerLog, setBeerLog] = useState([])
 
     function getBeerLog() {
         setBeerLog([])
-        fetchBreweryLog(user, brewery_id)
+        fetchBreweryLog(brewery_id)
             .then(({ data }) => setBeerLog(data))
             .catch((error) => console.log(error))
     }
@@ -31,7 +31,7 @@ function BreweryLog({user, brewery_id, thisBrewery}) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        logBeer(user, brewery_id, thisBrewery, beer)
+        logBeer(brewery_id, thisBrewery, beer)
             .then(() => getBeerLog())
             .catch((error) => console.log(error))
     }
@@ -52,7 +52,6 @@ function BreweryLog({user, brewery_id, thisBrewery}) {
 
 function mapStateToProps(state) {
     return {
-        user: state.user
     }
 }
 

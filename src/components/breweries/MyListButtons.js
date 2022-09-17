@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { deleteBrewery } from '../../apis/brewery'
+import { deleteBrewery } from '../../actions/breweries'
 import { fetchMyList, addToMyList } from '../../apis/mylist'
 
 function AddOrRemove({user, thisBrewery}) {

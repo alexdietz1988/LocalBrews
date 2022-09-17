@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deleteBrewery } from '../apis/brewery'
+import { deleteBrewery } from '../actions/breweries'
 import { fetchMyList } from '../apis/mylist'
 
 function MyList({user}) {

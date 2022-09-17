@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux'
-
-function userReducer(user = null, action) {
-    if (action.type === 'SET_USER') return action.payload
-    return user
-}
+import authReducer from './authReducer'
+import breweriesReducer from './breweriesReducer'
 
 export default combineReducers({
-    user: userReducer
+    auth: authReducer,
+    breweries: breweriesReducer
 })
