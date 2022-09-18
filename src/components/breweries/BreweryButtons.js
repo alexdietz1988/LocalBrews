@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { deleteBrewery } from '../../actions/breweries'
 import { fetchMyList, addToMyList } from '../../apis/mylist'
 
-function AddOrRemove({user, thisBrewery}) {
+function BreweryButtons({user, thisBrewery}) {
 
     const [inMyList, setInMyList] = useState(false)
 
@@ -40,4 +40,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(AddOrRemove)
+export default connect(mapStateToProps)(BreweryButtons)

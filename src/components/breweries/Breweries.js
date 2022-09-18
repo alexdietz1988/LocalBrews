@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deleteBrewery } from '../actions/breweries'
+import { deleteBrewery } from '../../actions/breweries'
 import { fetchMyList } from '../apis/mylist'
 
-function MyList({user}) {
+function Breweries({user}) {
     const [userList, setUserList] = useState([])
 
     useEffect(() => {
@@ -49,4 +49,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(MyList)
+export default connect(mapStateToProps)(Breweries)

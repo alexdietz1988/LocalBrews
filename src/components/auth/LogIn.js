@@ -1,60 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { login } from '../../apis/auth'
-import { setUser } from '../../actions'
+import LoginUI from './LoginUI'
+import { login } from '../../actions/auth'
 
-function LogIn(props) {
-    let navigate = useNavigate()
+function Login(props) {
+    const navigate = useNavigate()
+    const [submitted, setSubmitted] = useState(false)
 
-    const [formData, setFormData] = useState({
-        username: '',
-        password: ''
+    function onSubmit(formData) {
+        props.login(formData)
+        setSubmitted(true)
+    }
+
+    useEffect(() => {
+        if (submitted) {
+            navigate('/')
+        }
     })
-
-    const [warning, setWarning] = useState(false)
-
-    function handleChange(e) {
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }))
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault()
-        login(formData.username, formData.password)
-            .then(({ data }) => {
-                if (data === 'invalid username or password') {
-                    setWarning(true)
-
-                } else if (data === 'successfully logged in') {
-                    props.setUser(formData.username)
-                    props.setLogout(false)
-                    navigate('/')
-                }
-            })
-            .catch((error) => console.log(error))
-    }
-
-    function warningMessage() {
-        return <p>Invalid username or password. Please try again.</p>
-    }
 
     return(
         <>
         <h4 className='mb-4'>Log In</h4>
-        <form className='mb-4 row g-1' onSubmit={handleSubmit}>
-            <div className='mb-2 col-sm'>
-                <input placeholder='Username' name='username' type="text" className='form-control' onChange={handleChange} required />
-            </div>
-            <div className='mb-2 col-sm'>
-                <input placeholder='Password' name='password' type='password' className='form-control' onChange={handleChange} required />
-            </div>
-            <div className='mb-2 col-sm'>
-                <button type='submit' className='btn btn-primary'>Submit</button>
-            </div>
-        </form>
+        <LoginUI onSubmit={onSubmit}/>
 
         {warning ? warningMessage() : null}
         </>
@@ -63,8 +31,8 @@ function LogIn(props) {
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        fetchCount: state.auth.fetchCount
     }
 }
 
-export default connect(mapStateToProps, { setUser })(LogIn)
+export default connect(mapStateToProps, { login })(Login)

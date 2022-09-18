@@ -1,4 +1,4 @@
-function SearchForm({ handleSubmit, handleChange, location}) {
+function SearchBreweriesForm({ handleSubmit, handleChange, location}) {
     return(
         <form className='mb-4 row g-1' onSubmit={handleSubmit}>
 
@@ -70,4 +70,4 @@ function SearchForm({ handleSubmit, handleChange, location}) {
     )
 }
 
-export default SearchForm
+export default SearchBreweriesForm

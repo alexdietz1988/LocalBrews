@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import BreweryLog from './BreweryLog'
-import MyListButtons from './MyListButtons'
+import MyListButtons from './BreweryButtons'
 import { fetchBrewery } from '../../actions/breweries'
 
 function Brewery({user}) {

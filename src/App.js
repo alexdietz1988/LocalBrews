@@ -7,12 +7,12 @@ import './styles.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './components/Home'
-import Search from './components/search/Search'
+import SearchBreweries from './components/breweries/searchBreweries/SearchBreweries'
 import Brewery from './components/breweries/Brewery'
-import MyList from './components/MyList'
-import BeerLog from './components/beers/Beers'
+import Breweries from './components/breweries/Breweries'
+import Beers from './components/beers/Beers'
 import SignUp from './components/auth/SignUp'
-import LogIn from './components/auth/LogIn'
+import LogIn from './components/auth/Login'
 
 function App(props) {
   let navigate = useNavigate()
@@ -39,10 +39,11 @@ function App(props) {
             <Route path='/login' element={<LogIn setLogout={setLogout} />} />
             <Route path='/logout' element={<Logout />}/>
 
-            <Route path='/search' element={<Search />} />
-            <Route path='/brewery/:id' element={<Brewery />} />
-            <Route path='/mylist' element={<MyList />}/>
-            <Route path='/beer-log' element={<BeerLog />}/>
+            <Route path='/breweries/search' element={<SearchBreweries />} />
+            <Route path='/breweries' element={<Breweries />}/>
+            <Route path='/breweries/:id' element={<Brewery />} />
+          
+            <Route path='/beers' element={<Beers />}/>
           </Routes>
 
         </div>

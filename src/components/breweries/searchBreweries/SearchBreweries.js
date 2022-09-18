@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import SearchForm from "./SearchForm"
+import SearchForm from "./SearchBreweriesForm"
 import { searchBreweries } from '../../apis/search'
 
-function Search() {
+function SearchBreweries() {
 
     const [breweries, setBreweries] = useState([])
     const [location, setLocation] = useState({city: '', state: ''})
@@ -48,4 +48,4 @@ function Search() {
     )
 }
 
-export default Search
+export default SearchBreweries
