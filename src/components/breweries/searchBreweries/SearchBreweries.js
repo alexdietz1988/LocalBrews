@@ -4,7 +4,6 @@ import SearchBreweriesForm from './SearchBreweriesForm'
 import { searchBreweries } from '../../../actions/breweries'
 
 function SearchBreweries(props) {
-
     function renderSearchResults() {
         return(
             <section>
@@ -21,16 +20,14 @@ function SearchBreweries(props) {
     return(
         <>
             <h2 className='mb-4'>Brewery Search</h2>
-            <SearchBreweriesForm />
+            <SearchBreweriesForm onSubmit={() => props.searchBreweries(formData)}/>
             {props.breweries.length > 0 ? renderSearchResults() : null}
         </>
     )
 }
 
 function mapStateToProps(state) {
-    return {
-        breweries: state.breweries.searchResults
-    }
+    return { breweries: state.breweries.searchResults }
 }
 
 export default connect(mapStateToProps, { searchBreweries })(SearchBreweries)
