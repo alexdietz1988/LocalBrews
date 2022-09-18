@@ -1,36 +1,15 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
-import SearchForm from "./SearchBreweriesForm"
-import { searchBreweries } from '../../apis/search'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import SearchBreweriesForm from './SearchBreweriesForm'
+import { searchBreweries } from '../../../actions/breweries'
 
-function SearchBreweries() {
+function SearchBreweries(props) {
 
-    const [breweries, setBreweries] = useState([])
-    const [location, setLocation] = useState({city: '', state: ''})
-
-    function searchByCity() {
-        searchBreweries(location)
-            .then(({ data }) => setBreweries(data))
-            .catch((error) => console.log(error))
-    }
-
-    function handleChange(e) {
-        setLocation((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }))
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault()
-        searchByCity()
-    }
-
-    function SearchResults() {
+    function renderSearchResults() {
         return(
             <section>
                 <h3 className='mb-3'>Results</h3>
-                {breweries.map(brewery => (
+                {props.breweries.map(brewery => (
                     <Link to={`/brewery/${brewery.id}`} key={brewery.id}>
                         <p>{brewery.name}</p>
                     </Link>
@@ -42,10 +21,16 @@ function SearchBreweries() {
     return(
         <>
             <h2 className='mb-4'>Brewery Search</h2>
-            <SearchForm location={location} handleChange={handleChange} handleSubmit={handleSubmit}/>
-            {breweries.length > 0 ? SearchResults() : null}
+            <SearchBreweriesForm />
+            {props.breweries.length > 0 ? renderSearchResults() : null}
         </>
     )
 }
 
-export default SearchBreweries
+function mapStateToProps(state) {
+    return {
+        breweries: state.breweries.searchResults
+    }
+}
+
+export default connect(mapStateToProps, { searchBreweries })(SearchBreweries)

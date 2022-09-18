@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import BreweryLog from './BreweryLog'
 import MyListButtons from './BreweryButtons'
-import { fetchBrewery } from '../../actions/breweries'
+import { fetchBrewery } from '../../../actions/breweries'
 
 function Brewery({user}) {
 
