@@ -8,7 +8,7 @@ function renderInput(props) {
     )
 }
 
-function LoginUI(props) {
+function AuthUI(props) {
     return(
         <Form 
             onSubmit={props.onSubmit}
@@ -26,4 +26,4 @@ function LoginUI(props) {
     )
 }
 
-export default LoginUI
+export default AuthUI

@@ -11,21 +11,12 @@ import SearchBreweries from './components/breweries/searchBreweries/SearchBrewer
 import Brewery from './components/breweries/Brewery'
 import Breweries from './components/breweries/Breweries'
 import Beers from './components/beers/Beers'
-import SignUp from './components/auth/SignUp'
-import LogIn from './components/auth/Login'
+import Auth from './components/auth/Auth'
 
 function App(props) {
   let navigate = useNavigate()
 
   const [newUser, setNewUser] = useState(false)
-  const [logout, setLogout] = useState(false)
-
-  function Logout() {
-    props.setUser('')
-    setNewUser(false)
-    setLogout(true)
-    navigate('/')
-  }
 
   return (
     <>
@@ -34,9 +25,9 @@ function App(props) {
         <div className='container'>
 
           <Routes>
-            <Route exact path='/' element={<Home newUser={newUser} logout={logout}/>} />
-            <Route path='/signup' element={<SignUp setNewUser={setNewUser} setLogout={setLogout} />} />
-            <Route path='/login' element={<LogIn setLogout={setLogout} />} />
+            <Route exact path='/' element={<Home newUser={newUser} />} />
+            <Route path='/signup' element={<Auth page='signup' />} />
+            <Route path='/login' element={<Auth page='login' />} />
             <Route path='/logout' element={<Logout />}/>
 
             <Route path='/breweries/search' element={<SearchBreweries />} />
