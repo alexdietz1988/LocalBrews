@@ -7,22 +7,14 @@ import { login } from '../../actions/auth'
 function Login(props) {
     const navigate = useNavigate()
     const [submitted, setSubmitted] = useState(false)
-
-    function onSubmit(formData) {
-        props.login(formData)
-        setSubmitted(true)
-    }
-
-    useEffect(() => {
-        if (submitted) {
-            navigate('/')
-        }
-    })
+    useEffect(() => {if (submitted) navigate('/')}, [props.fetchCount])
 
     return(
         <>
         <h4 className='mb-4'>Log In</h4>
-        <LoginUI onSubmit={onSubmit}/>
+        <LoginUI
+            onSubmit={() => {props.login(formData); setSubmitted(true)}}
+        />
 
         {warning ? warningMessage() : null}
         </>
@@ -30,9 +22,7 @@ function Login(props) {
 }
 
 function mapStateToProps(state) {
-    return {
-        fetchCount: state.auth.fetchCount
-    }
+    return { fetchCount: state.auth.fetchCount }
 }
 
 export default connect(mapStateToProps, { login })(Login)
