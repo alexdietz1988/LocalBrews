@@ -4,7 +4,7 @@ import { LOGIN, LOGOUT } from './types'
 export const login = (page, formData) => async dispatch => {
     const response = (page === 'login') ?
         await backend.post('auth/login', formData) :
-        await backend.post('auth', { user, password })
+        await backend.post('auth', formData)
     
     let payload = { success: true }
     response.data.success ?

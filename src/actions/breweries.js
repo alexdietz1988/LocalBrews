@@ -8,7 +8,7 @@ export const fetchBrewery = id => async dispatch => {
 
 export const addBrewery = thisBrewery => async (dispatch, getState) => {
     const user = getState().auth.user
-    const response = await backend.post('brewery/', { user, ...thisBrewery })
+    const response = await backend.post('breweries/', { user, ...thisBrewery })
     if (response.data.success) {
         dispatch({ type: ADD_BREWERY })
     }
@@ -16,7 +16,7 @@ export const addBrewery = thisBrewery => async (dispatch, getState) => {
 
 export const fetchBreweries = () => async (dispatch, getState) => {
     const user = getState().auth.user
-    const response = await backend.get(`logs/my-list/${user}`)
+    const response = await backend.get(`breweries/${user}`)
     if (response.data.success) {
         dispatch({ type: FETCH_BREWERIES, payload: response.data.data })
     }
@@ -24,7 +24,7 @@ export const fetchBreweries = () => async (dispatch, getState) => {
 
 export const removeBrewery = id => async (dispatch, getState) => {
     const user = getState().auth.user
-    const response = await backend.delete(`brewery/${user}/${id}`)
+    const response = await backend.delete(`breweries/${user}/${id}`)
     if (response.data.success) {
         dispatch({ type: REMOVE_BREWERY })
     }
@@ -32,7 +32,7 @@ export const removeBrewery = id => async (dispatch, getState) => {
 
 export const fetchBreweryLog = id => async (dispatch, getState) => {
     const user = getState().auth.user
-    const response = await backend.get(`logs/beer-log/${user}/${id}`)
+    const response = await backend.get(`breweries/${user}/${id}`)
     if (response.data.success) {
         dispatch({ type: FETCH_BREWERY_LOG, payload: response.data.data })
     }
