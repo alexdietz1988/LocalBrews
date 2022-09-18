@@ -2,82 +2,40 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+
 import BreweryLog from './BreweryLog'
-import MyListButtons from './BreweryButtons'
+import BreweryButtons from './BreweryButtons'
 import { fetchBrewery } from '../../../actions/breweries'
 
-function Brewery({user}) {
+function Brewery(props) {
+    const id = useParams().id
+    useEffect(() => {fetchBrewery(id)}, [])
 
-    const brewery_id = useParams().id
-
-    const [thisBrewery, setThisBrewery] = useState({
-        user,
-        brewery_id,
-        'name': '',
-        'location': '',
-        'street': '',
-        'url': ''
-    })
-
-    function getBreweryInfo() {
-        fetchBrewery(brewery_id)
-            .then(({ data }) => {
-                setThisBrewery(
-                    {
-                        'username': user,
-                        'brewery_id': brewery_id,
-                        'name': data.name,
-                        'location': `${data.city}, ${data.state}`,
-                        'street': data.street,
-                        'url': data.website_url
-                    }
-                )})
-            .catch((error) => console.log(error))
-    }
-
-    useEffect(() => {getBreweryInfo()}, [])
-
-    function BreweryInfo() {
-        return(
-            <>
-            <h2 className='mb-4'>{thisBrewery.name}</h2>
-                <section>
-                    <p>{thisBrewery.street}<br />{thisBrewery.location}</p>
-                    <p><a href={thisBrewery.url} target='_blank' rel='noreferrer'>Website</a></p>
-                </section>
-            </>
-        )
-    }
-
-    if (user === '') {
-        return(
-            <>
-            <section className='mb-5'>
-                {BreweryInfo()}
-            </section>
-
-            <Link to='/signup'>Sign up</Link> or <Link to='/login'>log in</Link> to save this brewery or log one of its beers!
-
-        </>
-        )
-    }
-
-    return(
+    return (
         <>
             <section className='mb-5'>
-                {BreweryInfo()}
-                <MyListButtons thisBrewery={thisBrewery} />
+                <h2 className='mb-4'>{props.brewery.name}</h2>
+                <section>
+                    <p>{props.brewery.street}<br />{props.brewery.location}</p>
+                    <p><a href={props.brewery.url} target='_blank' rel='noreferrer'>Website</a></p>
+                </section>
+                {props.isSignedIn ? <BreweryButtons /> : null}
             </section>
-
-            <BreweryLog thisBrewery={thisBrewery} brewery_id={brewery_id} />
+            {props.isSignedIn ?
+                <BreweryLog /> :
+                <>
+                <Link to='/signup'>Sign up</Link> or <Link to='/login'>log in</Link> to save this brewery or log one of its beers!
+                </>
+            }
         </>
     )
 }
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        isSignedIn: state.auth.isSignedIn,
+        brewery: state.breweries.selectedBrewery
     }
 }
 
-export default connect(mapStateToProps)(Brewery)
+export default connect(mapStateToProps, { fetchBrewery })(Brewery)

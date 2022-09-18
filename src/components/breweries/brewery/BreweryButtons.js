@@ -1,43 +1,39 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { deleteBrewery } from '../../actions/breweries'
-import { fetchMyList, addToMyList } from '../../apis/mylist'
+import { fetchBreweries, addBrewery, deleteBrewery } from '../../../actions/breweries'
 
-function BreweryButtons({user, thisBrewery}) {
-
+function BreweryButtons(props) {
     const [inMyList, setInMyList] = useState(false)
 
-    function checkMyList() {
-        fetchMyList(user)
-            .then(({data}) => {
-                setInMyList(data.some(element => element.brewery_id === thisBrewery.brewery_id))
-            })
-            .catch((error) => console.log(error))
+    useEffect(() => props.fetchBreweries(), [])
+    useEffect(() => {
+        setInMyList(props.myList.some(element => element.brewery_id === props.brewery.brewery_id))
+        }, [props.fetchCount])
+
+    function clickHandler() {
+        if (inMyList) {
+            props.addBrewery(props.brewery)
+            props.fetchBreweries()
+
+        } else if (!inMyList) {
+            props.deleteBrewery(props.brewery.brewery_id)
+            props.fetchBreweries()
+        }
     }
 
-    useEffect(() => {checkMyList()},[])
-
-    function handleAdd() {
-        addToMyList(user, thisBrewery)
-        setInMyList(true)
-    }
-
-    function handleRemove() {
-        deleteBrewery(user, thisBrewery.brewery_id)
-        setInMyList(false)
-    }
-
-    let [buttonClass, clickHandler, buttonMessage] = inMyList ?
-        ['warning', handleAdd, 'Remove from My List']
-        : ['primary', handleRemove, 'Add to My List']
+    let [buttonClass, buttonMessage] = inMyList ?
+        ['warning', 'Remove from My List']
+        : ['primary', 'Add to My List']
 
     return <button className={`btn btn-${buttonClass}`} onClick={clickHandler}>{buttonMessage}</button>
 }
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        myList: state.breweries.myList,
+        brewery: state.breweries.selectedBrewery,
+        fetchCount: state.breweries.fetchCount
     }
 }
 
-export default connect(mapStateToProps)(BreweryButtons)
+export default connect(mapStateToProps, { fetchBreweries, addBrewery, deleteBrewery })(BreweryButtons)
