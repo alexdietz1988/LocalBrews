@@ -1,4 +1,4 @@
-function LogBeerForm({handleSubmit, handleChange, beer}) {
+function LogBeerForm(props) {
     return(
         <section className='mb-5'>
             <h4 className='mb-4'>Log a Beer from This Brewery</h4>

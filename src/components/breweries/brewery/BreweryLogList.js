@@ -1,7 +1,11 @@
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { deleteBeer } from '../../../actions/beers'
+import { fetchBreweryLog } from '../../../actions/breweries'
 
 function BreweryLogList(props) {
+    useEffect(() => props.fetchBreweryLog(), [props.fetchCount])
+
     const renderBreweryLog = props.breweryLog.map((beer, idx) => (
         <div key={idx} className='mb-3'>
             <p>
@@ -24,7 +28,10 @@ function BreweryLogList(props) {
 }
 
 function mapStateToProps(state) {
-    return { breweryLog: state.breweries.breweryLog }
+    return {
+        breweryLog: state.breweries.breweryLog,
+        fetchCount: state.beers.fetchCount
+    }
 }
 
-export default connect(mapStateToProps, { deleteBeer })(BreweryLogList)
+export default connect(mapStateToProps, { deleteBeer, fetchBreweryLog })(BreweryLogList)
