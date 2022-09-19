@@ -17,7 +17,7 @@ function Auth(props) {
             <div>Loading...</div> : 
             <>
             <LoginUI
-                onSubmit={() => {props.login(props.page, formData); setSubmitted(true)}}
+                onSubmit={(formData) => {props.login(props.page, formData); setSubmitted(true)}}
             />
             {props.errorMessage}
             </>

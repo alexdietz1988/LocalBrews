@@ -20,7 +20,7 @@ function SearchBreweries(props) {
     return(
         <>
             <h2 className='mb-4'>Brewery Search</h2>
-            <SearchBreweriesForm onSubmit={() => props.searchBreweries(formData)}/>
+            <SearchBreweriesForm onSubmit={(formData) => props.searchBreweries(formData)}/>
             {props.breweries.length > 0 ? renderSearchResults() : null}
         </>
     )

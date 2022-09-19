@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { logout } from '../actions/auth'
 
 function Header(props) {
 
@@ -21,8 +22,8 @@ function Header(props) {
                 <Link to='/' className='nav-link'>Home</Link>
                 <Link to='/search' className='nav-link'>Brewery Search</Link>
                 <Link to='/mylist' className='nav-link'>My List</Link>
-                <Link to='/beer-log' className='nav-link'>Beer Log</Link>
-                <Link to='logout' className='nav-link'>Logout</Link>
+                <Link to='/beers' className='nav-link'>Beer Log</Link>
+                <Link to='/' className='nav-link' onClick={() => props.logout()}>Logout</Link>
             </div>
             </>
         )
@@ -47,4 +48,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps, { logout })(Header)

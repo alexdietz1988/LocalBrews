@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { deleteBeer } from '../actions/beers'
 
 function Beers(props) {
-
     const renderBeers = props.beers.map(beer => (
         <div key={beer._id} className='mb-4'>
             <p>
@@ -21,7 +20,7 @@ function Beers(props) {
         <section>
             <h2 className='mb-4'>Beer Log</h2>
             {renderBeers.length > 0 ?
-                mapping :
+                renderBeers :
                 <h4><Link to='/search'>Find a brewery</Link> to log beers you've tried!</h4>
             }
         </section>

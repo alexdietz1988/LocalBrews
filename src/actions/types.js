@@ -9,5 +9,5 @@ export const ADD_BREWERY = 'ADD_BREWERY'
 export const DELETE_BREWERY = 'DELETE_BREWERY'
 
 export const FETCH_BEERS = 'FETCH_BEERS'
-export const LOG_BEER = 'LOG_BEER'
+export const ADD_BEER = 'ADD_BEER'
 export const DELETE_BEER = 'DELETE_BEER'
