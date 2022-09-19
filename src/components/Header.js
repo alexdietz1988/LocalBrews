@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-function Header({ user }) {
+function Header(props) {
 
-    function userNotLoggedIn() {
+    function notSignedIn() {
         return(
             <div className='navbar-nav'>
                 <Link to='/' className='nav-link'>Home</Link>
@@ -14,7 +14,7 @@ function Header({ user }) {
         )        
     }
 
-    function userLoggedIn() {
+    function signedIn() {
         return(
             <>
             <div className='navbar-nav'>
@@ -33,7 +33,7 @@ function Header({ user }) {
         <nav className='navbar navbar-expand-sm navbar-dark bg-dark mb-5'>
             <Link to='/' className='nav-link navbar-brand'>Local Brews</Link>
             <div className='container-fluid'>
-                {user ? userLoggedIn() : userNotLoggedIn()}
+                {props.isSignedIn ? signedIn() : notSignedIn()}
             </div>
             
         </nav>
@@ -43,7 +43,7 @@ function Header({ user }) {
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        isSignedIn: state.auth.isSignedIn
     }
 }
 
