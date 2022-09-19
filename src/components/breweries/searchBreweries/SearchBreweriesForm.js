@@ -30,10 +30,10 @@ function SearchBreweriesForm(props) {
                 </div>
 
                 <div className='mb-2 col-sm'>
-                <select placeholder='State' name='state' className='form-select' component='select' >
+                <Field placeholder='State' name='state' className='form-select' component='select' >
                     <option>State</option>
                     {renderStates()}
-                </select>
+                </Field>
                 </div>
 
                 <div className='mb-2 col-sm'>

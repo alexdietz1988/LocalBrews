@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import BreweryLog from './BreweryLog'
 import BreweryButtons from './BreweryButtons'
+import BreweryLogForm from './BreweryLogForm'
+import BreweryLogList from './BreweryLogList'
 import { fetchBrewery } from '../../../actions/breweries'
 
 function Brewery(props) {
@@ -26,7 +27,10 @@ function Brewery(props) {
                 {props.isSignedIn ? <BreweryButtons /> : null}
             </section>
             {props.isSignedIn ?
-                <BreweryLog /> :
+                <>
+                    <BreweryLogForm />
+                    <BreweryLogList />
+                </> :
                 <>
                 <Link to='/signup'>Sign up</Link> or <Link to='/login'>log in</Link> to save this brewery or log one of its beers!
                 </>
