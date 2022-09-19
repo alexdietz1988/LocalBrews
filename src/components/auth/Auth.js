@@ -7,7 +7,7 @@ import { login } from '../../actions/auth'
 function Auth(props) {
     const navigate = useNavigate()
     const [submitted, setSubmitted] = useState(false)
-    useEffect(() => {if (props.isSignedIn) navigate('/')}, [props.fetchCount])
+    useEffect(() => {if (props.isSignedIn) navigate('/')}, [props.isSignedIn])
     const title = props.page === 'login' ? 'Log In' : 'Sign Up'
 
     return(
@@ -28,7 +28,6 @@ function Auth(props) {
 
 function mapStateToProps(state) {
     return { 
-        fetchCount: state.auth.fetchCount,
         isSignedIn: state.auth.isSignedIn,
         errorMessage: state.auth.errorMessage
     }
