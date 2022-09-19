@@ -1,7 +1,7 @@
 import { backend } from '../apis'
-import { FETCH_BEERS, ADD_BEER, REMOVE_BEER } from './types'
+import { FETCH_BEERS, ADD_BEER, DELETE_BEER } from './types'
 
-export const fetchBeerLog = () => async (dispatch, getState) => {
+export const fetchBeers = () => async (dispatch, getState) => {
     const user = getState().auth.user
     const response = await backend.get(`beers/${user}/`)
     if (response.data.success) {
@@ -17,9 +17,9 @@ export const addBeer = formData => async (dispatch, getState) => {
     }
 }
 
-export const removeBeer = id => async dispatch => {
+export const deleteBeer = id => async dispatch => {
     const response = await backend.delete(`beer/${id}`)
     if (response.data.success) {
-        dispatch({ type: REMOVE_BEER })
+        dispatch({ type: DELETE_BEER })
     }
 }

@@ -9,19 +9,20 @@ const breweriesDefault = {
 }
 
 function breweriesReducer(breweries = breweriesDefault, action) {
+    let newFetchCount = breweries.fetchCount + 1
     switch (action.payload) {
         case SEARCH_BREWERIES:
-            return { ...breweries, searchResults: action.payload, fetchCount: fetchCount + 1 }
+            return { ...breweries, searchResults: action.payload, fetchCount: newFetchCount }
         case FETCH_BREWERY:
-            return { ...breweries, selectedBrewery: action.payload, fetchCount: fetchCount + 1 }
+            return { ...breweries, selectedBrewery: action.payload, fetchCount: newFetchCount }
         case ADD_BREWERY:
-            return { ...breweries, fetchCount: fetchCount + 1 }
+            return { ...breweries, fetchCount: newFetchCount }
         case REMOVE_BREWERY:
-            return { ...breweries, fetchCount: fetchCount + 1 }
+            return { ...breweries, fetchCount: newFetchCount }
         case FETCH_BREWERIES:
-            return { ...breweries, myList: action.payload, fetchCount: fetchCount + 1 }
+            return { ...breweries, myList: action.payload, fetchCount: newFetchCount }
         case FETCH_BREWERY_LOG:
-            return { ...breweries, breweryLog: action.payload, fetchCount: fetchCount + 1}
+            return { ...breweries, breweryLog: action.payload, fetchCount: newFetchCount}
     }
 }
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -10,6 +10,10 @@ import { fetchBrewery } from '../../../actions/breweries'
 function Brewery(props) {
     const id = useParams().id
     useEffect(() => {fetchBrewery(id)}, [])
+
+    if (props.brewery.brewery_id !== id) {
+        return <div>Loading...</div>
+    }
 
     return (
         <>
