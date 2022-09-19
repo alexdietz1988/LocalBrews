@@ -10,9 +10,9 @@ import { fetchBrewery } from '../../../actions/breweries'
 
 function Brewery(props) {
     const id = useParams().id
-    useEffect(() => {fetchBrewery(id)}, [])
+    useEffect(() => {props.fetchBrewery(id)}, [])
 
-    if (props.brewery.brewery_id !== id) {
+    if (props.brewery.id !== id) {
         return <div>Loading...</div>
     }
 
@@ -22,7 +22,7 @@ function Brewery(props) {
                 <h2 className='mb-4'>{props.brewery.name}</h2>
                 <section>
                     <p>{props.brewery.street}<br />{props.brewery.location}</p>
-                    <p><a href={props.brewery.url} target='_blank' rel='noreferrer'>Website</a></p>
+                    {props.brewery.website_url ? <p><a href={props.brewery.website_url} target='_blank' rel='noreferrer'>Website</a></p> : ''}
                 </section>
                 {props.isSignedIn ? <BreweryButtons /> : null}
             </section>
