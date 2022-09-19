@@ -1,5 +1,5 @@
 import { backend, openBrewery } from '../apis'
-import { FETCH_BREWERY, FETCH_BREWERY_LOG, FETCH_BREWERIES, SEARCH_BREWERIES, ADD_BREWERY, REMOVE_BREWERY } from './types'
+import { FETCH_BREWERY, FETCH_BREWERY_LOG, FETCH_BREWERIES, SEARCH_BREWERIES, ADD_BREWERY, DELETE_BREWERY } from './types'
 
 export const fetchBrewery = id => async dispatch => {
     const response = await openBrewery.get(id)
@@ -22,7 +22,7 @@ export const fetchBreweries = () => async (dispatch, getState) => {
     }
 }
 
-export const removeBrewery = id => async (dispatch, getState) => {
+export const deleteBrewery = id => async (dispatch, getState) => {
     const user = getState().auth.user
     const response = await backend.delete(`breweries/${user}/${id}`)
     if (response.data.success) {

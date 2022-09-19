@@ -1,4 +1,4 @@
-import { FETCH_BREWERY, FETCH_BREWERY_LOG, FETCH_BREWERIES, SEARCH_BREWERIES, ADD_BREWERY, REMOVE_BREWERY } from '../actions/types'
+import { FETCH_BREWERY, FETCH_BREWERY_LOG, FETCH_BREWERIES, SEARCH_BREWERIES, ADD_BREWERY, DELETE_BREWERY } from '../actions/types'
 
 const breweriesDefault = {
     myList: [],
@@ -17,7 +17,7 @@ function breweriesReducer(breweries = breweriesDefault, action) {
             return { ...breweries, selectedBrewery: action.payload, fetchCount: newFetchCount }
         case ADD_BREWERY:
             return { ...breweries, fetchCount: newFetchCount }
-        case REMOVE_BREWERY:
+        case DELETE_BREWERY:
             return { ...breweries, fetchCount: newFetchCount }
         case FETCH_BREWERIES:
             return { ...breweries, myList: action.payload, fetchCount: newFetchCount }
