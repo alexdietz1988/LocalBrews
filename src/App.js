@@ -10,7 +10,7 @@ import Home from './components/Home'
 import SearchBreweries from './components/breweries/searchBreweries/SearchBreweries'
 import Brewery from './components/breweries/Brewery'
 import Breweries from './components/breweries/Breweries'
-import Beers from './components/beers/Beers'
+import Beers from './components/Beers'
 import Auth from './components/auth/Auth'
 
 function App(props) {
