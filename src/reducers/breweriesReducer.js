@@ -1,6 +1,6 @@
 import { FETCH_BREWERY, FETCH_BREWERY_LOG, FETCH_BREWERIES, SEARCH_BREWERIES, ADD_BREWERY, DELETE_BREWERY } from '../actions/types'
 
-const breweriesDefault = {
+let breweriesDefault = {
     myList: [],
     searchResults: [],
     breweryLog: [],
@@ -10,7 +10,7 @@ const breweriesDefault = {
 
 function breweriesReducer(breweries = breweriesDefault, action) {
     let newFetchCount = breweries.fetchCount + 1
-    switch (action.payload) {
+    switch (action.type) {
         case SEARCH_BREWERIES:
             return { ...breweries, searchResults: action.payload, fetchCount: newFetchCount }
         case FETCH_BREWERY:
@@ -24,6 +24,7 @@ function breweriesReducer(breweries = breweriesDefault, action) {
         case FETCH_BREWERY_LOG:
             return { ...breweries, breweryLog: action.payload, fetchCount: newFetchCount}
     }
+    return breweries
 }
 
 export default breweriesReducer

@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import { backend, openBrewery } from '../apis'
 import { FETCH_BREWERY, FETCH_BREWERY_LOG, FETCH_BREWERIES, SEARCH_BREWERIES, ADD_BREWERY, DELETE_BREWERY } from './types'
 
@@ -39,12 +41,11 @@ export const fetchBreweryLog = id => async (dispatch, getState) => {
 }
 
 export const searchBreweries = location => async dispatch => {
-    const response = await openBrewery.get({
+    const response = await axios.get('https://api.openbrewerydb.org/breweries/', {
         params: {
             by_city: location.city,
             by_state: location.state,
             per_page: 50
-        }
-    })
+        }})
     dispatch({ type: SEARCH_BREWERIES, payload: response.data })
 }

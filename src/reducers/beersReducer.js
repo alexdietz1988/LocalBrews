@@ -11,6 +11,7 @@ function beersReducer(beers = {data: [], fetchCount: 0}, action) {
             return { data: action.payload.data, fetchCount: newFetchCount
             }
     }
+    return beers
 }
 
 export default beersReducer

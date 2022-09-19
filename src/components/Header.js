@@ -10,7 +10,7 @@ function Header(props) {
                 <Link to='/' className='nav-link'>Home</Link>
                 <Link to='/signup' className='nav-link'>Sign Up</Link>
                 <Link to='/login' className='nav-link'>Log In</Link>
-                <Link to='/search' className='nav-link'>Brewery Search</Link>
+                <Link to='/breweries/search' className='nav-link'>Brewery Search</Link>
             </div>
         )        
     }
@@ -20,8 +20,8 @@ function Header(props) {
             <>
             <div className='navbar-nav'>
                 <Link to='/' className='nav-link'>Home</Link>
-                <Link to='/search' className='nav-link'>Brewery Search</Link>
-                <Link to='/mylist' className='nav-link'>My List</Link>
+                <Link to='/breweries/search' className='nav-link'>Brewery Search</Link>
+                <Link to='/breweries' className='nav-link'>My List</Link>
                 <Link to='/beers' className='nav-link'>Beer Log</Link>
                 <Link to='/' className='nav-link' onClick={() => props.logout()}>Logout</Link>
             </div>

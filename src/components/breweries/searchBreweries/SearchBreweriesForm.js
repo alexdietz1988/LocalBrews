@@ -14,15 +14,15 @@ function renderStates() {
     ]
     return states.map((state) => {
         return (
-            <option value={state.toLowerCase()}>{state}</option>
+            <option value={state.toLowerCase()} key={state.toLowerCase()}>{state}</option>
         )
     })
 }
 
 function SearchBreweriesForm(props) {
     return(
-        <Form 
-            onChange={props.onChange}
+        <Form
+            onSubmit={props.onSubmit}
             render={({ handleSubmit }) => (
                 <form className='mb-4 row g-1' onSubmit={handleSubmit}>
                 <div className='mb-2 col-sm'>
