@@ -8,9 +8,19 @@ export const fetchBrewery = id => async dispatch => {
     dispatch({ type: FETCH_BREWERY, payload: response.data })
 }
 
-export const addBrewery = thisBrewery => async (dispatch, getState) => {
+export const addBrewery = brewery => async (dispatch, getState) => {
     const user = getState().auth.user
-    const response = await backend.post('breweries/', { user, ...thisBrewery })
+    console.log(getState())
+    let newBrewery = {
+        user,
+        brewery_id: brewery.id,
+        name: brewery.name,
+        location: `${brewery.city}, ${brewery.state}`,
+        street: brewery.street,
+        url: brewery.website_url
+    }
+    console.log(newBrewery)
+    const response = await backend.post('breweries/', brewery)
     if (response.data.success) {
         dispatch({ type: ADD_BREWERY })
     }

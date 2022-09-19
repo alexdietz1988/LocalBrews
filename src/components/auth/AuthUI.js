@@ -14,7 +14,7 @@ function AuthUI(props) {
             onSubmit={props.onSubmit}
             render={({ handleSubmit }) => (
                 <form className='mb-4 row g-1' onSubmit={handleSubmit}>
-                    <Field placeholder='Username' name='username' type="text" render={renderInput} />
+                    <Field placeholder='Username' name='user' type="text" render={renderInput} />
                     <Field placeholder='Password' name='password' type='password' render={renderInput} />
                     <div className='mb-2 col-sm'>
                         <button type='submit' className='btn btn-primary'>Submit</button>

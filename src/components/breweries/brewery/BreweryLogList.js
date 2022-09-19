@@ -4,7 +4,7 @@ import { deleteBeer } from '../../../actions/beers'
 import { fetchBreweryLog } from '../../../actions/breweries'
 
 function BreweryLogList(props) {
-    useEffect(() => props.fetchBreweryLog(), [props.fetchCount])
+    useEffect(() => {props.fetchBreweryLog()}, [props.fetchCount])
 
     const renderBreweryLog = props.breweryLog.map((beer, idx) => (
         <div key={idx} className='mb-3'>

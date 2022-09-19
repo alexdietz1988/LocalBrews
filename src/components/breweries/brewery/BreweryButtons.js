@@ -5,17 +5,17 @@ import { fetchBreweries, addBrewery, deleteBrewery } from '../../../actions/brew
 function BreweryButtons(props) {
     const [inMyList, setInMyList] = useState(false)
 
-    useEffect(() => props.fetchBreweries(), [])
+    useEffect(() => {props.fetchBreweries()}, [])
     useEffect(() => {
-        setInMyList(props.myList.some(element => element.brewery_id === props.brewery.brewery_id))
+        setInMyList(props.myList.some(element => element.brewery_id === props.brewery.id))
         }, [props.fetchCount])
 
     function clickHandler() {
-        if (inMyList) {
+        if (!inMyList) {
             props.addBrewery(props.brewery)
             props.fetchBreweries()
 
-        } else if (!inMyList) {
+        } else if (inMyList) {
             props.deleteBrewery(props.brewery.brewery_id)
             props.fetchBreweries()
         }

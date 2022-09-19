@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchBreweries, deleteBrewery } from '../../actions/breweries'
 
 function Breweries(props) {
-    useEffect(() => props.fetchBreweries(), [props.fetchCount])
+    useEffect(() => {props.fetchBreweries()}, [props.fetchCount])
 
     function loaded() {
         return(
@@ -24,7 +24,7 @@ function Breweries(props) {
     return(
         <>
         <h2 className='mb-4'>My List</h2>
-        {props.myList.length > 0 ? loaded() : <h4><Link to='/search'>Search for some breweries</Link> to add to your list!</h4>}
+        {props.myList.length > 0 ? loaded() : <h4><Link to='/breweries/search'>Search for some breweries</Link> to add to your list!</h4>}
         </>
     )
 
