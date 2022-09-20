@@ -14,7 +14,7 @@ export const addBrewery = brewery => async (dispatch, getState) => {
     const user = getState().auth.user
     let newBrewery = {
         user,
-        brewery_id: brewery.id,
+        breweryId: brewery.id,
         name: brewery.name,
         location: `${brewery.city}, ${brewery.state}`,
         street: brewery.street,
@@ -65,7 +65,7 @@ export const checkMyList = id => async (dispatch, getState) => {
     const user = getState().auth.user
     let myList = await backend.get(`breweries/${user}`)
     myList = myList.data.data
-    const inMyList = myList.some(element => element.brewery_id === id)
+    const inMyList = myList.some(element => element.breweryId === id)
     dispatch({type: CHECK_MY_LIST, payload: inMyList})
 }
 

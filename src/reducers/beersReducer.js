@@ -10,7 +10,7 @@ function beersReducer(beers = {data: [], fetchCount: 0}, action) {
             }
         case DELETE_BEER:
             return { 
-                data: beers.data.filter(beer => !(beer.name === action.payload.name && beer.brewery_id === action.payload.brewery_id)),
+                data: beers.data.filter(beer => !(beer.name === action.payload.name && beer.breweryId === action.payload.breweryId)),
                 fetchCount: beers.fetchCount + 1
             }
         case FETCH_BEERS:

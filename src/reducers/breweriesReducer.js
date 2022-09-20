@@ -56,7 +56,7 @@ function breweriesReducer(breweries = breweriesDefault, action) {
                 breweryLog: breweries.breweryLog.filter(beer => {
                     !(
                         beer.name === action.payload.name &&
-                        beer.brewery_id === action.payload.brewery_id
+                        beer.breweryId === action.payload.breweryId
                     )
                 })
             }
