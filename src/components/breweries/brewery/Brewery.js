@@ -28,7 +28,7 @@ function Brewery(props) {
             {props.isSignedIn ?
                 <>
                     <BreweryLogForm />
-                    <BreweryLogList />
+                    <BreweryLogList id={id} />
                 </> :
                 <>
                 <Link to='/signup'>Sign up</Link> or <Link to='/login'>log in</Link> to save this brewery or log one of its beers!

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 import { backend, openBrewery } from '../apis'
-import { FETCH_BREWERY, FETCH_BREWERY_LOG, FETCH_BREWERIES,
+import { FETCH_BREWERY, FETCH_BREWERIES,
     SEARCH_BREWERIES, ADD_BREWERY, DELETE_BREWERY,
     CHECK_MY_LIST, TOGGLE_IN_MY_LIST } from './types'
 
@@ -40,14 +40,6 @@ export const deleteBrewery = () => async (dispatch, getState) => {
     const response = await backend.delete(`breweries/${user}/${id}`)
     if (response.data.success) {
         dispatch({ type: DELETE_BREWERY })
-    }
-}
-
-export const fetchBreweryLog = id => async (dispatch, getState) => {
-    const user = getState().auth.user
-    const response = await backend.get(`breweries/${user}/${id}`)
-    if (response.data.success) {
-        dispatch({ type: FETCH_BREWERY_LOG, payload: response.data.data })
     }
 }
 

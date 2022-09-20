@@ -1,14 +1,11 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { deleteBeer } from '../../../actions/beers'
-import { fetchBreweryLog } from '../../../actions/breweries'
+import { fetchBeers, deleteBeer } from '../../../actions/beers'
 
 function BreweryLogList(props) {
-    const id = useParams().id
-    useEffect(() => {props.fetchBreweryLog(id)}, [])
+    useEffect(() => {props.fetchBeers()}, [])
 
-    const renderBreweryLog = props.breweryLog.map((beer, idx) => (
+    const renderBeers = props.beers.map((beer, idx) => (
         <div key={idx} className='mb-3'>
             <p>
                 <b>{beer.name}</b><br />
@@ -24,16 +21,16 @@ function BreweryLogList(props) {
     return(
         <>
         <h4>Beers Logged</h4>
-        {props.breweryLog.length > 0 ? <>{renderBreweryLog}</> : `You haven't logged any beers from this brewery yet!`}
+        {props.beers.length > 0 ? <>{renderBeers}</> : `You haven't logged any beers from this brewery yet!`}
         </>
     )
 }
 
-function mapStateToProps(state) {
-    return {
-        breweryLog: state.breweries.breweryLog,
-        fetchCount: state.beers.fetchCount
-    }
+function mapStateToProps(state, ownProps) {
+    const { id } = ownProps
+    let beers = state.beers.data
+    beers = beers.filter((beer) => beer.breweryId === id)
+    return { beers }
 }
 
-export default connect(mapStateToProps, { deleteBeer, fetchBreweryLog })(BreweryLogList)
+export default connect(mapStateToProps, { deleteBeer, fetchBeers })(BreweryLogList)
