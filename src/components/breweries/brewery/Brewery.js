@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -42,7 +42,7 @@ function Brewery(props) {
 function mapStateToProps(state) {
     return {
         isSignedIn: state.auth.isSignedIn,
-        brewery: state.breweries.selectedBrewery
+        brewery: state.breweries.selectedBrewery.data
     }
 }
 
