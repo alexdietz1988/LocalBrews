@@ -1,5 +1,5 @@
 import { FETCH_BREWERY, FETCH_BREWERY_LOG, FETCH_BREWERIES, SEARCH_BREWERIES,
-    ADD_BREWERY, DELETE_BREWERY, CHECK_MY_LIST, TOGGLE_IN_MY_LIST } from '../actions/types'
+    ADD_BREWERY, DELETE_BREWERY, CHECK_MY_LIST, TOGGLE_IN_MY_LIST, ADD_BEER } from '../actions/types'
 
 let breweriesDefault = {
     myList: [],
@@ -43,6 +43,12 @@ function breweriesReducer(breweries = breweriesDefault, action) {
                     ...breweries.selectedBrewery,
                     inMyList: !breweries.selectedBrewery.inMyList
                 }
+            }
+        case ADD_BEER:
+            let newBreweryLog = [...breweries.breweryLog, action.payload]
+            return {
+                ...breweries,
+                breweryLog: newBreweryLog
             }
     }
     return breweries

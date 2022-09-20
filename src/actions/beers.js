@@ -11,9 +11,18 @@ export const fetchBeers = () => async (dispatch, getState) => {
 
 export const addBeer = formData => async (dispatch, getState) => {
     const user = getState().auth.user
-    const response = await backend.post('beers/', { user, formData })
+    let brewery = getState().breweries.selectedBrewery
+    brewery = brewery.data
+    const newBeer = { 
+        user,
+        brewery_id: brewery.id,
+        brewery_name: brewery.name,
+        brewery_location: `${brewery.city}, ${brewery.state}`,
+        ...formData,
+     }
+    const response = await backend.post('beers/', newBeer)
     if (response.data.success) {
-        dispatch({ type: ADD_BEER })
+        dispatch({ type: ADD_BEER, payload: newBeer })
     }
 }
 

@@ -2,12 +2,12 @@ import { Form, Field } from 'react-final-form'
 import { connect } from 'react-redux'
 import { addBeer } from '../../../actions/beers'
 
-function BreweryLogForm() {
+function BreweryLogForm(props) {
     return(
         <section className='mb-5'>
             <h4 className='mb-4'>Log a Beer from This Brewery</h4>
             <Form
-                onSubmit={(formData => addBeer(formData))}
+                onSubmit={(formData => props.addBeer(formData))}
                 render={({ handleSubmit }) => (
                     <form className='mb-4 row g-1' onSubmit={handleSubmit}>
                         <div className='mb-2 col-sm'>

@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import BreweryButtons from './BreweryButtons'
