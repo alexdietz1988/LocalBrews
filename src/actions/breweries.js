@@ -1,7 +1,9 @@
 import axios from 'axios'
 
 import { backend, openBrewery } from '../apis'
-import { FETCH_BREWERY, FETCH_BREWERY_LOG, FETCH_BREWERIES, SEARCH_BREWERIES, ADD_BREWERY, DELETE_BREWERY } from './types'
+import { FETCH_BREWERY, FETCH_BREWERY_LOG, FETCH_BREWERIES,
+    SEARCH_BREWERIES, ADD_BREWERY, DELETE_BREWERY,
+    CHECK_MY_LIST, TOGGLE_IN_MY_LIST } from './types'
 
 export const fetchBrewery = id => async dispatch => {
     const response = await openBrewery.get(id)
@@ -56,4 +58,15 @@ export const searchBreweries = location => async dispatch => {
             per_page: 50
         }})
     dispatch({ type: SEARCH_BREWERIES, payload: response.data })
+}
+
+export const checkMyList = id => async (dispatch, getState) => {
+    const user = getState().auth.user
+    const myList = await backend.get(`breweries/${user}`)
+    const inMyList = myList.some(element => element.brewery_id === id)
+    dispatch({type: CHECK_MY_LIST, payload: inMyList})
+}
+
+export const toggleInMyList = () => {
+    return { type: TOGGLE_IN_MY_LIST }
 }
