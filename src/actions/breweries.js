@@ -34,8 +34,9 @@ export const fetchBreweries = () => async (dispatch, getState) => {
     }
 }
 
-export const deleteBrewery = id => async (dispatch, getState) => {
+export const deleteBrewery = () => async (dispatch, getState) => {
     const user = getState().auth.user
+    const id = getState().breweries.selectedBrewery.data.id
     const response = await backend.delete(`breweries/${user}/${id}`)
     if (response.data.success) {
         dispatch({ type: DELETE_BREWERY })

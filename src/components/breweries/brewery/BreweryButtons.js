@@ -8,10 +8,10 @@ function BreweryButtons(props) {
 
     function clickHandler() {
         if (!inMyList) {
-            props.addBrewery(props.brewery)
+            props.addBrewery(props.brewery.data)
             props.toggleInMyList()
         } else {
-            props.deleteBrewery(props.brewery.brewery_id)
+            props.deleteBrewery()
             props.toggleInMyList()
         }
     }
