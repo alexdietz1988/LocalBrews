@@ -6,9 +6,13 @@ function BreweryButtons(props) {
     const [inMyList, setInMyList] = useState(false)
 
     useEffect(() => {props.fetchBreweries()}, [])
+    
     useEffect(() => {
+    if (props.isSignedIn) {
+        console.log('settingInMyList')
         setInMyList(props.myList.some(element => element.brewery_id === props.brewery.id))
-        }, [props.fetchCount])
+    }
+    }, [])
 
     function clickHandler() {
         if (!inMyList) {
@@ -32,7 +36,8 @@ function mapStateToProps(state) {
     return {
         myList: state.breweries.myList,
         brewery: state.breweries.selectedBrewery,
-        fetchCount: state.breweries.fetchCount
+        fetchCount: state.breweries.fetchCount,
+        isSignedIn: state.auth.isSignedIn
     }
 }
 

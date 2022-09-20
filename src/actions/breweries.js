@@ -10,7 +10,6 @@ export const fetchBrewery = id => async dispatch => {
 
 export const addBrewery = brewery => async (dispatch, getState) => {
     const user = getState().auth.user
-    console.log(getState())
     let newBrewery = {
         user,
         brewery_id: brewery.id,
@@ -19,8 +18,7 @@ export const addBrewery = brewery => async (dispatch, getState) => {
         street: brewery.street,
         url: brewery.website_url
     }
-    console.log(newBrewery)
-    const response = await backend.post('breweries/', brewery)
+    const response = await backend.post('breweries/', newBrewery)
     if (response.data.success) {
         dispatch({ type: ADD_BREWERY })
     }
