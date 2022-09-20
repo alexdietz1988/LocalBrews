@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import BreweryButtons from './BreweryButtons'
 import BreweryLogForm from './BreweryLogForm'
 import BreweryLogList from './BreweryLogList'
-import { fetchBrewery, fetchBreweries } from '../../../actions/breweries'
+import { fetchBrewery } from '../../../actions/breweries'
 
 function Brewery(props) {
     const id = useParams().id
@@ -41,7 +41,7 @@ function Brewery(props) {
 function mapStateToProps(state) {
     return {
         isSignedIn: state.auth.isSignedIn,
-        brewery: state.breweries.selectedBrewery.data
+        brewery: state.breweries.selectedBrewery
     }
 }
 

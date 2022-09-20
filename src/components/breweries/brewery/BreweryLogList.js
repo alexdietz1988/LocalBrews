@@ -28,7 +28,7 @@ function BreweryLogList(props) {
 
 function mapStateToProps(state, ownProps) {
     const { id } = ownProps
-    let beers = state.beers.data
+    let beers = state.beers
     beers = beers.filter((beer) => beer.breweryId === id)
     return { beers }
 }

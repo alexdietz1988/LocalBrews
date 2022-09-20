@@ -1,18 +1,18 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { addBrewery, deleteBrewery, checkMyList, toggleInMyList } from '../../../actions/breweries'
+import { addBrewery, deleteBrewery, fetchBreweries } from '../../../actions/breweries'
 
 function BreweryButtons(props) {
-    let inMyList = props.brewery.inMyList
-    useEffect(() => {props.checkMyList()}, [])
+    useEffect(() => {props.fetchBreweries()}, [])
+    const [inMyList, setInMyList] = useState(props.inMyList)
 
     function clickHandler() {
         if (!inMyList) {
-            props.addBrewery(props.brewery.data)
-            props.toggleInMyList()
+            props.addBrewery()
+            setInMyList(!inMyList)
         } else {
             props.deleteBrewery()
-            props.toggleInMyList()
+            setInMyList(!inMyList)
         }
     }
 
@@ -24,9 +24,13 @@ function BreweryButtons(props) {
 }
 
 function mapStateToProps(state) {
+    let inMyList = (state.breweries.myList.some(brewery => {
+        return brewery.breweryId === state.breweries.selectedBrewery.id
+    }))
     return {
-        brewery: state.breweries.selectedBrewery
+        brewery: state.breweries.selectedBrewery,
+        inMyList
     }
 }
 
-export default connect(mapStateToProps, { checkMyList, addBrewery, deleteBrewery, toggleInMyList })(BreweryButtons)
+export default connect(mapStateToProps, { fetchBreweries, addBrewery, deleteBrewery })(BreweryButtons)
