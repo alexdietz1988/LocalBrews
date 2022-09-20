@@ -14,7 +14,7 @@ function beersReducer(beers = {data: [], fetchCount: 0}, action) {
                 fetchCount: beers.fetchCount + 1
             }
         case FETCH_BEERS:
-            return { data: action.payload.data, fetchCount: newFetchCount
+            return { data: action.payload, fetchCount: newFetchCount
             }
     }
     return beers

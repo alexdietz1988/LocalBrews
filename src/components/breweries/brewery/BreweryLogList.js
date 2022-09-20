@@ -12,7 +12,7 @@ function BreweryLogList(props) {
                 <i>Style:</i> {beer.style}<br />
                 <i>Your Rating:</i> {beer.rating}
             </p>
-            <button className="btn btn-warning" onClick={() => props.deleteBeer(beer.name)}>
+            <button className="btn btn-warning" onClick={() => props.deleteBeer(beer)}>
                 Remove Beer
             </button>
         </div>

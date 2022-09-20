@@ -4,14 +4,14 @@ import { connect } from 'react-redux'
 import { fetchBreweries, deleteBrewery } from '../../actions/breweries'
 
 function Breweries(props) {
-    useEffect(() => {props.fetchBreweries()})
+    useEffect(() => {props.fetchBreweries()}, [])
 
     function loaded() {
         return(
             <section>
                 {props.myList.map(brewery => (
                     <div key={brewery._id} className='mb-2'>
-                    <Link to={`/breweries/${brewery.brewery_id}`}>
+                    <Link to={`/breweries/${brewery.breweryId}`}>
                         <p>{brewery.name}, {brewery.location}</p>
                     </Link>
                     <button className='btn btn-warning' onClick={() => props.deleteBrewery(brewery._id)}>Remove Brewery</button>
