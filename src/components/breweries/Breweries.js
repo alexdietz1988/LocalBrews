@@ -11,7 +11,7 @@ function Breweries(props) {
             <section>
                 {props.myList.map(brewery => (
                     <div key={brewery._id} className='mb-2'>
-                    <Link to={`/brewery/${brewery.brewery_id}`}>
+                    <Link to={`/breweries/${brewery.brewery_id}`}>
                         <p>{brewery.name}, {brewery.location}</p>
                     </Link>
                     <button className='btn btn-warning' onClick={() => props.deleteBrewery(brewery._id)}>Remove Brewery</button>

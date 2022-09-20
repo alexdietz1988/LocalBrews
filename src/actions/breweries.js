@@ -62,7 +62,8 @@ export const searchBreweries = location => async dispatch => {
 
 export const checkMyList = id => async (dispatch, getState) => {
     const user = getState().auth.user
-    const myList = await backend.get(`breweries/${user}`)
+    let myList = await backend.get(`breweries/${user}`)
+    myList = myList.data.data
     const inMyList = myList.some(element => element.brewery_id === id)
     dispatch({type: CHECK_MY_LIST, payload: inMyList})
 }

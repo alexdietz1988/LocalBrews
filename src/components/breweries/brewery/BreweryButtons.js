@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { addBrewery, deleteBrewery, checkMyList } from '../../../actions/breweries'
+import { addBrewery, deleteBrewery, checkMyList, toggleInMyList } from '../../../actions/breweries'
 
 function BreweryButtons(props) {
     let inMyList = props.brewery.inMyList
@@ -9,10 +9,10 @@ function BreweryButtons(props) {
     function clickHandler() {
         if (!inMyList) {
             props.addBrewery(props.brewery)
-            props.fetchBreweries()
+            props.toggleInMyList()
         } else {
             props.deleteBrewery(props.brewery.brewery_id)
-            props.fetchBreweries()
+            props.toggleInMyList()
         }
     }
 
@@ -29,4 +29,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { checkMyList, addBrewery, deleteBrewery })(BreweryButtons)
+export default connect(mapStateToProps, { checkMyList, addBrewery, deleteBrewery, toggleInMyList })(BreweryButtons)
