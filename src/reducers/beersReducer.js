@@ -1,21 +1,13 @@
 import { ADD_BEER, FETCH_BEERS, DELETE_BEER } from '../actions/types'
 
-function beersReducer(beers = {data: [], fetchCount: 0}, action) {
-    let newFetchCount = beers.fetchCount + 1
+function beersReducer(beers = [], action) {
     switch (action.type) {
         case ADD_BEER:
-            return { 
-                data: [...beers.data, action.payload],
-                fetchCount: newFetchCount
-            }
+            return [...beers, action.payload]
         case DELETE_BEER:
-            return { 
-                data: beers.data.filter(beer => !(beer.name === action.payload.name && beer.breweryId === action.payload.breweryId)),
-                fetchCount: beers.fetchCount + 1
-            }
+            return beers.filter(beer => !(beer.name === action.payload.name && beer.breweryId === action.payload.breweryId))
         case FETCH_BEERS:
-            return { data: action.payload, fetchCount: newFetchCount
-            }
+            return action.payload
     }
     return beers
 }

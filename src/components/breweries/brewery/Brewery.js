@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import BreweryButtons from './BreweryButtons'
 import BreweryLogForm from './BreweryLogForm'
 import BreweryLogList from './BreweryLogList'
-import { fetchBrewery } from '../../../actions/breweries'
+import { fetchBrewery, fetchBreweries } from '../../../actions/breweries'
 
 function Brewery(props) {
     const id = useParams().id
