@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fetchBreweries, deleteBrewery } from '../../actions/breweries'
 
 function Breweries(props) {
-    useEffect(() => {props.fetchBreweries()}, [props.fetchCount])
+    useEffect(() => {props.fetchBreweries()})
 
     function loaded() {
         return(

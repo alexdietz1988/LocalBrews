@@ -4,9 +4,15 @@ function beersReducer(beers = {data: [], fetchCount: 0}, action) {
     let newFetchCount = beers.fetchCount + 1
     switch (action.type) {
         case ADD_BEER:
-            return { ...beers, fetchCount: newFetchCount }
+            return { 
+                data: [...beers.data, action.payload],
+                fetchCount: newFetchCount
+            }
         case DELETE_BEER:
-            return { ...beers, fetchCount: newFetchCount }
+            return { 
+                data: beers.data.filter(beer => !(beer.name === action.payload.name && beer.brewery_id === action.payload.brewery_id)),
+                fetchCount: beers.fetchCount + 1
+            }
         case FETCH_BEERS:
             return { data: action.payload.data, fetchCount: newFetchCount
             }

@@ -26,9 +26,11 @@ export const addBeer = formData => async (dispatch, getState) => {
     }
 }
 
-export const deleteBeer = id => async dispatch => {
-    const response = await backend.delete(`beer/${id}`)
+export const deleteBeer = beerName => async (dispatch, getState) => {
+    const user = getState().auth.user
+    const brewery_id = getState().breweries.selectedBrewery.data.brewery_id
+    const response = await backend.delete('beers/', {beerName, user, brewery_id})
     if (response.data.success) {
-        dispatch({ type: DELETE_BEER })
+        dispatch({ type: DELETE_BEER, payload: { name: beerName, brewery_id }})
     }
 }
