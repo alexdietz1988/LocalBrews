@@ -7,7 +7,6 @@ function Breweries(props) {
     useEffect(() => {props.fetchBreweries()}, [])
 
     function loaded() {
-        console.log(props.myList)
         return(
             <section>
                 {props.myList.map(brewery => (

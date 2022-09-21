@@ -48,5 +48,11 @@ export const searchBreweries = location => async dispatch => {
             by_state: location.state,
             per_page: 50
         }})
-    dispatch({ type: SEARCH_BREWERIES, payload: response.data })
+    dispatch({
+        type: SEARCH_BREWERIES,
+        payload: {
+            data: response.data, 
+            location: location.city
+        }
+    })
 }

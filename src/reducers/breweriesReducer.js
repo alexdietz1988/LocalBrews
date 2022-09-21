@@ -3,14 +3,20 @@ import { FETCH_BREWERY, FETCH_BREWERIES, SEARCH_BREWERIES,
 
 let breweriesDefault = {
     myList: [],
-    searchResults: [],
+    searchResults: {data: [], location: ''},
     selectedBrewery: {}
 }
 
 function breweriesReducer(breweries = breweriesDefault, action) {
     switch (action.type) {
         case SEARCH_BREWERIES:
-            return { ...breweries, searchResults: action.payload }
+            return {
+                ...breweries,
+                searchResults: {
+                    data: action.payload.data,
+                    location: action.payload.location
+                }
+            }
         case FETCH_BREWERY:
             return { ...breweries, selectedBrewery: action.payload }
         case ADD_BREWERY:

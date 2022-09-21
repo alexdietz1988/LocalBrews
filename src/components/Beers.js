@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { deleteBeer, fetchBeers } from '../actions/beers'
 
 function Beers(props) {
-    useEffect(() => props.fetchBeers(),[])
+    useEffect(() => {props.fetchBeers()},[])
 
     const renderBeers = props.beers.map(beer => (
         <div key={beer._id} className='mb-4'>
@@ -15,7 +15,7 @@ function Beers(props) {
                 <i>Style:</i> {beer.style}<br />
                 <i>Your Rating:</i> {beer.rating}
             </p>
-            <button className='btn btn-warning' onClick={() => props.deleteBeer(beer._id)}>Remove Beer</button>
+            <button className='btn btn-warning' onClick={() => props.deleteBeer(beer)}>Remove Beer</button>
         </div>
     ))
 

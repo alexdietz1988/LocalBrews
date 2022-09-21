@@ -12,7 +12,6 @@ export const fetchBeers = () => async (dispatch, getState) => {
 export const addBeer = formData => async (dispatch, getState) => {
     const user = getState().auth.user
     let brewery = getState().breweries.selectedBrewery
-    brewery = brewery.data
     const newBeer = { 
         user,
         breweryId: brewery.id,

@@ -7,7 +7,7 @@ function SearchBreweries(props) {
     function renderSearchResults() {
         return(
             <section>
-                <h3 className='mb-3'>Results</h3>
+                <h3 className='mb-3'>Breweries in {props.location}</h3>
                 {props.breweries.map(brewery => (
                     <Link to={`/breweries/${brewery.id}`} key={brewery.id}>
                         <p>{brewery.name}</p>
@@ -27,7 +27,10 @@ function SearchBreweries(props) {
 }
 
 function mapStateToProps(state) {
-    return { breweries: state.breweries.searchResults }
+    return {
+        breweries: state.breweries.searchResults.data,
+        location: state.breweries.searchResults.location
+    }
 }
 
 export default connect(mapStateToProps, { searchBreweries })(SearchBreweries)
