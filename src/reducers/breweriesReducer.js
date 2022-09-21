@@ -14,9 +14,17 @@ function breweriesReducer(breweries = breweriesDefault, action) {
         case FETCH_BREWERY:
             return { ...breweries, selectedBrewery: action.payload }
         case ADD_BREWERY:
-            return breweries
+            return {
+                ...breweries,
+                myList: [...breweries.myList, action.payload]
+            }
         case DELETE_BREWERY:
-            return breweries
+            return {
+                ...breweries,
+                myList: breweries.myList.filter(brewery => 
+                    brewery.breweryId !== action.payload
+                    )
+            }
         case FETCH_BREWERIES:
             return { ...breweries, myList: action.payload }
     }

@@ -11,7 +11,7 @@ function BreweryButtons(props) {
             props.addBrewery()
             setInMyList(!inMyList)
         } else {
-            props.deleteBrewery()
+            props.deleteBrewery(props.brewery)
             setInMyList(!inMyList)
         }
     }

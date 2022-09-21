@@ -7,14 +7,15 @@ function Breweries(props) {
     useEffect(() => {props.fetchBreweries()}, [])
 
     function loaded() {
+        console.log(props.myList)
         return(
             <section>
                 {props.myList.map(brewery => (
-                    <div key={brewery._id} className='mb-2'>
+                    <div key={brewery.breweryId} className='mb-2'>
                     <Link to={`/breweries/${brewery.breweryId}`}>
                         <p>{brewery.name}, {brewery.location}</p>
                     </Link>
-                    <button className='btn btn-warning' onClick={() => props.deleteBrewery(brewery._id)}>Remove Brewery</button>
+                    <button className='btn btn-warning' onClick={() => props.deleteBrewery(brewery)}>Remove Brewery</button>
                     </div>
                 ))}
             </section>
@@ -31,10 +32,7 @@ function Breweries(props) {
 }
 
 function mapStateToProps(state) {
-    return {
-        myList: state.breweries.myList,
-        fetchCount: state.breweries.fetchCount
-    }
+    return { myList: state.breweries.myList }
 }
 
 export default connect(mapStateToProps, { fetchBreweries, deleteBrewery })(Breweries)

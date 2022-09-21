@@ -1,5 +1,4 @@
 import axios from 'axios'
-
 import { backend, openBrewery } from '../apis'
 import { FETCH_BREWERY, FETCH_BREWERIES, SEARCH_BREWERIES, ADD_BREWERY, DELETE_BREWERY} from './types'
 
@@ -13,7 +12,7 @@ export const addBrewery = () => async (dispatch, getState) => {
     const brewery = getState().breweries.selectedBrewery
     let newBrewery = {
         user,
-        breweryId: brewery.breweryId,
+        breweryId: brewery.id,
         name: brewery.name,
         location: `${brewery.city}, ${brewery.state}`,
         street: brewery.street,
@@ -21,7 +20,7 @@ export const addBrewery = () => async (dispatch, getState) => {
     }
     const response = await backend.post('breweries/', newBrewery)
     if (response.data.success) {
-        dispatch({ type: ADD_BREWERY })
+        dispatch({ type: ADD_BREWERY, payload: newBrewery })
     }
 }
 
@@ -33,12 +32,12 @@ export const fetchBreweries = () => async (dispatch, getState) => {
     }
 }
 
-export const deleteBrewery = () => async (dispatch, getState) => {
+export const deleteBrewery = brewery => async (dispatch, getState) => {
     const user = getState().auth.user
-    const id = getState().breweries.selectedBrewery.breweryId
+    const id = brewery.breweryId
     const response = await backend.delete(`breweries/${user}/${id}`)
     if (response.data.success) {
-        dispatch({ type: DELETE_BREWERY })
+        dispatch({ type: DELETE_BREWERY, payload: id })
     }
 }
 
