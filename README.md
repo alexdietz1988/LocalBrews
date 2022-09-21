@@ -6,6 +6,8 @@ A React/Redux app that helps users find breweries in their area and keep track o
 You can visit the deployed app [here](https://localbrews.netlify.app/). You can find the backend repo [here](https://github.com/alexdietz1988/local-brews-backend).
 
 ## Screenshots
+<img width=600 alt="screenshot1" src="https://raw.githubusercontent.com/alexdietz1988/LocalBrews/main/screenshots/screenshot1.png">
+<img width=600 alt="screenshot2" src="https://raw.githubusercontent.com/alexdietz1988/LocalBrews/main/screenshots/screenshot2.png">
 
 ## Technologies Used
 MongoDB, Express, React, Redux, Node.js, Bootstrap, Heroku, Netlify
