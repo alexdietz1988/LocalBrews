@@ -1,8 +1,11 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deleteBeer } from '../actions/beers'
+import { deleteBeer, fetchBeers } from '../actions/beers'
 
 function Beers(props) {
+    useEffect(() => props.fetchBeers(),[])
+
     const renderBeers = props.beers.map(beer => (
         <div key={beer._id} className='mb-4'>
             <p>
@@ -28,7 +31,7 @@ function Beers(props) {
 }
 
 function mapStateToProps(state) {
-    return { beers: state.beers.data }
+    return { beers: state.beers }
 }
 
-export default connect(mapStateToProps, { deleteBeer })(Beers)
+export default connect(mapStateToProps, { deleteBeer, fetchBeers })(Beers)
