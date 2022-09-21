@@ -21,7 +21,7 @@ function Beers(props) {
 
     return(
         <section>
-            <h2 className='mb-4'>Beer Log</h2>
+            <h2 className='mb-4'>My Beers</h2>
             {renderBeers.length > 0 ?
                 renderBeers :
                 <h4><Link to='/search'>Find a brewery</Link> to log beers you've tried!</h4>
