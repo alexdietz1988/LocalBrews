@@ -1,50 +1,64 @@
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { logout } from '../actions/auth'
 
-function Header({ user }) {
+function Header(props) {
 
-    function userNotLoggedIn() {
+    function notSignedIn() {
         return(
-            <div className='navbar-nav'>
-                <Link to='/' className='nav-link'>Home</Link>
-                <Link to='/signup' className='nav-link'>Sign Up</Link>
-                <Link to='/login' className='nav-link'>Log In</Link>
-                <Link to='/search' className='nav-link'>Brewery Search</Link>
+            <nav className='navbar navbar-expand-sm navbar-dark bg-dark mb-5'>
+            <div className='container-fluid'>
+                <Link to='/' className='navbar-brand'>Local Brews</Link>
+                <div className='collapse navbar-collapse' id='navbarNavDropdown'>
+                    <ul class='navbar-nav'>
+                        <li className='nav-item'>
+                            <Link to='/' className='nav-link'>Home</Link>
+                        </li>
+                        <li className='nav-item'>
+                            <Link to='/breweries/search' className='nav-link'>Brewery Search</Link>
+                        </li>
+                    </ul>
+                </div>
             </div>
+            <div className='d-flex btn-group'>
+                <Link to='/signup' className='btn btn-primary'>Signup</Link>
+                <Link to='/login' className='btn btn-success'>Login</Link>
+            </div>
+            </nav>
         )        
     }
 
-    function userLoggedIn() {
+    function signedIn() {
         return(
-            <>
+            <nav className='navbar navbar-expand-sm navbar-dark bg-dark mb-5'>
+            <Link to='/' className='nav-link navbar-brand'>Local Brews</Link>
+            <div className='container-fluid'>
             <div className='navbar-nav'>
                 <Link to='/' className='nav-link'>Home</Link>
-                <Link to='/search' className='nav-link'>Brewery Search</Link>
-                <Link to='/mylist' className='nav-link'>My List</Link>
-                <Link to='/beer-log' className='nav-link'>Beer Log</Link>
-                <Link to='logout' className='nav-link'>Logout</Link>
+                <Link to='/breweries/search' className='nav-link'>Brewery Search</Link>
+                <Link to='/breweries' className='nav-link'>My Breweries</Link>
+                <Link to='/beers' className='nav-link'>My Beers</Link>
             </div>
-            </>
+                <Link to='/' className='btn btn-primary' onClick={() => props.logout()}>Logout</Link>
+            </div>
+            </nav>
         )
     }
 
     return(
         <>
-        <nav className='navbar navbar-expand-sm navbar-dark bg-dark mb-5'>
-            <Link to='/' className='nav-link navbar-brand'>Local Brews</Link>
-            <div className='container-fluid'>
-                {user ? userLoggedIn() : userNotLoggedIn()}
-            </div>
-            
-        </nav>
+
+                {props.isSignedIn ? signedIn() : notSignedIn()}
+
+
         </>
     )
 }
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        isSignedIn: state.auth.isSignedIn
     }
 }
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps, { logout })(Header)

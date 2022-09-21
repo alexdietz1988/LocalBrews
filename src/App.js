@@ -1,32 +1,16 @@
-import { useState } from 'react'
-import { Route, Routes, useNavigate } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { Route, Routes } from 'react-router-dom'
 
-import { setUser } from './actions'
 import './styles.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Home from './pages/Home'
-import Search from './pages/search/Search'
-import Brewery from './pages/brewery/Brewery'
-import MyList from './pages/MyList'
-import BeerLog from './pages/auth/beerlog/BeerLog'
-import SignUp from './pages/auth/SignUp'
-import LogIn from './pages/auth/LogIn'
+import Home from './components/Home'
+import SearchBreweries from './components/breweries/searchBreweries/SearchBreweries'
+import Brewery from './components/breweries/brewery/Brewery'
+import Breweries from './components/breweries/Breweries'
+import Beers from './components/Beers'
+import Auth from './components/auth/Auth'
 
-function App(props) {
-  let navigate = useNavigate()
-
-  const [newUser, setNewUser] = useState(false)
-  const [logout, setLogout] = useState(false)
-
-  function Logout() {
-    props.setUser('')
-    setNewUser(false)
-    setLogout(true)
-    navigate('/')
-  }
-
+function App() {
   return (
     <>
       <Header />
@@ -34,15 +18,15 @@ function App(props) {
         <div className='container'>
 
           <Routes>
-            <Route exact path='/' element={<Home newUser={newUser} logout={logout}/>} />
-            <Route path='/signup' element={<SignUp setNewUser={setNewUser} setLogout={setLogout} />} />
-            <Route path='/login' element={<LogIn setLogout={setLogout} />} />
-            <Route path='/logout' element={<Logout />}/>
+            <Route exact path='/' element={<Home />} />
+            <Route path='/signup' element={<Auth page='signup' />} />
+            <Route path='/login' element={<Auth page='login' />} />
 
-            <Route path='/search' element={<Search />} />
-            <Route path='/brewery/:id' element={<Brewery />} />
-            <Route path='/mylist' element={<MyList />}/>
-            <Route path='/beer-log' element={<BeerLog />}/>
+            <Route path='/breweries/search' element={<SearchBreweries />} />
+            <Route path='/breweries' element={<Breweries />}/>
+            <Route path='/breweries/:id' element={<Brewery />} />
+          
+            <Route path='/beers' element={<Beers />}/>
           </Routes>
 
         </div>
@@ -52,4 +36,4 @@ function App(props) {
   )
 }
 
-export default connect(null, { setUser } )(App)
+export default App
