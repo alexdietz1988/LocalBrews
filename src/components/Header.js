@@ -10,7 +10,7 @@ function Header(props) {
             <div className='container-fluid'>
                 <Link to='/' className='navbar-brand'>Local Brews</Link>
                 <div className='collapse navbar-collapse' id='navbarNavDropdown'>
-                    <ul class='navbar-nav'>
+                    <ul className='navbar-nav'>
                         <li className='nav-item'>
                             <Link to='/' className='nav-link'>Home</Link>
                         </li>

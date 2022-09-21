@@ -24,7 +24,7 @@ function Beers(props) {
             <h2 className='mb-4'>My Beers</h2>
             {renderBeers.length > 0 ?
                 renderBeers :
-                <h4><Link to='/search'>Find a brewery</Link> to log beers you've tried!</h4>
+                <h4><Link to='/breweries/search'>Find a brewery</Link> to log beers you've tried!</h4>
             }
         </section>
     )

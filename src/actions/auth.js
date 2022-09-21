@@ -6,7 +6,7 @@ export const login = (page, formData) => async dispatch => {
         await backend.post('auth/login', formData) :
         await backend.post('auth', formData)
     let payload = { success: true }
-    response.data.success ?
+    response.data ?
         payload.user = formData.user :
         payload.success = false
         payload.errorMessage = response.data.errorMessage
